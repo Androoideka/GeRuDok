@@ -1,7 +1,11 @@
 package mehanickoPrebacivanje;
 
+import gui.MainFrame;
+
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Ali ovaj da...");
+		MainFrame glavniProzor = MainFrame.getInstance();
+		glavniProzor.setLocationRelativeTo(null);
+		glavniProzor.setVisible(true);
 	}
 }
