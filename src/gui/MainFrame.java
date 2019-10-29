@@ -14,11 +14,14 @@ public class MainFrame extends JFrame {
 	
 	private MainFrame() {
 		setTitle("GeRuDok");
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize(new Dimension(screenSize.width/2, screenSize.height/2));
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		menu = new MainMenu();
 		setJMenuBar(menu);
 	}
 	
