@@ -11,8 +11,8 @@ public class AboutDialog extends JDialog {
 	public AboutDialog(MainFrame frame) {
 		super(frame, "About");
 		Dimension dim=new Dimension(50, 20);
-		JLabel manager=new JLabel("Stefan Budimac");
-		JLabel leader=new JLabel("Andrej Gasic");
+		JLabel manager=new JLabel("Stefan Budimac RN06-2018");
+		JLabel leader=new JLabel("Andrej Gasic RN02-2018");
 		manager.setSize(dim);
 		leader.setSize(dim);
 		GridLayout layout=new GridLayout();
