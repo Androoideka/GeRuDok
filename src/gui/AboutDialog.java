@@ -20,6 +20,7 @@ public class AboutDialog extends JDialog {
 		panel.add(manager);
 		panel.add(leader);
 		add(panel);
+		setSize(new Dimension(400, 300));
 		setVisible(true);
 	}
 }
