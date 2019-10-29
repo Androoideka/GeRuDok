@@ -1,11 +1,10 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
@@ -23,6 +22,9 @@ public class MainFrame extends JFrame {
 		
 		menu = new MainMenu();
 		setJMenuBar(menu);
+		
+		MainToolbar toolbar = new MainToolbar();
+		add(toolbar, BorderLayout.NORTH);
 	}
 	
 	public static MainFrame getInstance() {

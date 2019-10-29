@@ -16,5 +16,6 @@ public class MainMenu extends JMenuBar {
 		add(file);
 		add(edit);
 		add(help);
+		
 	}
 }
