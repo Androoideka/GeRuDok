@@ -25,6 +25,9 @@ public class MainFrame extends JFrame {
 		
 		MainToolbar toolbar = new MainToolbar();
 		add(toolbar, BorderLayout.NORTH);
+		
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public static MainFrame getInstance() {
