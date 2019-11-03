@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
@@ -25,6 +27,11 @@ public class MainFrame extends JFrame {
 		
 		MainToolbar toolbar = new MainToolbar();
 		add(toolbar, BorderLayout.NORTH);
+		
+		JPanel p1=new JPanel();
+		JPanel p2=new JPanel();
+		JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, p1, p2);
+		splitPane.setDividerLocation(150);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
