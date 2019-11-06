@@ -40,6 +40,15 @@ public class AboutDialog extends JDialog {
 		JLabel telefonVodja=new JLabel("Broj telefona vodje:");
 		JLabel brTelefonaVodja=new JLabel("+381628931552");
 		
+		menadzerEmail.setHorizontalAlignment(JLabel.CENTER);
+		emailMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		telefonMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		brTelefonaMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		vodjaEmail.setHorizontalAlignment(JLabel.CENTER);
+		emailVodja.setHorizontalAlignment(JLabel.CENTER);
+		telefonVodja.setHorizontalAlignment(JLabel.CENTER);
+		brTelefonaVodja.setHorizontalAlignment(JLabel.CENTER);
+		
 		menadzerEmail.setPreferredSize(dim);
 		emailMenadzer.setPreferredSize(dim);
 		telefonMenadzer.setPreferredSize(dim);
