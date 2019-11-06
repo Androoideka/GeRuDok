@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -18,10 +19,16 @@ public class AboutDialog extends JDialog {
 		gornjiPanel.setPreferredSize(new Dimension(600, 50));
 	
 		Dimension dim=new Dimension(200, 20);
+		
 		JLabel menadzer=new JLabel("Stefan Budimac RN06-2018");
 		JLabel vodja=new JLabel("Andrej Gasic RN02-2018");
+		
+		menadzer.setFont(new Font("Verdana", Font.BOLD, 14));
+		vodja.setFont(new Font("Verdana", Font.BOLD, 14));
+		
 		menadzer.setPreferredSize(dim);
 		vodja.setPreferredSize(dim);
+		
 		menadzer.setHorizontalAlignment(JLabel.CENTER);
 		vodja.setHorizontalAlignment(JLabel.CENTER);
 		
