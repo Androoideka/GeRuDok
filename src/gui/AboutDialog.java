@@ -14,7 +14,7 @@ public class AboutDialog extends JDialog {
 	public AboutDialog(MainFrame frame) {
 		super(frame, "About");
 		
-		JPanel gornjiPanel=new JPanel(new FlowLayout());
+		JPanel gornjiPanel=new JPanel(new GridLayout(0, 2));
 		gornjiPanel.setPreferredSize(new Dimension(600, 50));
 	
 		Dimension dim=new Dimension(200, 20);
@@ -22,13 +22,15 @@ public class AboutDialog extends JDialog {
 		JLabel vodja=new JLabel("Andrej Gasic RN02-2018");
 		menadzer.setPreferredSize(dim);
 		vodja.setPreferredSize(dim);
+		menadzer.setHorizontalAlignment(JLabel.CENTER);
+		vodja.setHorizontalAlignment(JLabel.CENTER);
 		
 		gornjiPanel.add(menadzer);
 		gornjiPanel.add(vodja);
 		
 		add(gornjiPanel, BorderLayout.NORTH);
 		
-		JPanel centralniPanel=new JPanel(new GridLayout(4, 2, 0, 10));
+		JPanel centralniPanel=new JPanel(new GridLayout(4, 2));
 		centralniPanel.setPreferredSize(new Dimension(600, 150));
 		
 		JLabel menadzerEmail=new JLabel("E-mejl menadzera:");
