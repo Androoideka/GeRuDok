@@ -28,10 +28,12 @@ public class MainFrame extends JFrame {
 		MainToolbar toolbar = new MainToolbar();
 		add(toolbar, BorderLayout.NORTH);
 		
-		JPanel p1=new JPanel();
-		JPanel p2=new JPanel();
-		JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, p1, p2);
-		splitPane.setDividerLocation(150);
+		JPanel treePanel=new JPanel();
+		JPanel workspacePanel=new JPanel();
+		
+		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, workspacePanel);
+		add(podela, BorderLayout.CENTER);
+		podela.setDividerLocation(screenSize.width/16);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
