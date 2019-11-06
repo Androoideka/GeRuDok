@@ -60,6 +60,16 @@ public class AboutDialog extends JDialog {
 		telefonMenadzer.setHorizontalAlignment(JLabel.CENTER);
 		brTelefonaMenadzer.setHorizontalAlignment(JLabel.CENTER);
 		
+		vodjaEmail.setVerticalAlignment(JLabel.BOTTOM);
+		emailVodja.setVerticalAlignment(JLabel.TOP);
+		telefonVodja.setVerticalAlignment(JLabel.BOTTOM);
+		brTelefonaVodja.setVerticalAlignment(JLabel.TOP);
+		
+		menadzerEmail.setVerticalAlignment(JLabel.BOTTOM);
+		emailMenadzer.setVerticalAlignment(JLabel.TOP);
+		telefonMenadzer.setVerticalAlignment(JLabel.BOTTOM);
+		brTelefonaMenadzer.setVerticalAlignment(JLabel.TOP);
+		
 		vodjaEmail.setPreferredSize(dim);
 		emailVodja.setPreferredSize(dim);
 		telefonVodja.setPreferredSize(dim);
