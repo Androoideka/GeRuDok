@@ -17,7 +17,7 @@ public class AboutDialog extends JDialog {
 		JPanel gornjiPanel=new JPanel(new FlowLayout());
 		gornjiPanel.setPreferredSize(new Dimension(600, 50));
 	
-		Dimension dim=new Dimension(50, 20);
+		Dimension dim=new Dimension(200, 20);
 		JLabel menadzer=new JLabel("Stefan Budimac RN06-2018");
 		JLabel vodja=new JLabel("Andrej Gasic RN02-2018");
 		menadzer.setPreferredSize(dim);
@@ -28,25 +28,38 @@ public class AboutDialog extends JDialog {
 		
 		add(gornjiPanel, BorderLayout.NORTH);
 		
-		JPanel centralniPanel=new JPanel(new GridLayout(2, 2, 0, 10));
-		centralniPanel.setPreferredSize(new Dimension(600, 250));
+		JPanel centralniPanel=new JPanel(new GridLayout(4, 2, 0, 10));
+		centralniPanel.setPreferredSize(new Dimension(600, 150));
 		
+		JLabel menadzerEmail=new JLabel("E-mejl menadzera:");
 		JLabel emailMenadzer=new JLabel("sbudimac618rn@raf.rs");
+		JLabel telefonMenadzer=new JLabel("Broj telefona menadzera:");
 		JLabel brTelefonaMenadzer=new JLabel("+381653552359");
+		JLabel vodjaEmail=new JLabel("E-mejl vodje:");
 		JLabel emailVodja=new JLabel("agasic218rn@raf.rs");
+		JLabel telefonVodja=new JLabel("Broj telefona vodje:");
 		JLabel brTelefonaVodja=new JLabel("+381628931552");
-		emailMenadzer.setPreferredSize(dim);
-		brTelefonaMenadzer.setPreferredSize(dim);
-		emailVodja.setPreferredSize(dim);
-		brTelefonaVodja.setPreferredSize(dim);
-		centralniPanel.add(emailMenadzer, 0, 0);
-		centralniPanel.add(brTelefonaMenadzer, 1, 0);
-		centralniPanel.add(emailVodja, 0, 1);
-		centralniPanel.add(brTelefonaVodja, 1, 1);
 		
-		add(centralniPanel, BorderLayout.CENTER);
+		menadzerEmail.setPreferredSize(dim);
+		emailMenadzer.setPreferredSize(dim);
+		telefonMenadzer.setPreferredSize(dim);
+		brTelefonaMenadzer.setPreferredSize(dim);
+		vodjaEmail.setPreferredSize(dim);
+		emailVodja.setPreferredSize(dim);
+		telefonVodja.setPreferredSize(dim);
+		brTelefonaVodja.setPreferredSize(dim);
+		
+		centralniPanel.add(menadzerEmail);
+		centralniPanel.add(vodjaEmail);
+		centralniPanel.add(emailMenadzer);
+		centralniPanel.add(emailVodja);
+		centralniPanel.add(telefonMenadzer);
+		centralniPanel.add(telefonVodja);
+		centralniPanel.add(brTelefonaMenadzer);
+		centralniPanel.add(brTelefonaVodja);
 		
 		JPanel donjiPanel=new JPanel();
+		donjiPanel.setPreferredSize(new Dimension(600, 300));
 		
 		JLabel timskaSlika = new JLabel(new ImageIcon("tim/tim_201_14.PNG"));
 		add(timskaSlika);
@@ -55,7 +68,9 @@ public class AboutDialog extends JDialog {
 		
 		add(donjiPanel, BorderLayout.SOUTH);
 		
-		setSize(new Dimension(600, 500));
+		add(centralniPanel, BorderLayout.CENTER);
+		
+		setSize(new Dimension(500, 500));
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
