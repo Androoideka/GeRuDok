@@ -40,41 +40,47 @@ public class AboutDialog extends JDialog {
 		JPanel centralniPanel=new JPanel(new GridLayout(4, 2));
 		centralniPanel.setPreferredSize(new Dimension(600, 150));
 		
-		JLabel menadzerEmail=new JLabel("E-mejl menadzera:");
-		JLabel emailMenadzer=new JLabel("sbudimac618rn@raf.rs");
-		JLabel telefonMenadzer=new JLabel("Broj telefona menadzera:");
-		JLabel brTelefonaMenadzer=new JLabel("+381653552359");
-		JLabel vodjaEmail=new JLabel("E-mejl vodje:");
+		JLabel vodjaEmail=new JLabel("E-mail vodje:");
 		JLabel emailVodja=new JLabel("agasic218rn@raf.rs");
 		JLabel telefonVodja=new JLabel("Broj telefona vodje:");
 		JLabel brTelefonaVodja=new JLabel("+381628931552");
 		
-		menadzerEmail.setHorizontalAlignment(JLabel.CENTER);
-		emailMenadzer.setHorizontalAlignment(JLabel.CENTER);
-		telefonMenadzer.setHorizontalAlignment(JLabel.CENTER);
-		brTelefonaMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		JLabel menadzerEmail=new JLabel("E-mail menadzera:");
+		JLabel emailMenadzer=new JLabel("sbudimac618rn@raf.rs");
+		JLabel telefonMenadzer=new JLabel("Broj telefona menadzera:");
+		JLabel brTelefonaMenadzer=new JLabel("+381653552359");
+		
 		vodjaEmail.setHorizontalAlignment(JLabel.CENTER);
 		emailVodja.setHorizontalAlignment(JLabel.CENTER);
 		telefonVodja.setHorizontalAlignment(JLabel.CENTER);
 		brTelefonaVodja.setHorizontalAlignment(JLabel.CENTER);
 		
-		menadzerEmail.setPreferredSize(dim);
-		emailMenadzer.setPreferredSize(dim);
-		telefonMenadzer.setPreferredSize(dim);
-		brTelefonaMenadzer.setPreferredSize(dim);
+		menadzerEmail.setHorizontalAlignment(JLabel.CENTER);
+		emailMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		telefonMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		brTelefonaMenadzer.setHorizontalAlignment(JLabel.CENTER);
+		
 		vodjaEmail.setPreferredSize(dim);
 		emailVodja.setPreferredSize(dim);
 		telefonVodja.setPreferredSize(dim);
 		brTelefonaVodja.setPreferredSize(dim);
 		
-		centralniPanel.add(menadzerEmail);
+		menadzerEmail.setPreferredSize(dim);
+		emailMenadzer.setPreferredSize(dim);
+		telefonMenadzer.setPreferredSize(dim);
+		brTelefonaMenadzer.setPreferredSize(dim);
+		
 		centralniPanel.add(vodjaEmail);
-		centralniPanel.add(emailMenadzer);
+		centralniPanel.add(menadzerEmail);
+		
 		centralniPanel.add(emailVodja);
-		centralniPanel.add(telefonMenadzer);
+		centralniPanel.add(emailMenadzer);
+		
 		centralniPanel.add(telefonVodja);
-		centralniPanel.add(brTelefonaMenadzer);
+		centralniPanel.add(telefonMenadzer);
+		
 		centralniPanel.add(brTelefonaVodja);
+		centralniPanel.add(brTelefonaMenadzer);
 		
 		JPanel donjiPanel=new JPanel();
 		donjiPanel.setPreferredSize(new Dimension(600, 300));
