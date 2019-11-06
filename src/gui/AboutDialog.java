@@ -32,8 +32,8 @@ public class AboutDialog extends JDialog {
 		menadzer.setHorizontalAlignment(JLabel.CENTER);
 		vodja.setHorizontalAlignment(JLabel.CENTER);
 		
-		gornjiPanel.add(menadzer);
 		gornjiPanel.add(vodja);
+		gornjiPanel.add(menadzer);
 		
 		add(gornjiPanel, BorderLayout.NORTH);
 		
