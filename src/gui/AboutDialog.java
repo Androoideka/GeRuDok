@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 public class AboutDialog extends JDialog {	
 	public AboutDialog(MainFrame frame) {
@@ -104,6 +105,7 @@ public class AboutDialog extends JDialog {
 		
 		add(centralniPanel, BorderLayout.CENTER);
 		
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setSize(new Dimension(500, 500));
 		setLocationRelativeTo(null);
 		setVisible(true);

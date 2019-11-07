@@ -5,6 +5,13 @@ import java.util.Enumeration;
 import javax.swing.tree.TreeNode;
 
 public class Document implements TreeNode {
+	private String name;
+	private Project prj;
+	
+	public Document(Project prj, String name) {
+		this.prj = prj;
+		this.name = name;
+	}
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
@@ -48,4 +55,11 @@ public class Document implements TreeNode {
 		return false;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
