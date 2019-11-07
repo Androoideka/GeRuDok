@@ -7,6 +7,12 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
+
+import model.workspace.Workspace;
+import model.workspace.WorkspaceModel;
+import workspace.tree.WorkspaceTree;
+import workspace.tree.WorkspaceTreeCellRendered;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
@@ -34,6 +40,13 @@ public class MainFrame extends JFrame {
 		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, workspacePanel);
 		add(podela, BorderLayout.CENTER);
 		podela.setDividerLocation(screenSize.width/16);
+		
+		WorkspaceModel wsm=new WorkspaceModel(new Workspace());
+		WorkspaceTree wst=new WorkspaceTree();
+		
+		wst.setModel(wsm);
+		
+		SwingUtilities.updateComponentTreeUI(this);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
