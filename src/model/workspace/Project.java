@@ -1,51 +1,59 @@
 package model.workspace;
 
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.swing.tree.TreeNode;
 
 public class Project implements TreeNode {
+	private String name;
+	private Workspace ws;
+	private List<Document> docs;
+	
+	public Project(Workspace ws, String name) {
+		this.ws = ws;
+		this.name = name;
+	}
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.enumeration(docs);
 	}
 
 	@Override
 	public boolean getAllowsChildren() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public TreeNode getChildAt(int childIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return docs.get(childIndex);
 	}
 
 	@Override
 	public int getChildCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return docs.size();
 	}
 
 	@Override
 	public int getIndex(TreeNode node) {
-		// TODO Auto-generated method stub
-		return 0;
+		return docs.indexOf(node);
 	}
 
 	@Override
 	public TreeNode getParent() {
-		// TODO Auto-generated method stub
-		return null;
+		return ws;
 	}
 
 	@Override
 	public boolean isLeaf() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 
 }
