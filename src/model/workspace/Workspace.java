@@ -48,10 +48,13 @@ public class Workspace implements TreeNode {
 	public boolean isLeaf() {
 		return false;
 	}
+	
+	public void addProject(Project project) {
+		prj.add(project);
+	}
 
 	@Override
 	public String toString() {
 		return name;
 	}
-
 }
