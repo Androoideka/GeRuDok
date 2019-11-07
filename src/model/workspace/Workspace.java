@@ -1,5 +1,6 @@
 package model.workspace;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
@@ -7,8 +8,8 @@ import java.util.List;
 import javax.swing.tree.TreeNode;
 
 public class Workspace implements TreeNode {
-	private String name;
-	private List<Project> prj;
+	private String name = "Workspace";
+	private List<Project> prj = new ArrayList<>();
 	
 	public Workspace() {
 		super();
