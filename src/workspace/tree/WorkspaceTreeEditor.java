@@ -19,34 +19,34 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 
 	private Object node;
 	private JTextField field=null;
-	public WorkspaceTreeEditor(JTree arg0, DefaultTreeCellRenderer arg1) {
-		super(arg0, arg1);
+	public WorkspaceTreeEditor(JTree tree, DefaultTreeCellRenderer renderer) {
+		super(tree, renderer);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Component getTreeCellEditorComponent(JTree arg0, Object arg1, boolean arg2, boolean arg3, boolean arg4, int arg5) {
-		node=arg1;
-		field=new JTextField(arg1.toString());
+	public Component getTreeCellEditorComponent(JTree tree, Object node, boolean isSelected, boolean isExpanded, boolean isLeaf, int row) {
+		this.node=node;
+		field=new JTextField(node.toString());
 		field.addActionListener(this);
 		return field;
 	}
 	
-	public boolean isCellEditable(EventObject arg0) {
-		if (arg0 instanceof MouseEvent)
-			if (((MouseEvent)arg0).getClickCount()==3){
+	public boolean isCellEditable(EventObject event) {
+		if (event instanceof MouseEvent)
+			if (((MouseEvent)event).getClickCount()==3){
 				return true;
 			}
 		return false;
 	}
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent event){
 		if (node instanceof Workspace) {
-			((Workspace)node).setName(e.getActionCommand());
+			((Workspace)node).setName(event.getActionCommand());
 		}
 		else if (node instanceof Project) {
-			((Project)node).setName(e.getActionCommand());
+			((Project)node).setName(event.getActionCommand());
 		}
 		else if(node instanceof Document) {
-			((Document)node).setName(e.getActionCommand());
+			((Document)node).setName(event.getActionCommand());
 		}
 	}
 }
