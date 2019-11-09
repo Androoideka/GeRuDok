@@ -7,14 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.NewDocumentAction;
+
 public class MainToolbar extends JToolBar {
 	public MainToolbar() {
 		super(SwingConstants.HORIZONTAL);
 		
-		JButton newBtn = new JButton();
+		add(new NewDocumentAction());
+		
+		/*JButton newBtn = new JButton();
 		newBtn.setToolTipText("Create a new document");
 		newBtn.setIcon(new ImageIcon("images/documentnew.png"));
-		add(newBtn);
+		add(newBtn);*/
 		
 		JButton openBtn = new JButton();
 		openBtn.setToolTipText("Open an existing document");
