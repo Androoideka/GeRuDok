@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import helpers.ImageResizer;
 import model.workspace.Document;
 import model.workspace.Project;
 import model.workspace.Workspace;
@@ -17,30 +18,15 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		super.getTreeCellRendererComponent(tree, value, sel,expanded, leaf, row,hasFocus);
 		
 		if (value instanceof Workspace ) {
-			URL imageURL = getClass().getResource("");
-			Icon icon = null;
-			if (imageURL != null) {
-				icon = new ImageIcon(imageURL);
-				}
-			setIcon(icon);
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/workspaceopen.png", 24, 24));
 		}
 		
 		else if (value instanceof Project ) {
-			URL imageURL = getClass().getResource("");
-			Icon icon = null;
-			if (imageURL != null) {
-				icon = new ImageIcon(imageURL);
-				}
-			setIcon(icon);
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/projectnew.png", 24, 24));
 		}
 		
 		else if (value instanceof Document ) {
-			URL imageURL = getClass().getResource("");
-			Icon icon = null;
-			if (imageURL != null) {
-				icon = new ImageIcon(imageURL);
-				}
-			setIcon(icon);
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/documentopen.png", 24, 24));
 		}
 		return this;
 	}
