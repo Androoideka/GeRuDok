@@ -17,6 +17,8 @@ public class ActionManager {
 	private RenameAction renameAction;
 	private DeleteAction deleteAction;
 	
+	private PopupListener popupListener;
+	
 	private ActionManager() {
 		openWorkspaceAction = new OpenWorkspaceAction();
 		
@@ -30,6 +32,8 @@ public class ActionManager {
 		saveAction = new SaveAction();
 		renameAction = new RenameAction();
 		deleteAction = new DeleteAction();
+		
+		popupListener = new PopupListener();
 	}
 	
 	public OpenWorkspaceAction getOpenWorkspaceAction() {
@@ -62,6 +66,10 @@ public class ActionManager {
 
 	public DeleteAction getDeleteAction() {
 		return deleteAction;
+	}
+
+	public PopupListener getPopupListener() {
+		return popupListener;
 	}
 
 	public static ActionManager getInstance() {
