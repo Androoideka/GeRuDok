@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.tree.TreeNode;
 
 public class Document implements TreeNode {
@@ -62,6 +63,10 @@ public class Document implements TreeNode {
 	
 	public void addPage(Page p) {
 		pages.add(p);
+	}
+	
+	public void removePage(Page p) {
+		pages.remove(p);
 	}
 	
 	public String toString() {

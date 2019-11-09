@@ -7,7 +7,11 @@ public class WorkspaceModel extends DefaultTreeModel {
 		super(workspace);
 	}
 	
-	public void addProject(Project project){
+	/*public void addProject(Project project){
 		((Workspace)getRoot()).addProject(project);
 	}
+	
+	public void removeProject(Project project) {
+		((Workspace)getRoot()).removeProject(project);
+	}*/
 }
