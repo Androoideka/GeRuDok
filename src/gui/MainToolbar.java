@@ -7,13 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.ActionManager;
 import controller.NewDocumentAction;
 
 public class MainToolbar extends JToolBar {
 	public MainToolbar() {
 		super(SwingConstants.HORIZONTAL);
 		
-		add(new NewDocumentAction());
+		add(ActionManager.getInstance().getNewProjectAction());
 		
 		/*JButton newBtn = new JButton();
 		newBtn.setToolTipText("Create a new document");
