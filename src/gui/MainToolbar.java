@@ -15,22 +15,14 @@ public class MainToolbar extends JToolBar {
 		super(SwingConstants.HORIZONTAL);
 		
 		add(ActionManager.getInstance().getNewProjectAction());
+		
+		addSeparator();
+		
 		add(ActionManager.getInstance().getNewDocumentAction());
+		add(ActionManager.getInstance().getOpenDocumentAction());
 		
-		/*JButton newBtn = new JButton();
-		newBtn.setToolTipText("Create a new document");
-		newBtn.setIcon(new ImageIcon("images/documentnew.png"));
-		add(newBtn);*/
+		addSeparator();
 		
-		JButton openBtn = new JButton();
-		openBtn.setToolTipText("Open an existing document");
-		openBtn.setIcon(new ImageIcon("images/document64.png"));
-		add(openBtn);
-		
-		JButton saveBtn = new JButton();
-		saveBtn.setToolTipText("Save changes to the project");
-		saveBtn.setIcon(new ImageIcon("images/save64.png"));
-		//saveBtn.setIcon(new ImageIcon((new ImageIcon("images/save64.png")).getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT)));	 moguce resenje za prevelike ikonice
-		add(saveBtn);
+		add(ActionManager.getInstance().getSaveAction());
 	}
 }

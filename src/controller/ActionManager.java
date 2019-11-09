@@ -7,12 +7,21 @@ public class ActionManager {
 	private AboutAction aboutAction;
 	
 	private NewProjectAction newProjectAction;
+	
 	private NewDocumentAction newDocumentAction;
+	private OpenDocumentAction openDocumentAction;
+	
+	private SaveAction saveAction;
 	
 	private ActionManager() {
 		aboutAction=new AboutAction();
+		
 		newProjectAction=new NewProjectAction();
+		
 		newDocumentAction=new NewDocumentAction();
+		openDocumentAction = new OpenDocumentAction();
+		
+		saveAction = new SaveAction();
 	}
 	
 	public AboutAction getAboutAction() {
@@ -25,6 +34,14 @@ public class ActionManager {
 	
 	public NewDocumentAction getNewDocumentAction() {
 		return newDocumentAction;
+	}
+	
+	public OpenDocumentAction getOpenDocumentAction() {
+		return openDocumentAction;
+	}
+
+	public SaveAction getSaveAction() {
+		return saveAction;
 	}
 	
 	public static ActionManager getInstance() {

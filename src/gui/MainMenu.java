@@ -14,10 +14,6 @@ public class MainMenu extends JMenuBar {
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
 		
-		/*JMenuItem About = new JMenuItem("About");
-		About.addActionListener(new AboutActionListener());
-		help.add(About);*/
-		
 		help.add(ActionManager.getInstance().getAboutAction());
 		
 		add(file);
