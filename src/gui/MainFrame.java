@@ -14,7 +14,7 @@ import javax.swing.WindowConstants;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
 import workspace.tree.WorkspaceTree;
-import workspace.tree.WorkspaceTreeCellRendered;
+import workspace.tree.WorkspaceTreeCellRenderer;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;

@@ -9,7 +9,7 @@ public class WorkspaceTree extends JTree {
 	public WorkspaceTree() {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new DefaultTreeCellRenderer()));
-	    setCellRenderer(new WorkspaceTreeCellRendered());
+	    setCellRenderer(new WorkspaceTreeCellRenderer());
 	    setEditable(true);
 	}
 	
