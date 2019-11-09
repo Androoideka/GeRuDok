@@ -42,7 +42,6 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 				}
 			setIcon(icon);
 		}
-		
 		return this;
 	}
 }

@@ -8,9 +8,8 @@ import controller.workspace.WorkspaceTreeController;
 public class WorkspaceTree extends JTree {
 	public WorkspaceTree() {
 		addTreeSelectionListener(new WorkspaceTreeController());
-	    setCellEditor(new WorkspaceTreeEditor(this,new DefaultTreeCellRenderer()));
+	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
 	    setCellRenderer(new WorkspaceTreeCellRenderer());
 	    setEditable(true);
 	}
-	
 }
