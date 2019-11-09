@@ -2,11 +2,13 @@ package controller;
 
 
 public class ActionManager {
+	private static ActionManager instance=null;
+	
 	private AboutActionListener aboutActionListener;
 	
 	private NewDocumentAction newDocumentAction;
 	
-	public ActionManager() {
+	private ActionManager() {
 		aboutActionListener=new AboutActionListener();
 		newDocumentAction=new NewDocumentAction();
 	}
@@ -17,5 +19,12 @@ public class ActionManager {
 	
 	public NewDocumentAction getNewProjectAction() {
 		return newDocumentAction;
+	}
+	
+	public ActionManager getInstance() {
+		if(instance==null) {
+			instance=new ActionManager();
+		}
+		return instance;
 	}
 }
