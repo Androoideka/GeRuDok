@@ -11,6 +11,7 @@ public class ActionManager {
 	
 	private ActionManager() {
 		aboutAction=new AboutAction();
+		newProjectAction=new NewProjectAction();
 		newDocumentAction=new NewDocumentAction();
 	}
 	
