@@ -63,4 +63,8 @@ public class Document implements TreeNode {
 	public void addPage(Page p) {
 		pages.add(p);
 	}
+	
+	public String toString() {
+		return name;
+	}
 }
