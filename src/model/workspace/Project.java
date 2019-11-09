@@ -59,10 +59,13 @@ public class Project implements TreeNode {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void addDocument(Document doc) {
+		docs.add(doc);
+	}
 
 	@Override
 	public String toString() {
 		return name;
 	}
-
 }
