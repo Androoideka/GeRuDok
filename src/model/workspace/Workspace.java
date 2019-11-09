@@ -47,7 +47,7 @@ public class Workspace implements TreeNode {
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return prj.size() == 0;
 	}
 	
 	public void addProject(Project project) {
