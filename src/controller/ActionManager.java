@@ -4,6 +4,8 @@ package controller;
 public class ActionManager {
 	private static ActionManager instance=null;
 	
+	private OpenWorkspaceAction openWorkspaceAction;
+	
 	private AboutAction aboutAction;
 	
 	private NewProjectAction newProjectAction;
@@ -14,14 +16,20 @@ public class ActionManager {
 	private SaveAction saveAction;
 	
 	private ActionManager() {
-		aboutAction=new AboutAction();
+		openWorkspaceAction = new OpenWorkspaceAction();
 		
-		newProjectAction=new NewProjectAction();
+		aboutAction = new AboutAction();
 		
-		newDocumentAction=new NewDocumentAction();
+		newProjectAction = new NewProjectAction();
+		
+		newDocumentAction = new NewDocumentAction();
 		openDocumentAction = new OpenDocumentAction();
 		
 		saveAction = new SaveAction();
+	}
+	
+	public OpenWorkspaceAction getOpenWorkspaceAction() {
+		return openWorkspaceAction;
 	}
 	
 	public AboutAction getAboutAction() {
