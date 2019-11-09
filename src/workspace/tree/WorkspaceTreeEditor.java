@@ -13,6 +13,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import model.workspace.Document;
 import model.workspace.Project;
+import model.workspace.Workspace;
 
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
 
@@ -38,7 +39,10 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 		return false;
 	}
 	public void actionPerformed(ActionEvent e){
-		if (node instanceof Project) {
+		if (node instanceof Workspace) {
+			((Workspace)node).setName(e.getActionCommand());
+		}
+		else if (node instanceof Project) {
 			((Project)node).setName(e.getActionCommand());
 		}
 		else if(node instanceof Document) {
