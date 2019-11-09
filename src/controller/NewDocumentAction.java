@@ -12,8 +12,7 @@ import model.workspace.Project;
 public class NewDocumentAction extends MehanickoPrebacivanjeAction {
 	
 	public NewDocumentAction() {
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
-		        KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/documentnew.png", 24, 24));
 		putValue(NAME, "New document");
 		putValue(SHORT_DESCRIPTION, "Create a new document.");

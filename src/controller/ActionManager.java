@@ -6,6 +6,7 @@ public class ActionManager {
 	
 	private AboutAction aboutAction;
 	
+	private NewProjectAction newProjectAction;
 	private NewDocumentAction newDocumentAction;
 	
 	private ActionManager() {
@@ -17,7 +18,11 @@ public class ActionManager {
 		return aboutAction;
 	}
 	
-	public NewDocumentAction getNewProjectAction() {
+	public NewProjectAction getNewProjectAction() {
+		return newProjectAction;
+	}
+	
+	public NewDocumentAction getNewDocumentAction() {
 		return newDocumentAction;
 	}
 	
