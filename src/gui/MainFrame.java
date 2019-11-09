@@ -20,6 +20,8 @@ public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
 	
 	private MainMenu menu;
+	private WorkspaceModel wsm;
+	private WorkspaceTree wst;
 	
 	private MainFrame() {
 		setTitle("GeRuDok");
@@ -34,8 +36,8 @@ public class MainFrame extends JFrame {
 		MainToolbar toolbar = new MainToolbar();
 		add(toolbar, BorderLayout.NORTH);
 		
-		WorkspaceModel wsm=new WorkspaceModel(new Workspace());
-		WorkspaceTree wst=new WorkspaceTree();
+		wsm=new WorkspaceModel(new Workspace());
+		wst=new WorkspaceTree();
 		wst.setModel(wsm);
 		
 		JScrollPane treePanel=new JScrollPane(wst);
@@ -57,5 +59,9 @@ public class MainFrame extends JFrame {
 			instance = new MainFrame();
 		}
 		return instance;
+	}
+	
+	public WorkspaceTree getWorkspaceTree() {
+		return wst;
 	}
 }
