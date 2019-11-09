@@ -61,6 +61,10 @@ public class Workspace implements TreeNode {
 	public void addProject(Project project) {
 		prj.add(project);
 	}
+	
+	public void removeProject(Project project) {
+		prj.remove(project);
+	}
 
 	@Override
 	public String toString() {

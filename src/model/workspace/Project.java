@@ -63,6 +63,10 @@ public class Project implements TreeNode {
 	public void addDocument(Document doc) {
 		docs.add(doc);
 	}
+	
+	public void removeDocument(Document doc) {
+		docs.remove(doc);
+	}
 
 	@Override
 	public String toString() {
