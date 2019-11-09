@@ -14,6 +14,8 @@ public class ActionManager {
 	private OpenDocumentAction openDocumentAction;
 	
 	private SaveAction saveAction;
+	private RenameAction renameAction;
+	private DeleteAction deleteAction;
 	
 	private ActionManager() {
 		openWorkspaceAction = new OpenWorkspaceAction();
@@ -26,6 +28,8 @@ public class ActionManager {
 		openDocumentAction = new OpenDocumentAction();
 		
 		saveAction = new SaveAction();
+		renameAction = new RenameAction();
+		deleteAction = new DeleteAction();
 	}
 	
 	public OpenWorkspaceAction getOpenWorkspaceAction() {
@@ -52,6 +56,14 @@ public class ActionManager {
 		return saveAction;
 	}
 	
+	public RenameAction getRenameAction() {
+		return renameAction;
+	}
+
+	public DeleteAction getDeleteAction() {
+		return deleteAction;
+	}
+
 	public static ActionManager getInstance() {
 		if(instance==null) {
 			instance=new ActionManager();
