@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 import gui.MainFrame;
 import model.workspace.Project;
@@ -23,6 +24,8 @@ public class NewProjectAction extends MehanickoPrebacivanjeAction {
 		if (w  instanceof Workspace) {
 			Project p=new Project((Workspace)w, "project");
 			((Workspace)w).addProject(p);
+			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			//ovo bi mozda trebalo da se resava preko observera
 		}
 	}
 }
