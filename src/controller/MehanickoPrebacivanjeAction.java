@@ -1,8 +1,6 @@
 package controller;
 
-import java.awt.Dimension;
 import java.awt.Image;
-import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
