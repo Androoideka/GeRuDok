@@ -50,6 +50,14 @@ public class Workspace implements TreeNode {
 		return prj.size() == 0;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public void addProject(Project project) {
 		prj.add(project);
 	}
