@@ -8,9 +8,9 @@ import javax.swing.KeyStroke;
 import gui.AboutDialog;
 import gui.MainFrame;
 
-public class AboutActionListener extends MehanickoPrebacivanjeAction {
+public class AboutAction extends MehanickoPrebacivanjeAction {
 	
-	public AboutActionListener() {
+	public AboutAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/about.png", 24, 24));
 		putValue(NAME, "About");

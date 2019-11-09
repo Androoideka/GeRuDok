@@ -4,16 +4,16 @@ package controller;
 public class ActionManager {
 	private static ActionManager instance=null;
 	
-	private AboutActionListener aboutActionListener;
+	private AboutAction aboutActionListener;
 	
 	private NewDocumentAction newDocumentAction;
 	
 	private ActionManager() {
-		aboutActionListener=new AboutActionListener();
+		aboutActionListener=new AboutAction();
 		newDocumentAction=new NewDocumentAction();
 	}
 	
-	public AboutActionListener getAboutActionListener() {
+	public AboutAction getAboutActionListener() {
 		return aboutActionListener;
 	}
 	
