@@ -14,11 +14,12 @@ public class MainMenu extends JMenuBar {
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
 		
+		file.add(ActionManager.getInstance().getOpenWorkspaceAction());
+		
 		help.add(ActionManager.getInstance().getAboutAction());
 		
 		add(file);
 		add(edit);
 		add(help);
-		
 	}
 }
