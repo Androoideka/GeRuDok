@@ -9,7 +9,6 @@ import gui.AboutDialog;
 import gui.MainFrame;
 
 public class AboutActionListener extends MehanickoPrebacivanjeAction {
-	private MainFrame glavniProzor;
 	
 	public AboutActionListener() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
@@ -20,7 +19,7 @@ public class AboutActionListener extends MehanickoPrebacivanjeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		new AboutDialog(glavniProzor);
+		new AboutDialog(MainFrame.getInstance());
 	}
 	
 }
