@@ -49,7 +49,7 @@ public class Project implements TreeNode {
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return docs.size() == 0;
 	}
 
 	public String getName() {
