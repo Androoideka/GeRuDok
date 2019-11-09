@@ -15,6 +15,7 @@ public class MainToolbar extends JToolBar {
 		super(SwingConstants.HORIZONTAL);
 		
 		add(ActionManager.getInstance().getNewProjectAction());
+		add(ActionManager.getInstance().getNewDocumentAction());
 		
 		/*JButton newBtn = new JButton();
 		newBtn.setToolTipText("Create a new document");
