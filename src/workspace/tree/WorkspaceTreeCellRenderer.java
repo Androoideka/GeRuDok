@@ -18,15 +18,15 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		super.getTreeCellRendererComponent(tree, value, sel,expanded, leaf, row,hasFocus);
 		
 		if (value instanceof Workspace ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/workspaceopen.png", 24, 24));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/workspaceopen.png", 16, 16));
 		}
 		
 		else if (value instanceof Project ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/projectnew.png", 24, 24));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/projectnew.png", 16, 16));
 		}
 		
 		else if (value instanceof Document ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/documentopen.png", 24, 24));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/documentopen.png", 16, 16));
 		}
 		return this;
 	}

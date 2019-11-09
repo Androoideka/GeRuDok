@@ -21,7 +21,6 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	private JTextField field=null;
 	public WorkspaceTreeEditor(JTree tree, DefaultTreeCellRenderer renderer) {
 		super(tree, renderer);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Component getTreeCellEditorComponent(JTree tree, Object node, boolean isSelected, boolean isExpanded, boolean isLeaf, int row) {
