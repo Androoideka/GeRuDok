@@ -1,12 +1,16 @@
 package model.workspace;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.swing.tree.TreeNode;
 
 public class Document implements TreeNode {
 	private String name;
 	private Project prj;
+	private List<Page> pages=new ArrayList<Page>();
 	
 	public Document(Project prj, String name) {
 		this.prj = prj;
@@ -15,44 +19,37 @@ public class Document implements TreeNode {
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.enumeration(pages);
 	}
 
 	@Override
 	public boolean getAllowsChildren() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
-	public TreeNode getChildAt(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public TreeNode getChildAt(int childIndex) {
+		return pages.get(childIndex);
 	}
 
 	@Override
 	public int getChildCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return pages.size();
 	}
 
 	@Override
-	public int getIndex(TreeNode arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getIndex(TreeNode node) {
+		return pages.indexOf(node);
 	}
 
 	@Override
 	public TreeNode getParent() {
-		// TODO Auto-generated method stub
-		return null;
+		return prj;
 	}
 
 	@Override
 	public boolean isLeaf() {
-		// TODO Auto-generated method stub
-		return false;
+		return(pages.size()==0);
 	}
 
 	public String getName() {
