@@ -5,13 +5,16 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreeNode;
 
-public class Document implements TreeNode {
+import observer.IModelObserver;
+import observer.IViewObserver;
+
+public class Document implements TreeNode, IModelObserver {
 	private String name;
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
+	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Document(Project prj, String name) {
 		this.prj = prj;
@@ -71,5 +74,34 @@ public class Document implements TreeNode {
 	
 	public String toString() {
 		return name;
+	}
+
+	@Override
+	public void addObserver(IViewObserver viewObserver) {
+		if(viewObserver==null) {
+			return;
+		}
+		if(this.viewObservers.contains(viewObserver)) {
+			return;
+		}
+		this.viewObservers.add(viewObserver);
+	}
+
+	@Override
+	public void removeObserver(IViewObserver viewObserver) {
+		if(viewObserver==null || !viewObservers.contains(viewObserver)) {
+			return;
+		}
+		viewObservers.remove(viewObserver);
+	}
+
+	@Override
+	public void notifyObservers(Object event) {
+		if(event==null || viewObservers.isEmpty()) {
+			return;
+		}
+		for(IViewObserver viewObserver : viewObservers) {
+			viewObserver.update(event);
+		}
 	}
 }
