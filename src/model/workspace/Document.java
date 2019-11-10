@@ -66,14 +66,6 @@ public class Document implements MutableTreeNode, IModelObserver {
 		this.name = name;
 	}
 	
-	public void addPage(Page p) {
-		pages.add(p);
-	}
-	
-	public void removePage(Page p) {
-		pages.remove(p);
-	}
-	
 	public String toString() {
 		return name;
 	}

@@ -102,14 +102,6 @@ public class Project implements MutableTreeNode, IModelObserver {
 		this.name = name;
 	}
 	
-	public void addDocument(Document doc) {
-		docs.add(doc);
-	}
-	
-	public void removeDocument(Document doc) {
-		docs.remove(doc);
-	}
-
 	@Override
 	public String toString() {
 		return name;
