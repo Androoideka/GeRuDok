@@ -9,6 +9,7 @@ public class ActionManager {
 	private AboutAction aboutAction;
 	
 	private NewProjectAction newProjectAction;
+	private OpenProjectAction openProjectAction;
 	
 	private NewDocumentAction newDocumentAction;
 	private OpenDocumentAction openDocumentAction;
@@ -25,6 +26,7 @@ public class ActionManager {
 		aboutAction = new AboutAction();
 		
 		newProjectAction = new NewProjectAction();
+		openProjectAction = new OpenProjectAction();
 		
 		newDocumentAction = new NewDocumentAction();
 		openDocumentAction = new OpenDocumentAction();
@@ -48,6 +50,10 @@ public class ActionManager {
 		return newProjectAction;
 	}
 	
+	public OpenProjectAction getOpenProjectAction() {
+		return openProjectAction;
+	}
+
 	public NewDocumentAction getNewDocumentAction() {
 		return newDocumentAction;
 	}
