@@ -29,23 +29,4 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 		field.addActionListener(this);
 		return field;
 	}
-	
-	public boolean isCellEditable(EventObject event) {
-		if (event instanceof MouseEvent)
-			if (((MouseEvent)event).getClickCount()==3){
-				return true;
-			}
-		return false;
-	}
-	public void actionPerformed(ActionEvent event){
-		if (node instanceof Workspace) {
-			((Workspace)node).setName(event.getActionCommand());
-		}
-		else if (node instanceof Project) {
-			((Project)node).setName(event.getActionCommand());
-		}
-		else if(node instanceof Document) {
-			((Document)node).setName(event.getActionCommand());
-		}
-	}
 }
