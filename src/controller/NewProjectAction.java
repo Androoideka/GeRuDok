@@ -26,9 +26,9 @@ public class NewProjectAction extends MehanickoPrebacivanjeAction {
 	public void actionPerformed(ActionEvent e) {
 		Object w=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		if (w  instanceof Workspace || w==null) {
-			w=MainFrame.getInstance().getWorkspaceModel().getRoot();
-			Project p=new Project((Workspace)w, "project");
-			((Workspace)w).addProject(p);
+			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
+			Project p=new Project(ws, "project");
+			ws.insert(p, ws.getChildCount());
 			MainFrame.getInstance().getTabbedPane().addTab("Projekat "+br, new JPanel());
 			br++;
 		}
