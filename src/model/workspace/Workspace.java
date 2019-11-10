@@ -126,7 +126,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(event==null || viewObservers.isEmpty()) {
+		if(viewObservers.isEmpty()) {
 			return;
 		}
 		for(IViewObserver viewObserver : viewObservers) {
