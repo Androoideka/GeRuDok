@@ -97,14 +97,6 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 		this.name = name;
 	}
 
-	public void addProject(Project project) {
-		prj.add(project);
-	}
-	
-	public void removeProject(Project project) {
-		prj.remove(project);
-	}
-
 	@Override
 	public String toString() {
 		return name;
