@@ -14,7 +14,8 @@ public class RenameAction extends MehanickoPrebacivanjeAction {
 	
 	public RenameAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0)); //0 specifies no modifiers
-		putValue(SMALL_ICON, loadIcon("ikonice/rename.png", 24, 24));
+		putValue(SMALL_ICON, loadIcon("ikonice/rename.png", 16, 16));
+		putValue(LARGE_ICON_KEY, loadIcon("ikonice/rename.png", 24, 24));
 		putValue(NAME, "Rename");
 		putValue(SHORT_DESCRIPTION, "Rename an object.");
 	}

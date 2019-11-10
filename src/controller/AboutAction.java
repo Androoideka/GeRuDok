@@ -13,6 +13,7 @@ public class AboutAction extends MehanickoPrebacivanjeAction {
 	public AboutAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/about.png", 24, 24));
+		putValue(LARGE_ICON_KEY, loadIcon("ikonice/about.png", 24, 24));
 		putValue(NAME, "About");
 		putValue(SHORT_DESCRIPTION, "About mehanickoPrebacivanje");
 	}
