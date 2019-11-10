@@ -29,7 +29,6 @@ public class NewProjectAction extends MehanickoPrebacivanjeAction {
 			w=MainFrame.getInstance().getWorkspaceModel().getRoot();
 			Project p=new Project((Workspace)w, "project");
 			((Workspace)w).addProject(p);
-			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
 			//ovo bi mozda trebalo da se resava preko observera
 			MainFrame.getInstance().getTabbedPane().addTab("Projekat "+br, new JPanel());
 			br++;
