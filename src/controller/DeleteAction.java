@@ -6,9 +6,11 @@ import java.util.Collections;
 
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
 import model.workspace.Document;
+import model.workspace.Page;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
@@ -25,13 +27,10 @@ public class DeleteAction extends MehanickoPrebacivanjeAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		if (node instanceof Project) {
-			Project p = (Project)node;
-			((Workspace)p.getParent()).removeProject(p);
-		}
-		else if(node instanceof Document) {
-			Document d = (Document)node;
-			((Project)d.getParent()).removeDocument(d);
+		MutableTreeNode tNode=(MutableTreeNode)node;
+		if (node instanceof Project || node instanceof Document || node instanceof Page) {
+			MutableTreeNode tParentNode=(MutableTreeNode)tNode.getParent();
+			tParentNode.remove(tNode);
 		}
 	}
 
