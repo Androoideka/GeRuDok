@@ -75,6 +75,7 @@ public class Document implements MutableTreeNode, IModelObserver {
 		if(node instanceof Page) {
 			pages.add(index, (Page)node);
 		}
+		notifyObservers(node);
 	}
 
 	@Override
@@ -87,6 +88,7 @@ public class Document implements MutableTreeNode, IModelObserver {
 		if(node instanceof Page) {
 			pages.remove((Page)node);
 		}
+		notifyObservers(node);
 	}
 
 	@Override
