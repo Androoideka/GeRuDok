@@ -26,8 +26,6 @@ public class NewDocumentAction extends MehanickoPrebacivanjeAction {
 		if (p  instanceof Project) {
 			Document d=new Document((Project)p, "document");
 			((Project)p).addDocument(d);
-			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-			//ovo bi mozda trebalo da se resava preko observera
 		}
 	}
 
