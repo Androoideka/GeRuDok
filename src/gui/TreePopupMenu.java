@@ -22,8 +22,8 @@ public class TreePopupMenu extends JPopupMenu {
 		}
 		if(node instanceof Document) {
 		}
-		add(ActionManager.getInstance().getRenameAction());
-		addSeparator();
 		add(ActionManager.getInstance().getDeleteAction());
+		add(ActionManager.getInstance().getRenameAction());
+		
 	}
 }
