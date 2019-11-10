@@ -2,17 +2,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.Collections;
-
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
 import model.workspace.Document;
 import model.workspace.Page;
 import model.workspace.Project;
-import model.workspace.Workspace;
 
 public class DeleteAction extends MehanickoPrebacivanjeAction {
 	

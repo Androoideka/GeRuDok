@@ -1,22 +1,20 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
 import workspace.tree.WorkspaceTree;
-import workspace.tree.WorkspaceTreeCellRenderer;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
