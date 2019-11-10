@@ -64,4 +64,10 @@ public class MainFrame extends JFrame {
 	public WorkspaceTree getWorkspaceTree() {
 		return wst;
 	}
+
+	public WorkspaceModel getWorkspaceModel() {
+		return wsm;
+	}
+	
+	
 }
