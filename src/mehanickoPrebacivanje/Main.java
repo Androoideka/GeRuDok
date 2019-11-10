@@ -7,7 +7,7 @@ import gui.MainFrame;
 
 public class Main {
 	public static void main(String[] args) {
-		try {
+		/*try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
 		catch (UnsupportedLookAndFeelException e) {
@@ -21,7 +21,7 @@ public class Main {
 	    }
 	    catch (IllegalAccessException e) {
 	    	
-	    }
+	    }*/
 		MainFrame glavniProzor = MainFrame.getInstance();
 	}
 }

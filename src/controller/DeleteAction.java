@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
@@ -29,5 +30,4 @@ public class DeleteAction extends MehanickoPrebacivanjeAction {
 			tParentNode.remove(tNode);
 		}
 	}
-
 }

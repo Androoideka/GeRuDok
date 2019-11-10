@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
+import observer.IModelObserver;
 import workspace.tree.WorkspaceTree;
 
 public class MainFrame extends JFrame {
@@ -38,7 +39,7 @@ public class MainFrame extends JFrame {
 		add(toolbar, BorderLayout.NORTH);
 		
 		wsm=new WorkspaceModel(new Workspace());
-		wst=new WorkspaceTree();
+		wst=new WorkspaceTree((IModelObserver)wsm.getRoot());
 		wst.setModel(wsm);
 		
 		JScrollPane treePanel=new JScrollPane(wst);
@@ -51,11 +52,6 @@ public class MainFrame extends JFrame {
 		podela.setDividerLocation(screenSize.width/16);
 		
 		SwingUtilities.updateComponentTreeUI(this);
-		
-		
-		
-		
-		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
