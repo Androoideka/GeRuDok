@@ -43,21 +43,23 @@ public class MainFrame extends JFrame {
 		wst.setModel(wsm);
 		
 		JScrollPane treePanel=new JScrollPane(wst);
-		JPanel workspacePanel=new JPanel();
 		
-		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, workspacePanel);
+		JTabbedPane tabbedPane = new JTabbedPane();
+		JPanel p1=new JPanel();
+		JPanel p2=new JPanel();
+		tabbedPane.addTab("Tab 1", p1);
+		tabbedPane.addTab("Tab 2", p2);
+		add(tabbedPane, BorderLayout.CENTER);
+		
+		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, tabbedPane);
 		add(podela, BorderLayout.CENTER);
 		podela.setDividerLocation(screenSize.width/16);
 		
 		SwingUtilities.updateComponentTreeUI(this);
 		
-		JPanel p1=new JPanel();
-		JPanel p2=new JPanel();
 		
-		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Tab 1", p1);
-		tabbedPane.addTab("Tab 2", p2);
-		add(tabbedPane, BorderLayout.CENTER);
+		
+		
 		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
