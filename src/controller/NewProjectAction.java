@@ -22,7 +22,8 @@ public class NewProjectAction extends MehanickoPrebacivanjeAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object w=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		if (w  instanceof Workspace) {
+		if (w  instanceof Workspace || w==null) {
+			w=MainFrame.getInstance().getWorkspaceModel().getRoot();
 			Project p=new Project((Workspace)w, "project");
 			((Workspace)w).addProject(p);
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
