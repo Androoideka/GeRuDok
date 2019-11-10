@@ -1,8 +1,8 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 public class AboutDialog extends JDialog {	
 	public AboutDialog(MainFrame frame) {

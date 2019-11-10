@@ -6,9 +6,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import gui.MainFrame;
-import model.workspace.Document;
-import model.workspace.Project;
-import model.workspace.Workspace;
 
 public class RenameAction extends MehanickoPrebacivanjeAction {
 	

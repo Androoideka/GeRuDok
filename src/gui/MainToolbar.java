@@ -1,14 +1,9 @@
 package gui;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import controller.ActionManager;
-import controller.NewDocumentAction;
 
 public class MainToolbar extends JToolBar {
 	public MainToolbar() {
