@@ -24,8 +24,9 @@ public class NewDocumentAction extends MehanickoPrebacivanjeAction {
 	public void actionPerformed(ActionEvent e) {
 		Object p=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		if (p  instanceof Project) {
-			Document d=new Document((Project)p, "document");
-			((Project)p).addDocument(d);
+			Project prj=(Project)MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
+			Document d=new Document(prj, "document");
+			prj.insert(d, prj.getChildCount());
 		}
 	}
 
