@@ -1,6 +1,7 @@
 package workspace.tree;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -28,6 +29,7 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		else if (value instanceof Document ) {
 			setIcon(ImageResizer.getProperlyScaledImage("ikonice/documentopen.png", 16, 16));
 		}
+		setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		return this;
 	}
 }

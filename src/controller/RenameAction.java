@@ -22,16 +22,7 @@ public class RenameAction extends MehanickoPrebacivanjeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		if (node instanceof Workspace) {
-			((Workspace)node).setName(e.getActionCommand());
-		}
-		else if (node instanceof Project) {
-			((Project)node).setName(e.getActionCommand());
-		}
-		else if(node instanceof Document) {
-			((Document)node).setName(e.getActionCommand());
-		}
+		MainFrame.getInstance().getWorkspaceTree().startEditingAtPath(MainFrame.getInstance().getWorkspaceTree().getSelectionPath());
 	}
 
 }
