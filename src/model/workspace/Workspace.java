@@ -66,6 +66,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 	@Override
 	public void remove(int index) {
 		prj.remove(index);
+		notifyObservers(null);
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 		if(node instanceof Project) {
 			prj.remove((Project)node);
 		}
-		notifyObservers(node);
+		notifyObservers(null);
 	}
 
 	@Override

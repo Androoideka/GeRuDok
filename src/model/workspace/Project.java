@@ -69,6 +69,7 @@ public class Project implements MutableTreeNode, IModelObserver {
 	@Override
 	public void remove(int index) {
 		docs.remove(index);
+		notifyObservers(null);
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class Project implements MutableTreeNode, IModelObserver {
 		if(node instanceof Document) {
 			docs.remove((Document)node);
 		}
-		notifyObservers(node);
+		notifyObservers(null);
 	}
 
 	@Override
