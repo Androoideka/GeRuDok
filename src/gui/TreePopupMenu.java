@@ -14,9 +14,11 @@ public class TreePopupMenu extends JPopupMenu {
 		super();
 		if(node instanceof Workspace) {
 			add(ActionManager.getInstance().getNewProjectAction());
+			addSeparator();
 		}
 		if(node instanceof Project) {
 			add(ActionManager.getInstance().getNewDocumentAction());
+			addSeparator();
 		}
 		if(node instanceof Document) {
 		}

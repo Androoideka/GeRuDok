@@ -9,7 +9,8 @@ public class OpenDocumentAction extends MehanickoPrebacivanjeAction {
 	
 	public OpenDocumentAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, loadIcon("ikonice/documentopen.png", 24, 24));
+		putValue(SMALL_ICON, loadIcon("ikonice/documentopen.png", 16, 16));
+		putValue(LARGE_ICON_KEY, loadIcon("ikonice/documentopen", 24, 24));
 		putValue(NAME, "Open document");
 		putValue(SHORT_DESCRIPTION, "Open an existing document.");
 	}

@@ -9,7 +9,8 @@ public class OpenWorkspaceAction extends MehanickoPrebacivanjeAction {
 	
 	public OpenWorkspaceAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, loadIcon("ikonice/workspaceopen.png", 24, 24));
+		putValue(SMALL_ICON, loadIcon("ikonice/workspaceopen.png", 16, 16));
+		putValue(LARGE_ICON_KEY, loadIcon("ikonice/workspaceopen.png", 24, 24));
 		putValue(NAME, "Open workspace");
 		putValue(SHORT_DESCRIPTION, "Open a new workspace.");
 	}
