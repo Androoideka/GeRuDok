@@ -1,19 +1,13 @@
 package workspace.tree;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.util.EventObject;
 
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import model.workspace.Document;
-import model.workspace.Project;
-import model.workspace.Workspace;
 
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
 
