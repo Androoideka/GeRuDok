@@ -60,6 +60,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 		if(node instanceof Project) {
 			prj.add((Project)node);
 		}
+		notifyObservers(node);
 	}
 
 	@Override
@@ -72,6 +73,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 		if(node instanceof Project) {
 			prj.remove((Project)node);
 		}
+		notifyObservers(node);
 	}
 
 	@Override
