@@ -24,6 +24,10 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 
 	@Override
 	public void update(Object event) {
+		if(event instanceof IModelObserver) {
+			IModelObserver obs = (IModelObserver)event;
+			obs.addObserver(this);
+		}
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 }

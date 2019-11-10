@@ -131,7 +131,7 @@ public class Project implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(event==null || viewObservers.isEmpty()) {
+		if(viewObservers.isEmpty()) {
 			return;
 		}
 		for(IViewObserver viewObserver : viewObservers) {
