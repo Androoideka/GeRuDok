@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Workspace implements TreeNode, IModelObserver {
+public class Workspace implements MutableTreeNode, IModelObserver {
 	private String name = "Workspace";
 	private List<Project> prj = new ArrayList<>();
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
@@ -54,6 +55,40 @@ public class Workspace implements TreeNode, IModelObserver {
 		return prj.size() == 0;
 	}
 	
+	@Override
+	public void insert(MutableTreeNode node, int index) {
+		if(node instanceof Project) {
+			prj.add((Project)node);
+		}
+	}
+
+	@Override
+	public void remove(int index) {
+		prj.remove(index);
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		if(node instanceof Project) {
+			prj.remove((Project)node);
+		}
+	}
+
+	@Override
+	public void removeFromParent() {
+		return;
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		return;
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		return;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -74,7 +109,7 @@ public class Workspace implements TreeNode, IModelObserver {
 	public String toString() {
 		return name;
 	}
-
+	
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
 		if(viewObserver==null) {

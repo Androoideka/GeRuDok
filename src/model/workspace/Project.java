@@ -5,16 +5,18 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Project implements TreeNode, IModelObserver {
+public class Project implements MutableTreeNode, IModelObserver {
 	private String name;
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	
 	
 	public Project(Workspace ws, String name) {
 		this.ws = ws;
@@ -55,6 +57,42 @@ public class Project implements TreeNode, IModelObserver {
 	public boolean isLeaf() {
 		return docs.size() == 0;
 	}
+	
+	@Override
+	public void insert(MutableTreeNode node, int index) {
+		if(node instanceof Document) {
+			docs.add(index, (Document)node);
+		}
+	}
+
+	@Override
+	public void remove(int index) {
+		docs.remove(index);
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		if(node instanceof Document) {
+			docs.remove((Document)node);
+		}
+	}
+
+	@Override
+	public void removeFromParent() {
+		ws.remove(this);
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		if(newParent instanceof Workspace) {
+			ws = (Workspace)newParent;
+		}
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		return;
+	}
 
 	public String getName() {
 		return name;
@@ -76,7 +114,7 @@ public class Project implements TreeNode, IModelObserver {
 	public String toString() {
 		return name;
 	}
-
+	
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
 		if(viewObserver==null) {

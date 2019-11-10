@@ -12,6 +12,7 @@ public class WorkspaceTree extends JTree {
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
 	    setCellRenderer(new WorkspaceTreeCellRenderer());
 	    setEditable(true);
+	    setInvokesStopCellEditing(true);
 	    
 	    addMouseListener(ActionManager.getInstance().getPopupListener());
 	}

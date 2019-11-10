@@ -38,5 +38,6 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
         else if(node instanceof Document) {
                 ((Document)node).setName(event.getActionCommand());
         }
+        stopCellEditing();
 	}
 }
