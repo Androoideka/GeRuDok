@@ -28,14 +28,10 @@ public class DeleteAction extends MehanickoPrebacivanjeAction {
 		if (node instanceof Project) {
 			Project p = (Project)node;
 			((Workspace)p.getParent()).removeProject(p);
-			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-			//ovo bi mozda trebalo da se resava preko observera
 		}
 		else if(node instanceof Document) {
 			Document d = (Document)node;
 			((Project)d.getParent()).removeDocument(d);
-			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-			//ovo bi mozda trebalo da se resava preko observera
 		}
 	}
 
