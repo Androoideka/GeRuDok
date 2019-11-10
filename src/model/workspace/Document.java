@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Document implements TreeNode, IModelObserver {
+public class Document implements MutableTreeNode, IModelObserver {
 	private String name;
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
@@ -76,6 +78,44 @@ public class Document implements TreeNode, IModelObserver {
 		return name;
 	}
 
+	@Override
+	public void insert(MutableTreeNode node, int index) {
+		if(node instanceof Page) {
+			pages.add(index, (Page)node);
+		}
+	}
+
+	@Override
+	public void remove(int index) {
+		pages.remove(index);
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		if(node instanceof Page) {
+			pages.remove((Page)node);
+		}
+	}
+
+	@Override
+	public void removeFromParent() {
+		prj.remove(this);
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		if(newParent instanceof Project) {
+			prj = (Project)newParent;
+		}
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
 		if(viewObserver==null) {

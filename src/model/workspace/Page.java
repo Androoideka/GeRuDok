@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Page implements TreeNode, IModelObserver {
+public class Page implements MutableTreeNode, IModelObserver {
 	private String name;
 	private Document doc;
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
@@ -54,6 +55,38 @@ public class Page implements TreeNode, IModelObserver {
 		return true;
 	}
 
+	@Override
+	public void insert(MutableTreeNode arg0, int arg1) {
+		return;
+	}
+
+	@Override
+	public void remove(int index) {
+		return;
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		return;
+	}
+
+	@Override
+	public void removeFromParent() {
+		doc.remove(this);
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		if(newParent instanceof Document) {
+			doc = (Document)newParent;
+		}
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		return;
+	}
+	
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
 		if(viewObserver==null) {
