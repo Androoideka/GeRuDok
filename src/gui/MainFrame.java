@@ -8,8 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
 
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
@@ -48,6 +50,14 @@ public class MainFrame extends JFrame {
 		podela.setDividerLocation(screenSize.width/16);
 		
 		SwingUtilities.updateComponentTreeUI(this);
+		
+		JPanel p1=new JPanel();
+		JPanel p2=new JPanel();
+		
+		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("Tab 1", p1);
+		tabbedPane.addTab("Tab 2", p2);
+		add(tabbedPane, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
