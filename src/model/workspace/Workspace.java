@@ -72,7 +72,8 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 	@Override
 	public void remove(MutableTreeNode node) {
 		if(node instanceof Project) {
-			prj.remove((Project)node);
+			Project p = (Project)node;
+			prj.remove(p);
 		}
 		notifyObservers(null);
 	}
@@ -98,6 +99,7 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 
 	public void setName(String name) {
 		this.name = name;
+		notifyObservers(null);
 	}
 
 	@Override
@@ -126,9 +128,6 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(viewObservers.isEmpty()) {
-			return;
-		}
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}

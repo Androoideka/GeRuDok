@@ -64,6 +64,7 @@ public class Document implements MutableTreeNode, IModelObserver {
 
 	public void setName(String name) {
 		this.name = name;
+		notifyObservers(null);
 	}
 	
 	public String toString() {
@@ -87,7 +88,8 @@ public class Document implements MutableTreeNode, IModelObserver {
 	@Override
 	public void remove(MutableTreeNode node) {
 		if(node instanceof Page) {
-			pages.remove((Page)node);
+			Page p = (Page)node;
+			pages.remove(p);
 		}
 		notifyObservers(null);
 	}
@@ -95,6 +97,8 @@ public class Document implements MutableTreeNode, IModelObserver {
 	@Override
 	public void removeFromParent() {
 		prj.remove(this);
+		prj = null;
+		notifyObservers(new Object());
 	}
 
 	@Override
@@ -131,9 +135,6 @@ public class Document implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(viewObservers.isEmpty()) {
-			return;
-		}
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}

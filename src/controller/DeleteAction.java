@@ -26,8 +26,7 @@ public class DeleteAction extends MehanickoPrebacivanjeAction {
 		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		MutableTreeNode tNode=(MutableTreeNode)node;
 		if (node instanceof Project || node instanceof Document || node instanceof Page) {
-			MutableTreeNode tParentNode=(MutableTreeNode)tNode.getParent();
-			tParentNode.remove(tNode);
+			tNode.removeFromParent();
 			MainFrame.getInstance().getWorkspaceTree().setSelectionPath(null);
 		}
 	}
