@@ -12,6 +12,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	
 	public WorkspaceTabbedMenu() {
 		super();
+		setTabLayoutPolicy(SCROLL_TAB_LAYOUT);
 	}
 	
 	public Project getProject() {
@@ -20,7 +21,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	
 	public void setProject(Project prj) {
 		this.prj=prj;
-		update(null);
+		update(new Object());
 		this.prj.addObserver(this);
 	}
 
@@ -33,7 +34,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		}
 		if(prj!=null) {
 			int br=prj.getChildCount();
-			for(int i=1;i<br;i++) {
+			for(int i=1;i<=br;i++) {
 				this.addTab("Document "+i, new JPanel());
 			}
 		}
