@@ -73,6 +73,8 @@ public class Page implements MutableTreeNode, IModelObserver {
 	@Override
 	public void removeFromParent() {
 		doc.remove(this);
+		doc = null;
+		notifyObservers(new Object());
 	}
 
 	@Override
@@ -108,9 +110,6 @@ public class Page implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(viewObservers.isEmpty()) {
-			return;
-		}
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}

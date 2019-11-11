@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import model.workspace.Document;
 import model.workspace.Project;
 import observer.IModelObserver;
 import observer.IViewObserver;
@@ -21,8 +22,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	
 	public void setProject(Project prj) {
 		this.prj=prj;
-		update(new Object());
-		this.prj.addObserver(this);
+		update(prj);
 	}
 
 	@Override
@@ -30,13 +30,17 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		if(event instanceof IModelObserver) {
 			IModelObserver obs = (IModelObserver)event;
 			obs.addObserver(this);
-			
 		}
+		else if(prj.getParent() == null) {
+			prj = null;
+		}
+		removeAll();
 		if(prj!=null) {
 			int br=prj.getChildCount();
-			removeAll();
 			for(int i=0;i<br;i++) {
-				this.addTab(prj.getChildAt(i).toString(), new JPanel());
+				Document d = (Document)prj.getChildAt(i);
+				d.addObserver(this);
+				this.addTab(d.toString(), new JPanel());
 			}
 		}
 	}

@@ -77,7 +77,8 @@ public class Project implements MutableTreeNode, IModelObserver {
 	@Override
 	public void remove(MutableTreeNode node) {
 		if(node instanceof Document) {
-			docs.remove((Document)node);
+			Document d = (Document)node;
+			docs.remove(d);
 		}
 		notifyObservers(null);
 	}
@@ -85,6 +86,8 @@ public class Project implements MutableTreeNode, IModelObserver {
 	@Override
 	public void removeFromParent() {
 		ws.remove(this);
+		ws = null;
+		notifyObservers(new Object());
 	}
 
 	@Override
@@ -105,6 +108,7 @@ public class Project implements MutableTreeNode, IModelObserver {
 
 	public void setName(String name) {
 		this.name = name;
+		notifyObservers(null);
 	}
 	
 	@Override
@@ -133,9 +137,6 @@ public class Project implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void notifyObservers(Object event) {
-		if(viewObservers.isEmpty()) {
-			return;
-		}
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
