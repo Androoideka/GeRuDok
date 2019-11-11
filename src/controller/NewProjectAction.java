@@ -11,9 +11,7 @@ import gui.MainFrame;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
-public class NewProjectAction extends MehanickoPrebacivanjeAction {
-	private static int br=1;
-	
+public class NewProjectAction extends MehanickoPrebacivanjeAction {	
 	public NewProjectAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/projectnew.png", 16, 16));
@@ -29,8 +27,6 @@ public class NewProjectAction extends MehanickoPrebacivanjeAction {
 			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
 			Project p=new Project(ws, "project");
 			ws.insert(p, ws.getChildCount());
-			MainFrame.getInstance().getTabbedPane().addTab("Projekat "+br, new JPanel());
-			br++;
 		}
 	}
 }

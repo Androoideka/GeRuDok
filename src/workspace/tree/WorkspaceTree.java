@@ -18,6 +18,7 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	    setInvokesStopCellEditing(true);
 	    
 	    addMouseListener(ActionManager.getInstance().getPopupListener());
+	    addMouseListener(ActionManager.getInstance().getAddTabsAction());
 	    
 	    ws.addObserver(this);
 	}
