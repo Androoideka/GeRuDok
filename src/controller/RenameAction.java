@@ -19,7 +19,9 @@ public class RenameAction extends MehanickoPrebacivanjeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame.getInstance().getWorkspaceTree().startEditingAtPath(MainFrame.getInstance().getWorkspaceTree().getSelectionPath());
+		if(MainFrame.getInstance().getWorkspaceTree().getSelectionPath() != null) {
+			MainFrame.getInstance().getWorkspaceTree().startEditingAtPath(MainFrame.getInstance().getWorkspaceTree().getSelectionPath());
+		}
 	}
 
 }
