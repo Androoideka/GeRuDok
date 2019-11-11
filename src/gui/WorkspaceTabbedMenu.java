@@ -34,8 +34,9 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		}
 		if(prj!=null) {
 			int br=prj.getChildCount();
-			for(int i=1;i<=br;i++) {
-				this.addTab("Document "+i, new JPanel());
+			removeAll();
+			for(int i=0;i<br;i++) {
+				this.addTab(prj.getChildAt(i).toString(), new JPanel());
 			}
 		}
 	}
