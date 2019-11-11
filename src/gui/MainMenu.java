@@ -17,8 +17,7 @@ public class MainMenu extends JMenuBar {
 		
 		file.add(fileNew);
 		
-		fileNew.add(newProject);
-		
+		fileNew.add(ActionManager.getInstance().getNewProjectAction());
 		
 		file.add(ActionManager.getInstance().getOpenWorkspaceAction());
 		
