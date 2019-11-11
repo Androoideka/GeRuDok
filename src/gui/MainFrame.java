@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	private WorkspaceModel wsm;
 	private WorkspaceTree wst;
 	
-	private WorkspaceTabbedMenu tabbedPane;
+	private WorkspaceTabbedMenu wtb;
 	private MainFrame() {
 		setTitle("GeRuDok");
 		
@@ -44,10 +44,10 @@ public class MainFrame extends JFrame {
 		
 		JScrollPane treePanel=new JScrollPane(wst);
 		
-		tabbedPane = new WorkspaceTabbedMenu();
-		add(tabbedPane, BorderLayout.CENTER);
+		wtb = new WorkspaceTabbedMenu();
+		add(wtb, BorderLayout.CENTER);
 		
-		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, tabbedPane);
+		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, wtb);
 		add(podela, BorderLayout.CENTER);
 		podela.setDividerLocation(screenSize.width/16);
 		
@@ -72,8 +72,8 @@ public class MainFrame extends JFrame {
 		return wsm;
 	}
 	
-	public JTabbedPane getTabbedPane() {
-		return tabbedPane;
+	public WorkspaceTabbedMenu getWorkspaceTabbedMenu() {
+		return wtb;
 	}
 	
 }

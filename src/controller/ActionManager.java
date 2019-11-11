@@ -20,6 +20,8 @@ public class ActionManager {
 	
 	private PopupListener popupListener;
 	
+	private AddTabsAction addTabsAction;
+	
 	private ActionManager() {
 		openWorkspaceAction = new OpenWorkspaceAction();
 		
@@ -36,6 +38,8 @@ public class ActionManager {
 		deleteAction = new DeleteAction();
 		
 		popupListener = new PopupListener();
+		
+		addTabsAction = new AddTabsAction();
 	}
 	
 	public OpenWorkspaceAction getOpenWorkspaceAction() {
@@ -76,6 +80,10 @@ public class ActionManager {
 
 	public PopupListener getPopupListener() {
 		return popupListener;
+	}
+	
+	public AddTabsAction getAddTabsAction() {
+		return addTabsAction;
 	}
 
 	public static ActionManager getInstance() {

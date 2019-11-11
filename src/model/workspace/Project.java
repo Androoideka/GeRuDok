@@ -1,5 +1,6 @@
 package model.workspace;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import controller.ActionManager;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -137,5 +139,13 @@ public class Project implements MutableTreeNode, IModelObserver {
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
+	}
+	
+	public int getBrDoc() {
+		return this.getChildCount();
+	}
+	
+	public boolean doubleClick(MouseEvent e) {
+		return(e.getClickCount()==2 && e.getButton()==1);
 	}
 }
