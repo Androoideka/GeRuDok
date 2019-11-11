@@ -16,15 +16,15 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		super.getTreeCellRendererComponent(tree, value, sel,expanded, leaf, row,hasFocus);
 		
 		if (value instanceof Workspace ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/workspaceopen.png", 16, 16));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/workspace.png", 16, 16));
 		}
 		
 		else if (value instanceof Project ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/projectnew.png", 16, 16));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/project.png", 16, 16));
 		}
 		
 		else if (value instanceof Document ) {
-			setIcon(ImageResizer.getProperlyScaledImage("ikonice/documentopen.png", 16, 16));
+			setIcon(ImageResizer.getProperlyScaledImage("ikonice/document.png", 16, 16));
 		}
 		setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		return this;
