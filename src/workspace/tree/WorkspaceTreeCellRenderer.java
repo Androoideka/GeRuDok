@@ -26,7 +26,7 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		else if (value instanceof Document ) {
 			setIcon(ImageResizer.getProperlyScaledImage("ikonice/document.png", 16, 16));
 		}
-		setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		setFont(new Font(getFont().getFamily(), Font.BOLD, 14));
 		return this;
 	}
 }
