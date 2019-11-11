@@ -140,12 +140,4 @@ public class Project implements MutableTreeNode, IModelObserver {
 			viewObserver.update(event);
 		}
 	}
-	
-	public int getBrDoc() {
-		return this.getChildCount();
-	}
-	
-	public boolean doubleClick(MouseEvent e) {
-		return(e.getClickCount()==2 && e.getButton()==1);
-	}
 }
