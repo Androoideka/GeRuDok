@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
@@ -54,7 +53,6 @@ public class MainFrame extends JFrame {
 		SwingUtilities.updateComponentTreeUI(this);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setVisible(true);
 	}
 	
 	public static MainFrame getInstance() {

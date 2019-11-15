@@ -2,10 +2,7 @@ package mehanickoPrebacivanje;
 
 import java.awt.Font;
 
-import javax.swing.Icon;
-import javax.swing.UIDefaults;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.FontUIResource;
 
 import gui.MainFrame;
@@ -46,5 +43,6 @@ public class Main {
 		UIManager.put("Tree.expandedIcon", ImageResizer.getProperlyScaledImage("ikonice/chevron-down.png", 10, 10));
 		UIManager.put("MenuItem.acceleratorFont", new Font("Cambria", Font.ITALIC, 10));
 		MainFrame glavniProzor = MainFrame.getInstance();
+		glavniProzor.setVisible(true);
 	}
 }
