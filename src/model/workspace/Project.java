@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -85,9 +86,10 @@ public class Project implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void removeFromParent() {
+		int index = ws.getIndex(this);
 		ws.remove(this);
 		ws = null;
-		notifyObservers(new Object());
+		notifyObservers(new AtomicInteger(index));
 	}
 
 	@Override

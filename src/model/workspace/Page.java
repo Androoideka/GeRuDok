@@ -3,6 +3,7 @@ package model.workspace;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -72,9 +73,10 @@ public class Page implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void removeFromParent() {
+		int index = doc.getIndex(this);
 		doc.remove(this);
 		doc = null;
-		notifyObservers(new Object());
+		notifyObservers(new AtomicInteger(index));
 	}
 
 	@Override

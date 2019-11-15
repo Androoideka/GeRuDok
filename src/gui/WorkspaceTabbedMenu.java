@@ -2,6 +2,7 @@ package gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -20,45 +21,50 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		setTabLayoutPolicy(SCROLL_TAB_LAYOUT);
 	}
 	
+	private void createDocViewForDocument(Document d) {
+		DocumentView view = new DocumentView(d);
+		d.addObserver(this);
+		docView.add(view);
+		this.addTab(view.getDocument().getName(), view);
+	}
+	
 	public Project getProject() {
 		return prj;
 	}
 	
 	public void setProject(Project prj) {
+		if(this.prj != null) {
+			this.prj.removeObserver(this);
+		}
 		this.prj=prj;
+		prj.addObserver(this);
 		int br = prj.getChildCount();
 		for(int i = 0; i < br; i++) {
 			Document d = (Document)prj.getChildAt(i);
-			docView.add(new DocumentView(d));
+			createDocViewForDocument(d);
 		}
-		update(prj);
 	}
 
 	@Override
 	public void update(Object event) {
-		if(event instanceof IModelObserver) {
-			IModelObserver obs = (IModelObserver)event;
-			obs.addObserver(this);
-		}
-		else if(prj.getParent() == null) {
+		if(prj.getParent() == null) {
 			prj = null;
 			removeAll();
 		}
-		if(prj!=null) {
-			int br=docView.size();
-			for(int i=0;i<br;i++) {
-				if(event instanceof Integer && ((Integer)event).intValue() == i) {
-					//docView.remove(i);
-					if(i > br) {
-						this.setSelectedIndex(i-1);
-					}
-					else {
-					}
-					this.removeTabAt(i);
+		else if(event instanceof Document) {
+			Document d = (Document)event;
+			createDocViewForDocument(d);
+		}
+		else if(prj!=null) {
+			if(event == null) {
+				for(int i = 0; i < docView.size(); i++) {
+					DocumentView view = (DocumentView)this.getTabComponentAt(i);
+					this.setTitleAt(i, view.getDocument().getName());
 				}
-				else {
-					this.addTab(docView.get(i).getDocument().getName(), docView.get(i));
-				}
+			}
+			else if(event instanceof AtomicInteger) {
+				AtomicInteger i = (AtomicInteger)event;
+				docView.remove(i.get());
 			}
 		}
 	}
