@@ -29,6 +29,7 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	}
 	
 	public void actionPerformed(ActionEvent event){
+		stopCellEditing();
         if (node instanceof Workspace) {
                 ((Workspace)node).setName(event.getActionCommand());
         }
@@ -38,6 +39,5 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
         else if(node instanceof Document) {
                 ((Document)node).setName(event.getActionCommand());
         }
-        stopCellEditing();
 	}
 }

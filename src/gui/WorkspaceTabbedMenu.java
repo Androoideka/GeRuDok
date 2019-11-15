@@ -23,7 +23,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		DocumentView view = new DocumentView(d);
 		d.addObserver(this);
 		docView.add(view);
-		this.addTab(view.getDocument().getName(), view);
+		this.add(view);
 	}
 	
 	public Project getProject() {
@@ -61,7 +61,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 			if(event == null) {
 				for(int i = 0; i < this.getTabCount(); i++) {
 					DocumentView view = (DocumentView)this.getComponentAt(i);
-					this.setTitleAt(i, view.getDocument().getName());
+					this.setTitleAt(i, view.getName());
 				}
 			}
 			else if(event instanceof AtomicInteger) {
