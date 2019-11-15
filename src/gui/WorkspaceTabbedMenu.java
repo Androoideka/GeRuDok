@@ -1,5 +1,8 @@
 package gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -10,6 +13,7 @@ import observer.IViewObserver;
 
 public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	private Project prj;
+	private List<DocumentView> docView = new ArrayList<>();
 	
 	public WorkspaceTabbedMenu() {
 		super();
@@ -22,6 +26,11 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	
 	public void setProject(Project prj) {
 		this.prj=prj;
+		int br = prj.getChildCount();
+		for(int i = 0; i < br; i++) {
+			Document d = (Document)prj.getChildAt(i);
+			docView.add(new DocumentView(d));
+		}
 		update(prj);
 	}
 
@@ -33,14 +42,23 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		}
 		else if(prj.getParent() == null) {
 			prj = null;
+			removeAll();
 		}
-		removeAll();
 		if(prj!=null) {
-			int br=prj.getChildCount();
+			int br=docView.size();
 			for(int i=0;i<br;i++) {
-				Document d = (Document)prj.getChildAt(i);
-				d.addObserver(this);
-				this.addTab(d.toString(), new JPanel());
+				if(event instanceof Integer && ((Integer)event).intValue() == i) {
+					//docView.remove(i);
+					if(i > br) {
+						this.setSelectedIndex(i-1);
+					}
+					else {
+					}
+					this.removeTabAt(i);
+				}
+				else {
+					this.addTab(docView.get(i).getDocument().getName(), docView.get(i));
+				}
 			}
 		}
 	}
