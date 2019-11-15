@@ -15,15 +15,13 @@ public class DocumentView extends JPanel implements IViewObserver {
 		super();
 		this.d = d;
 		d.addObserver(this);
+		setName(d.getName());
 		p = new JLabel(d.getName());
 		add(p, BorderLayout.NORTH);
 	}
 	@Override
 	public void update(Object event) {
+		setName(d.getName());
 		p.setText(d.getName());
-	}
-	
-	public Document getDocument() {
-		return d;
 	}
 }
