@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
@@ -96,9 +97,10 @@ public class Document implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void removeFromParent() {
+		int index = prj.getIndex(this);
 		prj.remove(this);
 		prj = null;
-		notifyObservers(new Object());
+		notifyObservers(new AtomicInteger(index));
 	}
 
 	@Override
