@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -10,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import controller.ActionManager;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -20,9 +18,8 @@ public class Project implements MutableTreeNode, IModelObserver {
 	private List<Document> docs = new ArrayList<>();
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
-	
 	public Project(Workspace ws, String name) {
-		this.ws = ws;
+		setParent(ws);
 		this.name = name;
 	}
 

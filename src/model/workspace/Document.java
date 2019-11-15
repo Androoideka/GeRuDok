@@ -6,7 +6,6 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
@@ -20,7 +19,7 @@ public class Document implements MutableTreeNode, IModelObserver {
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Document(Project prj, String name) {
-		this.prj = prj;
+		setParent(prj);
 		this.name = name;
 	}
 
@@ -112,8 +111,7 @@ public class Document implements MutableTreeNode, IModelObserver {
 
 	@Override
 	public void setUserObject(Object object) {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 	
 	@Override

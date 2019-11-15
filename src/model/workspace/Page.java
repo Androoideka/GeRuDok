@@ -17,7 +17,7 @@ public class Page implements MutableTreeNode, IModelObserver {
 	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Page(Document doc, String name) {
-		this.doc=doc;
+		setParent(doc);
 		this.name=name;
 	}
 	
@@ -89,6 +89,15 @@ public class Page implements MutableTreeNode, IModelObserver {
 	@Override
 	public void setUserObject(Object object) {
 		return;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		notifyObservers(null);
 	}
 	
 	@Override
