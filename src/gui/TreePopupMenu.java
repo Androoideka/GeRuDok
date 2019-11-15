@@ -4,7 +4,6 @@ import javax.swing.JPopupMenu;
 
 import controller.ActionManager;
 import model.workspace.Document;
-import model.workspace.Page;
 import model.workspace.Project;
 import model.workspace.Workspace;
 

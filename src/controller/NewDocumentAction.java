@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 
 import gui.MainFrame;
 import model.workspace.Document;
