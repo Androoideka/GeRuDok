@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import model.workspace.Document;
 import model.workspace.Project;
-import observer.IModelObserver;
 import observer.IViewObserver;
 
 public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
@@ -57,13 +55,15 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		}
 		else if(prj!=null) {
 			if(event == null) {
-				for(int i = 0; i < docView.size(); i++) {
-					DocumentView view = (DocumentView)this.getTabComponentAt(i);
+				for(int i = 0; i < this.getTabCount(); i++) {
+					DocumentView view = (DocumentView)this.getComponentAt(i);
 					this.setTitleAt(i, view.getDocument().getName());
 				}
 			}
 			else if(event instanceof AtomicInteger) {
 				AtomicInteger i = (AtomicInteger)event;
+				int index = this.indexOfComponent(docView.get(i.get()));
+				this.removeTabAt(index);
 				docView.remove(i.get());
 			}
 		}
