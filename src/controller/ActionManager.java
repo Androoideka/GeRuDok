@@ -10,11 +10,12 @@ public class ActionManager {
 	
 	private NewProjectAction newProjectAction;
 	private OpenProjectAction openProjectAction;
+	private SaveProjectAction saveProjectAction;
 	
 	private NewDocumentAction newDocumentAction;
 	private OpenDocumentAction openDocumentAction;
+	private SaveDocumentAction saveDocumentAction;
 	
-	private SaveProjectAction savePrjAction;
 	private RenameAction renameAction;
 	private DeleteAction deleteAction;
 	
@@ -29,11 +30,12 @@ public class ActionManager {
 		
 		newProjectAction = new NewProjectAction();
 		openProjectAction = new OpenProjectAction();
+		saveProjectAction = new SaveProjectAction();
 		
 		newDocumentAction = new NewDocumentAction();
 		openDocumentAction = new OpenDocumentAction();
+		saveDocumentAction = new SaveDocumentAction();
 		
-		savePrjAction = new SaveProjectAction();
 		renameAction = new RenameAction();
 		deleteAction = new DeleteAction();
 		
@@ -57,7 +59,10 @@ public class ActionManager {
 	public OpenProjectAction getOpenProjectAction() {
 		return openProjectAction;
 	}
-
+	public SaveProjectAction getSavePrjAction() {
+		return saveProjectAction;
+	}
+	
 	public NewDocumentAction getNewDocumentAction() {
 		return newDocumentAction;
 	}
@@ -65,9 +70,9 @@ public class ActionManager {
 	public OpenDocumentAction getOpenDocumentAction() {
 		return openDocumentAction;
 	}
-
-	public SaveProjectAction getSavePrjAction() {
-		return savePrjAction;
+	
+	public SaveDocumentAction getSaveDocumentAction() {
+		return saveDocumentAction;
 	}
 	
 	public RenameAction getRenameAction() {

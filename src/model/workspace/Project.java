@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import gui.MainFrame;
 import observer.IModelObserver;
@@ -125,7 +126,6 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 		return projectFile;
 	}
 
-
 	public void setProjectFile(File projectFile) {
 		this.projectFile = projectFile;
 	}
@@ -134,12 +134,21 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 		return changed;
 	}
 
-
 	public void setChanged(boolean changed) {
 		if (this.changed!=changed){
 		     this.changed=changed;
 		     SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
 		}
+	}
+	
+	public Document getCurrentDocument() {
+		TreePath path=MainFrame.getInstance().getWorkspaceTree().getSelectionPath();
+		for(int i=0; i<path.getPathCount(); i++){
+			if(path.getPathComponent(i) instanceof Project){
+				return (Document)path.getPathComponent(i);
+			}
+		}
+		return null;
 	}
 	
 	@Override

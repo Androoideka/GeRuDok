@@ -1,5 +1,6 @@
 package model.workspace;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,9 +8,11 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gui.MainFrame;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -18,6 +21,8 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	private File documentFile=null;
+	private transient boolean changed=false;
 	
 	public Document(Project prj, String name) {
 		setParent(prj);
@@ -70,6 +75,25 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	
 	public String toString() {
 		return name;
+	}
+	
+	public File getDocumentFile() {
+		return documentFile;
+	}
+
+	public void setDocumentFile(File projectFile) {
+		this.documentFile = projectFile;
+	}
+	
+	public boolean isChanged() {
+		return changed;
+	}
+
+	public void setChanged(boolean changed) {
+		if (this.changed!=changed){
+		     this.changed=changed;
+		     SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+		}
 	}
 
 	@Override
