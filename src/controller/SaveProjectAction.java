@@ -47,6 +47,7 @@ public class SaveProjectAction extends MehanickoPrebacivanjeAction {
 			ous.writeObject(p);
 			p.setProjectFile(prjFile);
 			p.setChanged(false);
+			ous.close();
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
 		}catch(IOException e){
