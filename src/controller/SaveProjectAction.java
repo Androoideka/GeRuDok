@@ -5,9 +5,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
-public class SaveAction extends MehanickoPrebacivanjeAction {
+public class SaveProjectAction extends MehanickoPrebacivanjeAction {
 	
-	public SaveAction() {
+	public SaveProjectAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/save.png", 16, 16));
 		putValue(LARGE_ICON_KEY, loadIcon("ikonice/save.png", 24, 24));
