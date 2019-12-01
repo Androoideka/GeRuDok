@@ -19,7 +19,7 @@ public class MainToolbar extends JToolBar {
 		
 		addSeparator();
 		
-		add(ActionManager.getInstance().getSaveAction());
+		add(ActionManager.getInstance().getSavePrjAction());
 		add(ActionManager.getInstance().getRenameAction());
 		add(ActionManager.getInstance().getDeleteAction());
 	}

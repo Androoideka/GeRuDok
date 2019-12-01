@@ -2,8 +2,19 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
+import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+
+import gui.MainFrame;
+import model.workspace.Document;
+import model.workspace.Page;
+import model.workspace.Project;
+import model.workspace.Workspace;
 
 public class OpenDocumentAction extends MehanickoPrebacivanjeAction {
 	
@@ -17,6 +28,29 @@ public class OpenDocumentAction extends MehanickoPrebacivanjeAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		JFileChooser jfc=new JFileChooser();
+		jfc.setFileFilter(new DocumentFileFIlter());
+		if(jfc.showOpenDialog(MainFrame.getInstance())==JFileChooser.APPROVE_OPTION) {
+			try {
+				ObjectInputStream ois=new ObjectInputStream(new FileInputStream(jfc.getSelectedFile()));
+				Document d=null;
+				try {
+					d=(Document)ois.readObject();
+				}catch(ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
+				ws.insert(d, ws.getChildCount());
+				for(int i=0;i<d.getChildCount();i++) {
+					Page p=new Page(d, "page");
+					d.insert(p, d.getChildCount());
+				}
+				ois.close();
+			}catch(FileNotFoundException e2) {
+				e2.printStackTrace();
+			}catch(IOException e3) {
+				e3.printStackTrace();
+			}
+		}
 	}
 }
