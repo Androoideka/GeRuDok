@@ -5,6 +5,7 @@ public class ActionManager {
 	private static ActionManager instance=null;
 	
 	private OpenWorkspaceAction openWorkspaceAction;
+	private SaveWorkspaceAction saveWorkspaceAction;
 	
 	private AboutAction aboutAction;
 	
@@ -25,6 +26,7 @@ public class ActionManager {
 	
 	private ActionManager() {
 		openWorkspaceAction = new OpenWorkspaceAction();
+		saveWorkspaceAction = new SaveWorkspaceAction();
 		
 		aboutAction = new AboutAction();
 		
@@ -46,6 +48,10 @@ public class ActionManager {
 	
 	public OpenWorkspaceAction getOpenWorkspaceAction() {
 		return openWorkspaceAction;
+	}
+	
+	public SaveWorkspaceAction getSaveWorkspaceAction() {
+		return saveWorkspaceAction;
 	}
 	
 	public AboutAction getAboutAction() {

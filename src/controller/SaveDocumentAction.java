@@ -22,7 +22,7 @@ public class SaveDocumentAction extends MehanickoPrebacivanjeAction {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/save.png", 16, 16));
 		putValue(LARGE_ICON_KEY, loadIcon("ikonice/save.png", 24, 24));
-		putValue(NAME, "Save");
+		putValue(NAME, "Save document");
 		putValue(SHORT_DESCRIPTION, "Save document changes.");
 	}
 
