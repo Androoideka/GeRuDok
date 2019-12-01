@@ -1,5 +1,6 @@
 package model.workspace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -11,10 +12,10 @@ import javax.swing.tree.TreeNode;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Page implements MutableTreeNode, IModelObserver {
+public class Page implements MutableTreeNode, IModelObserver, Serializable {
 	private String name;
 	private Document doc;
-	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Page(Document doc, String name) {
 		setParent(doc);
