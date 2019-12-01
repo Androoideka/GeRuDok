@@ -12,17 +12,18 @@ import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import gui.MainFrame;
+import model.workspace.Document;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
-public class SaveProjectAction extends MehanickoPrebacivanjeAction {
+public class SaveDocumentAction extends MehanickoPrebacivanjeAction {
 	
-	public SaveProjectAction() {
+	public SaveDocumentAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, loadIcon("ikonice/save.png", 16, 16));
 		putValue(LARGE_ICON_KEY, loadIcon("ikonice/save.png", 24, 24));
 		putValue(NAME, "Save");
-		putValue(SHORT_DESCRIPTION, "Save project changes.");
+		putValue(SHORT_DESCRIPTION, "Save document changes.");
 	}
 
 	@Override
@@ -31,11 +32,12 @@ public class SaveProjectAction extends MehanickoPrebacivanjeAction {
 		jfc.setFileFilter(new DocumentFileFIlter());
 		Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
 		Project p=ws.getCurrentProject();
+		Document d=p.getCurrentDocument();
 		File prjFile=p.getProjectFile();
-		if(!p.isChanged()) {
+		if(!d.isChanged()) {
 			return;
 		}
-		if(p.getProjectFile()==null) {
+		if(d.getDocumentFile()==null) {
 			if(jfc.showSaveDialog(MainFrame.getInstance())==JFileChooser.APPROVE_OPTION) {
 				prjFile=jfc.getSelectedFile();
 			}else {
@@ -44,9 +46,9 @@ public class SaveProjectAction extends MehanickoPrebacivanjeAction {
 		}
 		try {
 			ObjectOutputStream ous=new ObjectOutputStream(new FileOutputStream(prjFile));
-			ous.writeObject(p);
-			p.setProjectFile(prjFile);
-			p.setChanged(false);
+			ous.writeObject(d);
+			d.setDocumentFile(prjFile);
+			d.setChanged(false);
 			ous.close();
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
