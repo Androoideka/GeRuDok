@@ -1,6 +1,7 @@
 package model.workspace;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -15,11 +16,11 @@ import gui.MainFrame;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Project implements MutableTreeNode, IModelObserver {
+public class Project implements MutableTreeNode, IModelObserver, Serializable {
 	private String name;
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
-	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private File projectFile=null;
 	private transient boolean changed=false;
 	

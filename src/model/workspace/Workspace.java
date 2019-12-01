@@ -1,5 +1,6 @@
 package model.workspace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -12,10 +13,10 @@ import javax.swing.tree.TreePath;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Workspace implements MutableTreeNode, IModelObserver {
+public class Workspace implements MutableTreeNode, IModelObserver, Serializable {
 	private String name = "Workspace";
 	private List<Project> prj = new ArrayList<>();
-	private List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Workspace() {
 		super();
