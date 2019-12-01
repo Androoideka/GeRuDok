@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
@@ -105,6 +106,16 @@ public class Workspace implements MutableTreeNode, IModelObserver {
 	@Override
 	public String toString() {
 		return name;
+	}
+	
+	public Project getCurrentProject() {
+		TreePath path=getSelectionPath();
+		for(int i=0; i<path.getPathCount(); i++){
+			if(path.getPathComponent(i) instanceof Project){
+				return (Project)path.getPathComponent(i);
+			}
+		}
+		return null;
 	}
 	
 	@Override
