@@ -16,4 +16,12 @@ public class ImageResizer {
 		}
 		return null;
 	}
+	
+	public static ImageIcon loadSmallIcon(String fileName) {
+		return getProperlyScaledImage(fileName, 16, 16);
+	}
+	
+	public static ImageIcon loadBigIcon(String fileName) {
+		return getProperlyScaledImage(fileName, 24, 24);
+	}
 }
