@@ -10,6 +10,7 @@ import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import model.workspace.Document;
+import model.workspace.MPNode;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
@@ -30,7 +31,7 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	
 	public void actionPerformed(ActionEvent event){
 		stopCellEditing();
-        if (node instanceof Workspace) {
+        /*if (node instanceof Workspace) {
                 ((Workspace)node).setName(event.getActionCommand());
         }
         else if (node instanceof Project) {
@@ -38,6 +39,10 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
         }
         else if(node instanceof Document) {
                 ((Document)node).setName(event.getActionCommand());
-        }
+        }*/
+		if(node instanceof MPNode) {
+			MPNode mpNode = (MPNode)node;
+			mpNode.setName(event.getActionCommand());
+		}
 	}
 }

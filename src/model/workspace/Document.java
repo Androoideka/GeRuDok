@@ -13,16 +13,16 @@ import javax.swing.tree.TreeNode;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class Document implements MutableTreeNode, IModelObserver, Serializable {
-	private String name;
+public class Document extends MPNode {//implements MutableTreeNode, IModelObserver, Serializable {
+	//private String name;
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
-	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String documentFile=null;
 	
-	public Document(Project prj, String name) {
+	public Document(Project prj) {
 		setParent(prj);
-		this.name = name;
+		this.name = "document";
 	}
 
 	@Override
@@ -69,6 +69,14 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	}
 	
 	@Override
+	public void insert(MutableTreeNode node, int index) {
+		if(node instanceof Page) {
+            pages.add(index, (Page)node);
+		}
+		notifyObservers(node);
+	}
+	
+	@Override
 	public void remove(int index) {
 		pages.remove(index);
 		notifyObservers(null);
@@ -99,52 +107,7 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	}
 
 	@Override
-	public void setUserObject(Object object) {
-		return;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		notifyObservers(null);
-	}
-	
-	public String toString() {
-		return name;
-	}
-	
-	@Override
-	public void addObserver(IViewObserver viewObserver) {
-		if(viewObserver==null) {
-			return;
-		}
-		if(this.viewObservers.contains(viewObserver)) {
-			return;
-		}
-		this.viewObservers.add(viewObserver);
-	}
-
-	@Override
-	public void removeObserver(IViewObserver viewObserver) {
-		if(viewObserver==null || !viewObservers.contains(viewObserver)) {
-			return;
-		}
-		viewObservers.remove(viewObserver);
-	}
-
-	@Override
-	public void notifyObservers(Object event) {
-		for(IViewObserver viewObserver : viewObservers) {
-			viewObserver.update(event);
-		}
-	}
-
-	@Override
-	public void insert(MutableTreeNode arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
+	public void addChild() {
+		this.insert(new Page(this), this.getChildCount());
 	}
 }

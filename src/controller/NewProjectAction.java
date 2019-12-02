@@ -25,7 +25,7 @@ public class NewProjectAction extends AbstractAction {
 		Object w=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		if (w  instanceof Workspace || w==null) {
 			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
-			Project p=new Project(ws, "project");
+			Project p=new Project(ws);
 			ws.insert(p, ws.getChildCount());
 		}
 	}

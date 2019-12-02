@@ -1,9 +1,10 @@
 package interfaces;
 
-import javax.swing.tree.MutableTreeNode;
+import model.workspace.MPNode;
 
 public interface Tree {
-	MutableTreeNode getSelectedNode();
-	MutableTreeNode getRoot();
+	MPNode getSelectedNode();
+	void resetSelectedNode();
+	MPNode getRoot();
 	void startEditing();
 }

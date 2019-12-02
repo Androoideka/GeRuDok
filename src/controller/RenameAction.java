@@ -21,9 +21,7 @@ public class RenameAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(MainFrame.getInstance().getWorkspaceTree().getSelectionPath() != null) {
-			MainFrame.getInstance().getWorkspaceTree().startEditingAtPath(MainFrame.getInstance().getWorkspaceTree().getSelectionPath());
-		}
+		MainFrame.getInstance().getWorkspaceTree().startEditing();
 	}
 
 }
