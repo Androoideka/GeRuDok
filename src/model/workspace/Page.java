@@ -6,47 +6,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Page extends MPNode { //implements MutableTreeNode, IModelObserver, Serializable {
+public class Page extends MPNode {
 	private Document doc;
 	
 	public Page(Document doc) {
 		setParent(doc);
 		this.name = "page";
-	}
-	
-	@Override
-	public Enumeration<? extends TreeNode> children() {
-		return null;
-	}
-
-	@Override
-	public boolean getAllowsChildren() {
-		return false;
-	}
-
-	@Override
-	public TreeNode getChildAt(int childIndex) {
-		return null;
-	}
-
-	@Override
-	public int getChildCount() {
-		return 0;
-	}
-
-	@Override
-	public int getIndex(TreeNode node) {
-		return -1;
-	}
-
-	@Override
-	public TreeNode getParent() {
-		return doc;
-	}
-
-	@Override
-	public boolean isLeaf() {
-		return true;
 	}
 
 	@Override
@@ -55,21 +20,8 @@ public class Page extends MPNode { //implements MutableTreeNode, IModelObserver,
 	}
 
 	@Override
-	public void remove(int index) {
-		return;
-	}
-
-	@Override
 	public void remove(MutableTreeNode node) {
 		return;
-	}
-
-	@Override
-	public void removeFromParent() {
-		int index = doc.getIndex(this);
-		doc.remove(this);
-		doc = null;
-		notifyObservers(new AtomicInteger(index));
 	}
 
 	@Override
