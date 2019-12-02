@@ -2,8 +2,10 @@ package model.workspace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -13,81 +15,74 @@ import observer.IViewObserver;
 
 public abstract class MPNode implements MutableTreeNode, IModelObserver, Serializable {
 	protected String name;
+	protected MPNode parent;
+	protected List<MPNode> children;
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String file=null;
 	private boolean changed=false;
 
-	/*@Override
+	@Override
 	public Enumeration<? extends TreeNode> children() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.enumeration(children);
 	}
 
 	@Override
 	public boolean getAllowsChildren() {
-		// TODO Auto-generated method stub
-		return false;
+		return children != null;
 	}
 
 	@Override
 	public TreeNode getChildAt(int childIndex) {
-		// TODO Auto-generated method stub
+		if(children != null) {
+			return children.get(childIndex);
+		}
 		return null;
 	}
 
 	@Override
 	public int getChildCount() {
-		// TODO Auto-generated method stub
+		if(children != null) {
+			return children.size();
+		}
 		return 0;
 	}
 
 	@Override
 	public int getIndex(TreeNode node) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(children != null) {
+			return children.indexOf(node);
+		}
+		return -1;
 	}
 
 	@Override
 	public TreeNode getParent() {
-		// TODO Auto-generated method stub
-		return null;
+		return parent;
 	}
 
 	@Override
 	public boolean isLeaf() {
-		// TODO Auto-generated method stub
+		if(children != null) {
+			return children.size() == 0;
+		}
 		return false;
 	}
-
-	@Override
-	public void insert(MutableTreeNode arg0, int arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public void remove(int index) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void remove(MutableTreeNode node) {
-		// TODO Auto-generated method stub
-
+		children.remove(index);
+		notifyObservers(null);
 	}
 
 	@Override
 	public void removeFromParent() {
-		// TODO Auto-generated method stub
-
+		if(parent != null) {
+			int index = parent.getIndex(this);
+			parent.remove(this);
+			parent = null;
+			notifyObservers(new AtomicInteger(index));
+		}
 	}
-
-	@Override
-	public void setParent(MutableTreeNode newParent) {
-		// TODO Auto-generated method stub
-
-	}*/
 
 	@Override
 	public void setUserObject(Object object) {

@@ -11,17 +11,7 @@ public class MainMenu extends JMenuBar {
 		JMenu file = new JMenu("File");
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
-		
-		//JMenu fileNew = new JMenu("New");
-		
-		//file.add(fileNew);
-		
-		//fileNew.add(ActionManager.getInstance().getNewProjectAction());
-		
-		//file.add(ActionManager.getInstance().getOpenWorkspaceAction());
-		
-		//help.add(ActionManager.getInstance().getAboutAction());
-		
+
 		for(AbstractAction a : ActionManager.getInstance().getFileActions()) {
 			file.add(a);
 		}

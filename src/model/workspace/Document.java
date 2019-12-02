@@ -10,84 +10,34 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 public class Document extends MPNode {
-	private Project prj;
-	private List<Page> pages=new ArrayList<Page>();
 	
 	public Document(Project prj) {
+		children = new ArrayList<MPNode>();
 		setParent(prj);
 		this.name = "document";
 	}
 
 	@Override
-	public Enumeration<? extends TreeNode> children() {
-		return Collections.enumeration(pages);
-	}
-
-	@Override
-	public boolean getAllowsChildren() {
-		return true;
-	}
-
-	@Override
-	public TreeNode getChildAt(int childIndex) {
-		return pages.get(childIndex);
-	}
-
-	@Override
-	public int getChildCount() {
-		return pages.size();
-	}
-
-	@Override
-	public int getIndex(TreeNode node) {
-		return pages.indexOf(node);
-	}
-
-	@Override
-	public TreeNode getParent() {
-		return prj;
-	}
-
-	@Override
-	public boolean isLeaf() {
-		return(pages.size()==0);
-	}
-	
-	@Override
 	public void insert(MutableTreeNode node, int index) {
 		if(node instanceof Page) {
-            pages.add(index, (Page)node);
+            children.add(index, (Page)node);
 		}
 		notifyObservers(node);
-	}
-	
-	@Override
-	public void remove(int index) {
-		pages.remove(index);
-		notifyObservers(null);
 	}
 
 	@Override
 	public void remove(MutableTreeNode node) {
 		if(node instanceof Page) {
 			Page p = (Page)node;
-			pages.remove(p);
+			children.remove(p);
 		}
 		notifyObservers(null);
 	}
 
 	@Override
-	public void removeFromParent() {
-		int index = prj.getIndex(this);
-		prj.remove(this);
-		prj = null;
-		notifyObservers(new AtomicInteger(index));
-	}
-
-	@Override
 	public void setParent(MutableTreeNode newParent) {
 		if(newParent instanceof Project) {
-			prj = (Project)newParent;
+			parent = (Project)newParent;
 		}
 	}
 
