@@ -1,5 +1,8 @@
 package workspace.tree;
 
+import java.awt.event.MouseAdapter;
+
+import javax.swing.AbstractAction;
 import javax.swing.JTree;
 
 import javax.swing.SwingUtilities;
@@ -17,8 +20,11 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	    setEditable(true);
 	    setInvokesStopCellEditing(true);
 	    
-	    addMouseListener(ActionManager.getInstance().getPopupListener());
-	    addMouseListener(ActionManager.getInstance().getAddTabsAction());
+		for(MouseAdapter a : ActionManager.getInstance().getMouseListeners()) {
+			addMouseListener(a);
+		}
+	    //addMouseListener(ActionManager.getInstance().getPopupListener());
+	    //addMouseListener(ActionManager.getInstance().getAddTabsAction());
 	    
 	    ws.addObserver(this);
 	}

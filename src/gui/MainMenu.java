@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.AbstractAction;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -11,15 +12,27 @@ public class MainMenu extends JMenuBar {
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
 		
-		JMenu fileNew = new JMenu("New");
+		//JMenu fileNew = new JMenu("New");
 		
-		file.add(fileNew);
+		//file.add(fileNew);
 		
-		fileNew.add(ActionManager.getInstance().getNewProjectAction());
+		//fileNew.add(ActionManager.getInstance().getNewProjectAction());
 		
-		file.add(ActionManager.getInstance().getOpenWorkspaceAction());
+		//file.add(ActionManager.getInstance().getOpenWorkspaceAction());
 		
-		help.add(ActionManager.getInstance().getAboutAction());
+		//help.add(ActionManager.getInstance().getAboutAction());
+		
+		for(AbstractAction a : ActionManager.getInstance().getFileActions()) {
+			file.add(a);
+		}
+		
+		for(AbstractAction a : ActionManager.getInstance().getEditActions()) {
+			edit.add(a);
+		}
+		
+		for(AbstractAction a : ActionManager.getInstance().getHelpActions()) {
+			help.add(a);
+		}
 		
 		add(file);
 		add(edit);

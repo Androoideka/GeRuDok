@@ -1,10 +1,15 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.AbstractAction;
 
 public class ActionManager {
 	private static ActionManager instance=null;
 	
-	private OpenWorkspaceAction openWorkspaceAction;
+	/*private OpenWorkspaceAction openWorkspaceAction;
 	private SaveWorkspaceAction saveWorkspaceAction;
 	
 	private AboutAction aboutAction;
@@ -25,7 +30,7 @@ public class ActionManager {
 	private AddTabsAction addTabsAction;
 	
 	private ActionManager() {
-		openWorkspaceAction = new OpenWorkspaceAction();
+		/*openWorkspaceAction = new OpenWorkspaceAction();
 		saveWorkspaceAction = new SaveWorkspaceAction();
 		
 		aboutAction = new AboutAction();
@@ -46,7 +51,7 @@ public class ActionManager {
 		addTabsAction = new AddTabsAction();
 	}
 	
-	public OpenWorkspaceAction getOpenWorkspaceAction() {
+	/*public OpenWorkspaceAction getOpenWorkspaceAction() {
 		return openWorkspaceAction;
 	}
 	
@@ -95,6 +100,56 @@ public class ActionManager {
 	
 	public AddTabsAction getAddTabsAction() {
 		return addTabsAction;
+	}*/
+	
+	private AbstractAction newAction;
+	private List<AbstractAction> fileActions = new ArrayList<>();
+	private List<AbstractAction> editActions = new ArrayList<>();
+	private List<AbstractAction> helpActions = new ArrayList<>();
+	private List<MouseAdapter> mouseListeners = new ArrayList<>();
+	
+	private ActionManager() {
+		newAction = new NewAction();
+		
+		fileActions.add(new OpenWorkspaceAction());
+		fileActions.add(new SaveWorkspaceAction());
+		
+		fileActions.add(new NewProjectAction());
+		fileActions.add(new OpenProjectAction());
+		
+		fileActions.add(new NewDocumentAction());
+		fileActions.add(new OpenDocumentAction());
+		
+		//fileActions.add(new SaveAction());
+		//fileActions.add(new SaveAsAction());
+		
+		editActions.add(new RenameAction());
+		editActions.add(new DeleteAction());
+		
+		mouseListeners.add(new PopupListener());
+		mouseListeners.add(new AddTabsAction());
+		
+		helpActions.add(new AboutAction());
+	}
+
+	public List<AbstractAction> getFileActions() {
+		return fileActions;
+	}
+
+	public List<AbstractAction> getEditActions() {
+		return editActions;
+	}
+
+	public List<AbstractAction> getHelpActions() {
+		return helpActions;
+	}
+
+	public List<MouseAdapter> getMouseListeners() {
+		return mouseListeners;
+	}
+
+	public AbstractAction getNewAction() {
+		return newAction;
 	}
 
 	public static ActionManager getInstance() {
