@@ -3,17 +3,19 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import gui.MainFrame;
+import helpers.ImageResizer;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
-public class NewProjectAction extends MehanickoPrebacivanjeAction {	
+public class NewProjectAction extends AbstractAction {	
 	public NewProjectAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, loadIcon("ikonice/projectnew.png", 16, 16));
-		putValue(LARGE_ICON_KEY, loadIcon("ikonice/projectnew.png", 24, 24));
+		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/projectnew.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/projectnew.png"));
 		putValue(NAME, "New project");
 		putValue(SHORT_DESCRIPTION, "Create a new project.");
 	}

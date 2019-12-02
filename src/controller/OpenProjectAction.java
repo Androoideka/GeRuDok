@@ -7,20 +7,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import gui.MainFrame;
+import helpers.ImageResizer;
 import model.workspace.Document;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
-public class OpenProjectAction extends MehanickoPrebacivanjeAction {
+public class OpenProjectAction extends AbstractAction {
 
 	public OpenProjectAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, loadIcon("ikonice/projectopen.png", 16, 16));
-		putValue(LARGE_ICON_KEY, loadIcon("ikonice/projectopen.png", 24, 24));
+		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/projectopen.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/projectopen.png"));
 		putValue(NAME, "Open project");
 		putValue(SHORT_DESCRIPTION, "Open an existing project.");
 	}
