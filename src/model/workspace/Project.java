@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -10,19 +9,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import observer.IModelObserver;
-import observer.IViewObserver;
-
-public class Project implements MutableTreeNode, IModelObserver, Serializable {
-	private String name;
+public class Project extends MPNode { //implements MutableTreeNode, IModelObserver, Serializable {
+	//private String name;
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
-	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String projectFile=null;
 	
-	public Project(Workspace ws, String name) {
+	public Project(Workspace ws) {
 		setParent(ws);
-		this.name = name;
+		this.name = "project";
 	}
 
 	@Override
@@ -97,25 +93,6 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 			ws = (Workspace)newParent;
 		}
 	}
-
-	@Override
-	public void setUserObject(Object object) {
-		return;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		notifyObservers(null);
-	}
-	
-	@Override
-	public String toString() {
-		return name;
-	}
 	
 	public String getProjectFile() {
 		return projectFile;
@@ -124,30 +101,9 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 	public void setProjectFile(String projectFile) {
 		this.projectFile = projectFile;
 	}
-	
-	@Override
-	public void addObserver(IViewObserver viewObserver) {
-		if(viewObserver==null) {
-			return;
-		}
-		if(this.viewObservers.contains(viewObserver)) {
-			return;
-		}
-		this.viewObservers.add(viewObserver);
-	}
 
 	@Override
-	public void removeObserver(IViewObserver viewObserver) {
-		if(viewObserver==null || !viewObservers.contains(viewObserver)) {
-			return;
-		}
-		viewObservers.remove(viewObserver);
-	}
-
-	@Override
-	public void notifyObservers(Object event) {
-		for(IViewObserver viewObserver : viewObservers) {
-			viewObserver.update(event);
-		}
+	public void addChild() {
+		this.insert(new Document(this), this.getChildCount());
 	}
 }

@@ -26,10 +26,10 @@ public class DeleteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		MutableTreeNode tNode=(MutableTreeNode)node;
-		if (node instanceof Project || node instanceof Document || node instanceof Page) {
+		if(node instanceof MutableTreeNode) {
+			MutableTreeNode tNode=(MutableTreeNode)node;
 			tNode.removeFromParent();
-			MainFrame.getInstance().getWorkspaceTree().setSelectionPath(null);
+			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();;
 		}
 	}
 }

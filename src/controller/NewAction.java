@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 import gui.MainFrame;
 import helpers.ImageResizer;
 import model.workspace.Document;
+import model.workspace.MPNode;
 import model.workspace.Page;
 import model.workspace.Project;
 import model.workspace.Workspace;
@@ -31,7 +32,15 @@ public class NewAction extends AbstractAction {
 			Project p=new Project(ws, "project");
 			ws.insert(p, ws.getChildCount());
 		}*/
-		if (node instanceof Project) {
+		if(node instanceof MPNode) {
+			MPNode mpNode = (MPNode)node;
+			mpNode.addChild();
+		}
+		else {
+			MainFrame.getInstance().getWorkspaceTree().getRoot().addChild();
+		}
+		
+		/*if (node instanceof Project) {
 			Project prj=(Project)node;
 			Document d=new Document(prj, "document");
 			prj.insert(d, prj.getChildCount());
@@ -45,6 +54,6 @@ public class NewAction extends AbstractAction {
 			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 			Project p=new Project(ws, "project");
 			ws.insert(p, ws.getChildCount());
-		}
+		}*/
 	}
 }

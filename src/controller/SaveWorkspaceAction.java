@@ -27,7 +27,7 @@ public class SaveWorkspaceAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JFileChooser jfc=new JFileChooser();
+		/*JFileChooser jfc=new JFileChooser();
 		jfc.setFileFilter(new DocumentFileFIlter());
 		Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 		File prjFile=ws.getProjectFile();
@@ -51,6 +51,6 @@ public class SaveWorkspaceAction extends AbstractAction {
 			e.printStackTrace();
 		}catch(IOException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

@@ -43,7 +43,7 @@ public class OpenProjectAction extends AbstractAction {
 				Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 				ws.insert(p, ws.getChildCount());
 				for(int i=0;i<p.getChildCount();i++) {
-					Document d=new Document(p, "document");
+					Document d=new Document(p);
 					p.insert(d, p.getChildCount());
 				}
 				ois.close();

@@ -11,6 +11,7 @@ import javax.swing.tree.MutableTreeNode;
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
 import interfaces.Tree;
+import model.workspace.MPNode;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -41,13 +42,19 @@ public class WorkspaceTree extends JTree implements IViewObserver, Tree {
 	}
 
 	@Override
-	public MutableTreeNode getSelectedNode() {
-		return (MutableTreeNode)this.getLastSelectedPathComponent();
+	public MPNode getSelectedNode() {
+		return (MPNode)this.getLastSelectedPathComponent();
+	}
+	
+	@Override
+	public void resetSelectedNode() {
+		this.setSelectionPath(null);
 	}
 
+
 	@Override
-	public MutableTreeNode getRoot() {
-		return (MutableTreeNode)this.getModel().getRoot();
+	public MPNode getRoot() {
+		return (MPNode)this.getModel().getRoot();
 	}
 
 	@Override

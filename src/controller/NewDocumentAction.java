@@ -26,7 +26,7 @@ public class NewDocumentAction extends AbstractAction {
 		Object p=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		if (p  instanceof Project) {
 			Project prj=(Project)MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-			Document d=new Document(prj, "document");
+			Document d=new Document(prj);
 			prj.insert(d, prj.getChildCount());
 		}
 	}

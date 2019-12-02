@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -9,17 +8,14 @@ import java.util.List;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import observer.IModelObserver;
-import observer.IViewObserver;
-
-public class Workspace implements MutableTreeNode, IModelObserver, Serializable {
-	private String name = "Workspace";
+public class Workspace extends MPNode {//implements MutableTreeNode, IModelObserver, Serializable {
+	//private String name = "Workspace";
 	private List<Project> prj = new ArrayList<>();
-	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String workspaceFile=null;
 	
 	public Workspace() {
-		super();
+		this.name = "Workspace";
 	}
 
 	@Override
@@ -89,25 +85,6 @@ public class Workspace implements MutableTreeNode, IModelObserver, Serializable 
 	public void setParent(MutableTreeNode newParent) {
 		return;
 	}
-
-	@Override
-	public void setUserObject(Object object) {
-		return;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		notifyObservers(null);
-	}
-
-	@Override
-	public String toString() {
-		return name;
-	}
 	
 	public String getProjectFile() {
 		return workspaceFile;
@@ -116,30 +93,9 @@ public class Workspace implements MutableTreeNode, IModelObserver, Serializable 
 	public void setProjectFile(String projectFile) {
 		this.workspaceFile = projectFile;
 	}
-	
-	@Override
-	public void addObserver(IViewObserver viewObserver) {
-		if(viewObserver==null) {
-			return;
-		}
-		if(this.viewObservers.contains(viewObserver)) {
-			return;
-		}
-		this.viewObservers.add(viewObserver);
-	}
 
 	@Override
-	public void removeObserver(IViewObserver viewObserver) {
-		if(viewObserver==null || !viewObservers.contains(viewObserver)) {
-			return;
-		}
-		viewObservers.remove(viewObserver);
-	}
-
-	@Override
-	public void notifyObservers(Object event) {
-		for(IViewObserver viewObserver : viewObservers) {
-			viewObserver.update(event);
-		}
+	public void addChild() {
+		this.insert(new Project(this), this.getChildCount());
 	}
 }

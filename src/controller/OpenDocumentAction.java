@@ -44,7 +44,7 @@ public class OpenDocumentAction extends AbstractAction {
 				Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 				ws.insert(d, ws.getChildCount());
 				for(int i=0;i<d.getChildCount();i++) {
-					Page p=new Page(d, "page");
+					Page p=new Page(d);
 					d.insert(p, d.getChildCount());
 				}
 				ois.close();

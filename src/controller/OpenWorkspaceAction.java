@@ -42,7 +42,7 @@ public class OpenWorkspaceAction extends AbstractAction {
 				}
 				ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 				for(int i=0;i<ws.getChildCount();i++) {
-					Project p=new Project(ws, "project");
+					Project p=new Project(ws);
 					ws.insert(p, ws.getChildCount());
 				}
 				ois.close();
