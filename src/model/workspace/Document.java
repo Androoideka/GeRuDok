@@ -18,7 +18,6 @@ public class Document extends MPNode {//implements MutableTreeNode, IModelObserv
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
 	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
-	private String documentFile=null;
 	
 	public Document(Project prj) {
 		setParent(prj);
@@ -58,14 +57,6 @@ public class Document extends MPNode {//implements MutableTreeNode, IModelObserv
 	@Override
 	public boolean isLeaf() {
 		return(pages.size()==0);
-	}
-	
-	public String getDocumentFile() {
-		return documentFile;
-	}
-
-	public void setDocumentFile(String projectFile) {
-		this.documentFile = projectFile;
 	}
 	
 	@Override

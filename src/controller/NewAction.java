@@ -27,11 +27,6 @@ public class NewAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object node = MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		/*if (node instanceof Workspace || node == null) {
-			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
-			Project p=new Project(ws, "project");
-			ws.insert(p, ws.getChildCount());
-		}*/
 		if(node instanceof MPNode) {
 			MPNode mpNode = (MPNode)node;
 			mpNode.addChild();
@@ -39,21 +34,5 @@ public class NewAction extends AbstractAction {
 		else {
 			MainFrame.getInstance().getWorkspaceTree().getRoot().addChild();
 		}
-		
-		/*if (node instanceof Project) {
-			Project prj=(Project)node;
-			Document d=new Document(prj, "document");
-			prj.insert(d, prj.getChildCount());
-		}
-		else if (node instanceof Document) {
-			Document d = (Document)node;
-			Page p = new Page(d, "page");
-			d.insert(p, d.getChildCount());
-		}
-		else {
-			Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
-			Project p=new Project(ws, "project");
-			ws.insert(p, ws.getChildCount());
-		}*/
 	}
 }

@@ -12,7 +12,6 @@ public class Workspace extends MPNode {//implements MutableTreeNode, IModelObser
 	//private String name = "Workspace";
 	private List<Project> prj = new ArrayList<>();
 	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
-	private String workspaceFile=null;
 	
 	public Workspace() {
 		this.name = "Workspace";
@@ -86,14 +85,6 @@ public class Workspace extends MPNode {//implements MutableTreeNode, IModelObser
 		return;
 	}
 	
-	public String getProjectFile() {
-		return workspaceFile;
-	}
-
-	public void setProjectFile(String projectFile) {
-		this.workspaceFile = projectFile;
-	}
-
 	@Override
 	public void addChild() {
 		this.insert(new Project(this), this.getChildCount());

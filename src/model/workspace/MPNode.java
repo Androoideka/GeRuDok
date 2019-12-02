@@ -14,6 +14,8 @@ import observer.IViewObserver;
 public abstract class MPNode implements MutableTreeNode, IModelObserver, Serializable {
 	protected String name;
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	private String file=null;
+	private boolean changed=false;
 
 	/*@Override
 	public Enumeration<? extends TreeNode> children() {
@@ -103,6 +105,23 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 		notifyObservers(null);
 	}
 	
+	public String getFile() {
+		return file;
+	}
+	
+	public void setFile(String file) {
+		this.file=file;
+		notifyObservers(null);
+	}
+	
+	public boolean getChanged() {
+		return changed;
+	}
+	
+	public void setChanged(boolean changed) {
+		this.changed=changed;
+	}
+	
 	@Override
 	public String toString() {
 		return name;
@@ -132,5 +151,6 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
+		changed=true;
 	}
 }
