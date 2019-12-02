@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,12 +7,9 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
-import gui.MainFrame;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -22,8 +18,7 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
-	private File projectFile=null;
-	private transient boolean changed=false;
+	private String projectFile=null;
 	
 	public Project(Workspace ws, String name) {
 		setParent(ws);
@@ -122,33 +117,12 @@ public class Project implements MutableTreeNode, IModelObserver, Serializable {
 		return name;
 	}
 	
-	public File getProjectFile() {
+	public String getProjectFile() {
 		return projectFile;
 	}
 
-	public void setProjectFile(File projectFile) {
+	public void setProjectFile(String projectFile) {
 		this.projectFile = projectFile;
-	}
-	
-	public boolean isChanged() {
-		return changed;
-	}
-
-	public void setChanged(boolean changed) {
-		if (this.changed!=changed){
-		     this.changed=changed;
-		     SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-		}
-	}
-	
-	public Document getCurrentDocument() {
-		TreePath path=MainFrame.getInstance().getWorkspaceTree().getSelectionPath();
-		for(int i=0; i<path.getPathCount(); i++){
-			if(path.getPathComponent(i) instanceof Project){
-				return (Document)path.getPathComponent(i);
-			}
-		}
-		return null;
 	}
 	
 	@Override

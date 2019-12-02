@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,11 +7,9 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import gui.MainFrame;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
@@ -21,8 +18,7 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
-	private File documentFile=null;
-	private transient boolean changed=false;
+	private String documentFile=null;
 	
 	public Document(Project prj, String name) {
 		setParent(prj);
@@ -64,33 +60,14 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 		return(pages.size()==0);
 	}
 	
-	public File getDocumentFile() {
+	public String getDocumentFile() {
 		return documentFile;
 	}
 
-	public void setDocumentFile(File projectFile) {
+	public void setDocumentFile(String projectFile) {
 		this.documentFile = projectFile;
 	}
 	
-	public boolean isChanged() {
-		return changed;
-	}
-
-	public void setChanged(boolean changed) {
-		if (this.changed!=changed){
-		     this.changed=changed;
-		     SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-		}
-	}
-
-	@Override
-	public void insert(MutableTreeNode node, int index) {
-		if(node instanceof Page) {
-			pages.add(index, (Page)node);
-		}
-		notifyObservers(node);
-	}
-
 	@Override
 	public void remove(int index) {
 		pages.remove(index);
@@ -163,5 +140,11 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
+	}
+
+	@Override
+	public void insert(MutableTreeNode arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }
