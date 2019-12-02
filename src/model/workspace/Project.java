@@ -9,11 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Project extends MPNode { //implements MutableTreeNode, IModelObserver, Serializable {
-	//private String name;
+public class Project extends MPNode { 
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
-	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Project(Workspace ws) {
 		setParent(ws);

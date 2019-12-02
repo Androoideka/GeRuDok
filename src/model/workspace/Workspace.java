@@ -8,10 +8,8 @@ import java.util.List;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Workspace extends MPNode {//implements MutableTreeNode, IModelObserver, Serializable {
-	//private String name = "Workspace";
+public class Workspace extends MPNode {;
 	private List<Project> prj = new ArrayList<>();
-	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Workspace() {
 		this.name = "Workspace";

@@ -1,6 +1,5 @@
 package model.workspace;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -10,14 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import observer.IModelObserver;
-import observer.IViewObserver;
-
-public class Document extends MPNode {//implements MutableTreeNode, IModelObserver, Serializable {
-	//private String name;
+public class Document extends MPNode {
 	private Project prj;
 	private List<Page> pages=new ArrayList<Page>();
-	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
 	public Document(Project prj) {
 		setParent(prj);
