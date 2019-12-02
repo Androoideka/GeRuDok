@@ -40,7 +40,7 @@ public class OpenProjectAction extends AbstractAction {
 				}catch(ClassNotFoundException e1) {
 					e1.printStackTrace();
 				}
-				Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
+				Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 				ws.insert(p, ws.getChildCount());
 				for(int i=0;i<p.getChildCount();i++) {
 					Document d=new Document(p, "document");

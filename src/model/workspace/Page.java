@@ -101,6 +101,10 @@ public class Page implements MutableTreeNode, IModelObserver, Serializable {
 		notifyObservers(null);
 	}
 	
+	public String toString() {
+		return name;
+	}
+	
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
 		if(viewObserver==null) {
