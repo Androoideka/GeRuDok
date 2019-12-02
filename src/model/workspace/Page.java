@@ -1,13 +1,8 @@
 package model.workspace;
 
-import java.util.Enumeration;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 public class Page extends MPNode {
-	private Document doc;
 	
 	public Page(Document doc) {
 		setParent(doc);
@@ -27,7 +22,7 @@ public class Page extends MPNode {
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		if(newParent instanceof Document) {
-			doc = (Document)newParent;
+			parent=(Document)newParent;
 		}
 	}
 
