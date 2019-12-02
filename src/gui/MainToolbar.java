@@ -1,5 +1,6 @@
 package gui;
 
+import javax.swing.AbstractAction;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
@@ -9,18 +10,26 @@ public class MainToolbar extends JToolBar {
 	public MainToolbar() {
 		super(SwingConstants.HORIZONTAL);
 		
-		add(ActionManager.getInstance().getNewProjectAction());
-		add(ActionManager.getInstance().getOpenProjectAction());
+		//add(ActionManager.getInstance().getNewProjectAction());
+		//add(ActionManager.getInstance().getOpenProjectAction());
+		
+		for(AbstractAction a : ActionManager.getInstance().getFileActions()) {
+			add(a);
+		}
 		
 		addSeparator();
 		
-		add(ActionManager.getInstance().getNewDocumentAction());
-		add(ActionManager.getInstance().getOpenDocumentAction());
+		//add(ActionManager.getInstance().getNewDocumentAction());
+		//add(ActionManager.getInstance().getOpenDocumentAction());
 		
-		addSeparator();
+		for(AbstractAction a : ActionManager.getInstance().getEditActions()) {
+			add(a);
+		}
 		
-		add(ActionManager.getInstance().getSavePrjAction());
-		add(ActionManager.getInstance().getRenameAction());
-		add(ActionManager.getInstance().getDeleteAction());
+		//addSeparator();
+		
+		//add(ActionManager.getInstance().getSavePrjAction());
+		//add(ActionManager.getInstance().getRenameAction());
+		//add(ActionManager.getInstance().getDeleteAction());
 	}
 }
