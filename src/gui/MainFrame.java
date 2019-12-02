@@ -11,10 +11,11 @@ import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import gui.workspace.WorkspaceTree;
+import interfaces.Tree;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
 import observer.IModelObserver;
-import workspace.tree.WorkspaceTree;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
@@ -64,10 +65,6 @@ public class MainFrame extends JFrame {
 	
 	public WorkspaceTree getWorkspaceTree() {
 		return wst;
-	}
-
-	public WorkspaceModel getWorkspaceModel() {
-		return wsm;
 	}
 	
 	public WorkspaceTabbedMenu getWorkspaceTabbedMenu() {

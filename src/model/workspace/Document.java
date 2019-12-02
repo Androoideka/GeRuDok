@@ -63,19 +63,6 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	public boolean isLeaf() {
 		return(pages.size()==0);
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		notifyObservers(null);
-	}
-	
-	public String toString() {
-		return name;
-	}
 	
 	public File getDocumentFile() {
 		return documentFile;
@@ -137,6 +124,19 @@ public class Document implements MutableTreeNode, IModelObserver, Serializable {
 	@Override
 	public void setUserObject(Object object) {
 		return;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		notifyObservers(null);
+	}
+	
+	public String toString() {
+		return name;
 	}
 	
 	@Override

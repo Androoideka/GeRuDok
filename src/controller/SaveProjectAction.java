@@ -31,7 +31,7 @@ public class SaveProjectAction extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		JFileChooser jfc=new JFileChooser();
 		jfc.setFileFilter(new DocumentFileFIlter());
-		Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceModel().getRoot();
+		Workspace ws=(Workspace)MainFrame.getInstance().getWorkspaceTree().getRoot();
 		Project p=ws.getCurrentProject();
 		File prjFile=p.getProjectFile();
 		if(!p.isChanged()) {

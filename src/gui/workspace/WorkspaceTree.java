@@ -1,4 +1,4 @@
-package workspace.tree;
+package gui.workspace;
 
 import java.awt.event.MouseAdapter;
 
@@ -6,13 +6,15 @@ import javax.swing.AbstractAction;
 import javax.swing.JTree;
 
 import javax.swing.SwingUtilities;
+import javax.swing.tree.MutableTreeNode;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
+import interfaces.Tree;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class WorkspaceTree extends JTree implements IViewObserver {
+public class WorkspaceTree extends JTree implements IViewObserver, Tree {
 	public WorkspaceTree(IModelObserver ws) {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
@@ -36,5 +38,22 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 			obs.addObserver(this);
 		}
 		SwingUtilities.updateComponentTreeUI(this);
+	}
+
+	@Override
+	public MutableTreeNode getSelectedNode() {
+		return (MutableTreeNode)this.getLastSelectedPathComponent();
+	}
+
+	@Override
+	public MutableTreeNode getRoot() {
+		return (MutableTreeNode)this.getModel().getRoot();
+	}
+
+	@Override
+	public void startEditing() {
+		if(this.getSelectionPath() != null) {
+			this.startEditingAtPath(this.getSelectionPath());
+		}
 	}
 }
