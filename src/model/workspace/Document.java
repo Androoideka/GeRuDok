@@ -1,13 +1,8 @@
 package model.workspace;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 public class Document extends MPNode {
 	

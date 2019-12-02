@@ -17,17 +17,13 @@ public class ActionManager {
 	
 	private ActionManager() {
 		newAction = new NewAction();
-		
-		fileActions.add(new OpenWorkspaceAction());
-		
+				
 		fileActions.add(new NewProjectAction());
-		fileActions.add(new OpenProjectAction());
 		
 		fileActions.add(new NewDocumentAction());
-		fileActions.add(new OpenDocumentAction());
+		fileActions.add(new OpenAction());
 		
 		fileActions.add(new SaveAction());
-		//fileActions.add(new SaveAsAction());
 		
 		editActions.add(new RenameAction());
 		editActions.add(new DeleteAction());
