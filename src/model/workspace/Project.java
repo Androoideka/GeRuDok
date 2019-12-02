@@ -14,7 +14,6 @@ public class Project extends MPNode { //implements MutableTreeNode, IModelObserv
 	private Workspace ws;
 	private List<Document> docs = new ArrayList<>();
 	//private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
-	private String projectFile=null;
 	
 	public Project(Workspace ws) {
 		setParent(ws);
@@ -94,14 +93,6 @@ public class Project extends MPNode { //implements MutableTreeNode, IModelObserv
 		}
 	}
 	
-	public String getProjectFile() {
-		return projectFile;
-	}
-
-	public void setProjectFile(String projectFile) {
-		this.projectFile = projectFile;
-	}
-
 	@Override
 	public void addChild() {
 		this.insert(new Document(this), this.getChildCount());
