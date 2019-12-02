@@ -18,7 +18,7 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	protected List<MPNode> children;
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String file=null;
-	private boolean changed=false;
+	private boolean changed=true;
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
