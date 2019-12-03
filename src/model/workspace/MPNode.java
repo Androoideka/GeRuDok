@@ -64,7 +64,7 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 		if(children != null) {
 			return children.size() == 0;
 		}
-		return false;
+		return true;
 	}
 	
 	@Override
