@@ -39,8 +39,8 @@ public class Main {
 	      }
 	    }
 	    
-		UIManager.put("Tree.collapsedIcon", ImageResizer.getProperlyScaledImage("ikonice/chevron-right.png", 10, 10));
-		UIManager.put("Tree.expandedIcon", ImageResizer.getProperlyScaledImage("ikonice/chevron-down.png", 10, 10));
+		UIManager.put("Tree.collapsedIcon", ImageResizer.getInstance().getProperlyScaledImage("ikonice/chevron-right.png", 10, 10));
+		UIManager.put("Tree.expandedIcon", ImageResizer.getInstance().getProperlyScaledImage("ikonice/chevron-down.png", 10, 10));
 		UIManager.put("MenuItem.acceleratorFont", new Font("Cambria", Font.ITALIC, 10));
 		MainFrame glavniProzor = MainFrame.getInstance();
 		glavniProzor.setVisible(true);

@@ -14,8 +14,8 @@ import model.workspace.Workspace;
 public class NewProjectAction extends AbstractAction {	
 	public NewProjectAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/projectnew.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/projectnew.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/projectnew.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/projectnew.png"));
 		putValue(NAME, "New project");
 		putValue(SHORT_DESCRIPTION, "Create a new project.");
 	}

@@ -18,8 +18,8 @@ import model.workspace.MPNode;
 public class OpenAction extends AbstractAction {
 	public OpenAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/projectopen.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/projectopen.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/projectopen.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/projectopen.png"));
 		putValue(NAME, "Open project");
 		putValue(SHORT_DESCRIPTION, "Open an existing project.");
 	}
