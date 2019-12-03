@@ -18,7 +18,7 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	protected List<MPNode> children;
 	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String file=null;
-	private boolean changed=true;
+	private transient boolean changed=true;
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
@@ -123,6 +123,9 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 
 	@Override
 	public void addObserver(IViewObserver viewObserver) {
+		if(viewObservers==null) {
+			viewObservers = new ArrayList<IViewObserver>();
+		}
 		if(viewObserver==null) {
 			return;
 		}
@@ -142,6 +145,9 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 
 	@Override
 	public void notifyObservers(Object event) {
+		if(viewObservers==null) {
+			viewObservers = new ArrayList<IViewObserver>();
+		}
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
