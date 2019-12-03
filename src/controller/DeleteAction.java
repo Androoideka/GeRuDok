@@ -5,10 +5,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
-import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
 import helpers.ImageResizer;
+import model.workspace.MPNode;
 
 public class DeleteAction extends AbstractAction {
 	
@@ -22,11 +22,10 @@ public class DeleteAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		if(node instanceof MutableTreeNode) {
-			MutableTreeNode tNode=(MutableTreeNode)node;
-			tNode.removeFromParent();
-			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();;
+		MPNode mpNode=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
+		if(mpNode!=null) {
+			mpNode.removeFromParent();
+			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();
 		}
 	}
 }

@@ -22,9 +22,8 @@ public class NewAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object node = MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		if(node instanceof MPNode) {
-			MPNode mpNode = (MPNode)node;
+		MPNode mpNode = MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
+		if(mpNode!=null) {
 			mpNode.addChild();
 		}
 		else {
