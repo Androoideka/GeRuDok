@@ -8,12 +8,12 @@ import javax.swing.SwingUtilities;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
-import interfaces.Tree;
+import interfaces.IWorkspaceView;
 import model.workspace.MPNode;
 import observer.IModelObserver;
 import observer.IViewObserver;
 
-public class WorkspaceTree extends JTree implements IViewObserver, Tree {
+public class WorkspaceTree extends JTree implements IViewObserver, IWorkspaceView {
 	public WorkspaceTree(IModelObserver ws) {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
