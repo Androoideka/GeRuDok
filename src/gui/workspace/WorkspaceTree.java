@@ -2,11 +2,9 @@ package gui.workspace;
 
 import java.awt.event.MouseAdapter;
 
-import javax.swing.AbstractAction;
 import javax.swing.JTree;
 
 import javax.swing.SwingUtilities;
-import javax.swing.tree.MutableTreeNode;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;

@@ -9,9 +9,6 @@ import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
 import helpers.ImageResizer;
-import model.workspace.Document;
-import model.workspace.Page;
-import model.workspace.Project;
 
 public class DeleteAction extends AbstractAction {
 	

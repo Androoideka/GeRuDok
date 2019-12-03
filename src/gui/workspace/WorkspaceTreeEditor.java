@@ -9,11 +9,6 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import model.workspace.Document;
-import model.workspace.MPNode;
-import model.workspace.Project;
-import model.workspace.Workspace;
-
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
 
 	private Object node;

@@ -13,7 +13,6 @@ import javax.swing.KeyStroke;
 
 import gui.MainFrame;
 import helpers.ImageResizer;
-import model.workspace.Document;
 import model.workspace.Project;
 import model.workspace.Workspace;
 

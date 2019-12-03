@@ -15,7 +15,6 @@ import gui.MainFrame;
 import helpers.ImageResizer;
 import model.workspace.Document;
 import model.workspace.Page;
-import model.workspace.Project;
 import model.workspace.Workspace;
 
 public class OpenDocumentAction extends AbstractAction {
