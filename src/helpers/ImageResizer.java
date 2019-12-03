@@ -5,7 +5,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class ImageResizer {
-	public static ImageIcon getProperlyScaledImage(String fileName, int width, int height) {
+	private static ImageResizer instance=null;
+	
+	private ImageResizer() {
+		
+	}
+	public ImageIcon getProperlyScaledImage(String fileName, int width, int height) {
 		if(fileName != null) {
 			ImageIcon originalIcon = new ImageIcon(fileName);
 			ImageIcon scaledIcon = new ImageIcon(originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
@@ -17,11 +22,18 @@ public class ImageResizer {
 		return null;
 	}
 	
-	public static ImageIcon loadSmallIcon(String fileName) {
+	public ImageIcon loadSmallIcon(String fileName) {
 		return getProperlyScaledImage(fileName, 16, 16);
 	}
 	
-	public static ImageIcon loadBigIcon(String fileName) {
+	public ImageIcon loadBigIcon(String fileName) {
 		return getProperlyScaledImage(fileName, 24, 24);
+	}
+	
+	public static ImageResizer getInstance() {
+		if(instance==null) {
+			instance=new ImageResizer();
+		}
+		return instance;
 	}
 }

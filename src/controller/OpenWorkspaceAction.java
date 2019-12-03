@@ -20,8 +20,8 @@ public class OpenWorkspaceAction extends AbstractAction {
 	
 	public OpenWorkspaceAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/workspaceopen.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/workspaceopen.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/workspaceopen.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/workspaceopen.png"));
 		putValue(NAME, "Open workspace");
 		putValue(SHORT_DESCRIPTION, "Open a new workspace.");
 	}

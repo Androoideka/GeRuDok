@@ -13,8 +13,8 @@ public class RenameAction extends AbstractAction {
 	
 	public RenameAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0)); //0 specifies no modifiers
-		putValue(SMALL_ICON, ImageResizer.loadSmallIcon("ikonice/rename.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.loadBigIcon("ikonice/rename.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/rename.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/rename.png"));
 		putValue(NAME, "Rename");
 		putValue(SHORT_DESCRIPTION, "Rename an object.");
 	}

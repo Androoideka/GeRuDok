@@ -17,19 +17,19 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 		super.getTreeCellRendererComponent(tree, value, sel,expanded, leaf, row,hasFocus);
 		
 		if (value instanceof Workspace ) {
-			setIcon(ImageResizer.loadSmallIcon("ikonice/workspace.png"));
+			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/workspace.png"));
 		}
 		
 		else if (value instanceof Project ) {
-			setIcon(ImageResizer.loadSmallIcon("ikonice/project.png"));
+			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/project.png"));
 		}
 		
 		else if (value instanceof Document ) {
-			setIcon(ImageResizer.loadSmallIcon("ikonice/document.png"));
+			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/document.png"));
 		}
 		
 		else if(value instanceof Page) {
-			setIcon(ImageResizer.loadSmallIcon("ikonice/document.png"));
+			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/document.png"));
 		}
 		setFont(new Font(getFont().getFamily(), Font.BOLD, 14));
 		return this;
