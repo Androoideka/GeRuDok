@@ -12,7 +12,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import gui.workspace.WorkspaceTree;
-import interfaces.Tree;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
 import observer.IModelObserver;
