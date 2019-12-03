@@ -9,6 +9,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import model.workspace.MPNode;
+
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
 
 	private Object node;
@@ -26,15 +28,6 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	
 	public void actionPerformed(ActionEvent event){
 		stopCellEditing();
-        /*if (node instanceof Workspace) {
-                ((Workspace)node).setName(event.getActionCommand());
-        }
-        else if (node instanceof Project) {
-                ((Project)node).setName(event.getActionCommand());
-        }
-        else if(node instanceof Document) {
-                ((Document)node).setName(event.getActionCommand());
-        }*/
 		if(node instanceof MPNode) {
 			MPNode mpNode = (MPNode)node;
 			mpNode.setName(event.getActionCommand());
