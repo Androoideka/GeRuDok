@@ -27,6 +27,7 @@ public class ActionManager {
 		
 		editActions.add(new RenameAction());
 		editActions.add(new DeleteAction());
+		editActions.add(new CloseTabAction());
 		
 		mouseListeners.add(new PopupListener());
 		mouseListeners.add(new AddTabsAction());
