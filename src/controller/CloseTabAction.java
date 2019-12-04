@@ -24,11 +24,11 @@ public class CloseTabAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MPNode mpNode=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		if(mpNode instanceof Document && mpNode!=null) {
+		WorkspaceTabbedMenu wtb=MainFrame.getInstance().getWorkspaceTabbedMenu(); 
+		if(mpNode instanceof Document && mpNode!=null && wtb.getTabCount()!=0) {
 			int index=mpNode.getParent().getIndex(mpNode);
-			WorkspaceTabbedMenu wtb=MainFrame.getInstance().getWorkspaceTabbedMenu(); 
 			wtb.removeTabAt(index);
-			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();;
+			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();
 		}
 	}
 }
