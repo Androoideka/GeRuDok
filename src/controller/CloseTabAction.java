@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
-import javax.swing.tree.MutableTreeNode;
 
 import gui.MainFrame;
+import gui.WorkspaceTabbedMenu;
 import helpers.ImageResizer;
+import model.workspace.Document;
+import model.workspace.MPNode;
 
 public class CloseTabAction extends AbstractAction {
 	public CloseTabAction() {
@@ -21,10 +23,11 @@ public class CloseTabAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object node=MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		if(node instanceof MutableTreeNode) {
-			MutableTreeNode tNode=(MutableTreeNode)node;
-			tNode.removeFromParent();
+		MPNode mpNode=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
+		if(mpNode instanceof Document && mpNode!=null) {
+			int index=mpNode.getParent().getIndex(mpNode);
+			WorkspaceTabbedMenu wtb=MainFrame.getInstance().getWorkspaceTabbedMenu(); 
+			wtb.removeTabAt(index);
 			MainFrame.getInstance().getWorkspaceTree().resetSelectedNode();;
 		}
 	}
