@@ -18,9 +18,8 @@ public class ActionManager {
 	private ActionManager() {
 		newAction = new NewAction();
 				
-		fileActions.add(new NewProjectAction());
+		fileActions.add(new NewAction());
 		
-		fileActions.add(new NewDocumentAction());
 		fileActions.add(new OpenAction());
 		
 		fileActions.add(new SaveAction());
