@@ -14,10 +14,11 @@ import observer.IViewObserver;
 
 public abstract class MPNode implements MutableTreeNode, IModelObserver, Serializable {
 	protected String name;
-	protected MPNode parent;
 	protected List<MPNode> children;
-	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private String file=null;
+	
+	protected transient MPNode parent;
+	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private transient boolean changed=true;
 
 	@Override

@@ -14,7 +14,9 @@ public class Workspace extends MPNode {
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		if(node instanceof Project) {
-			children.add((Project)node);
+			Project p = (Project)node;
+			p.setParent(this);
+			children.add(p);
 		}
 		notifyObservers(node);
 	}

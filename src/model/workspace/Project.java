@@ -15,7 +15,9 @@ public class Project extends MPNode {
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		if(node instanceof Document) {
-			children.add(index, (Document)node);
+			Document d = (Document)node;
+			d.setParent(this);
+			children.add(index, d);
 		}
 		notifyObservers(node);
 	}
