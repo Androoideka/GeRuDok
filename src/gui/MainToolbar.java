@@ -19,5 +19,11 @@ public class MainToolbar extends JToolBar {
 		for(AbstractAction a : ActionManager.getInstance().getEditActions()) {
 			add(a);
 		}
+		
+		addSeparator();
+		
+		for(AbstractAction a : ActionManager.getInstance().getViewActions()) {
+			add(a);
+		}
 	}
 }

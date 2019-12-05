@@ -10,11 +10,9 @@ import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
 import interfaces.IWorkspaceView;
 import model.workspace.MPNode;
-import observer.IModelObserver;
-import observer.IViewObserver;
 
-public class WorkspaceTree extends JTree implements IViewObserver, IWorkspaceView {
-	public WorkspaceTree(IModelObserver ws) {
+public class WorkspaceTree extends JTree implements IWorkspaceView {
+	public WorkspaceTree(MPNode ws) {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
 	    setCellRenderer(new WorkspaceTreeCellRenderer());
@@ -24,18 +22,17 @@ public class WorkspaceTree extends JTree implements IViewObserver, IWorkspaceVie
 		for(MouseAdapter a : ActionManager.getInstance().getMouseListeners()) {
 			addMouseListener(a);
 		}
-	    //addMouseListener(ActionManager.getInstance().getPopupListener());
-	    //addMouseListener(ActionManager.getInstance().getAddTabsAction());
 	    
 	    ws.addObserver(this);
 	}
 
 	@Override
 	public void update(Object event) {
-		if(event instanceof IModelObserver) {
-			IModelObserver obs = (IModelObserver)event;
+		if(event instanceof MPNode) {
+			MPNode obs = (MPNode)event;
 			obs.addObserver(this);
 		}
+		this.expandRow(0);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 

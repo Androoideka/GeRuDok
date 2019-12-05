@@ -10,6 +10,7 @@ public class MainMenu extends JMenuBar {
 	public MainMenu() {
 		JMenu file = new JMenu("File");
 		JMenu edit = new JMenu("Edit");
+		JMenu view = new JMenu("View");
 		JMenu help = new JMenu("Help");
 
 		for(AbstractAction a : ActionManager.getInstance().getFileActions()) {
@@ -20,12 +21,17 @@ public class MainMenu extends JMenuBar {
 			edit.add(a);
 		}
 		
+		for(AbstractAction a : ActionManager.getInstance().getViewActions()) {
+			view.add(a);
+		}
+		
 		for(AbstractAction a : ActionManager.getInstance().getHelpActions()) {
 			help.add(a);
 		}
 		
 		add(file);
 		add(edit);
+		add(view);
 		add(help);
 	}
 }
