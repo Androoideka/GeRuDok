@@ -15,7 +15,9 @@ public class Document extends MPNode {
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		if(node instanceof Page) {
-            children.add(index, (Page)node);
+			Page p = (Page)node;
+			p.setParent(this);
+            children.add(index, p);
 		}
 		notifyObservers(node);
 	}
