@@ -12,9 +12,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import gui.workspace.WorkspaceTree;
+import model.workspace.MPNode;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
-import observer.IModelObserver;
 
 public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
@@ -38,7 +38,7 @@ public class MainFrame extends JFrame {
 		add(toolbar, BorderLayout.NORTH);
 		
 		wsm=new WorkspaceModel(new Workspace());
-		wst=new WorkspaceTree((IModelObserver)wsm.getRoot());
+		wst=new WorkspaceTree((MPNode)wsm.getRoot());
 		wst.setModel(wsm);
 		
 		JScrollPane treePanel=new JScrollPane(wst);

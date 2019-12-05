@@ -13,6 +13,7 @@ public class ActionManager {
 	private List<AbstractAction> fileActions = new ArrayList<>();
 	private List<AbstractAction> editActions = new ArrayList<>();
 	private List<AbstractAction> helpActions = new ArrayList<>();
+	private List<AbstractAction> viewActions = new ArrayList<>();
 	private List<MouseAdapter> mouseListeners = new ArrayList<>();
 	
 	private ActionManager() {
@@ -26,10 +27,11 @@ public class ActionManager {
 		
 		editActions.add(new RenameAction());
 		editActions.add(new DeleteAction());
-		editActions.add(new CloseTabAction());
+		
+		viewActions.add(new CloseAction());
 		
 		mouseListeners.add(new PopupListener());
-		mouseListeners.add(new AddTabsAction());
+		mouseListeners.add(new SelectionListener());
 		
 		helpActions.add(new AboutAction());
 	}
@@ -40,6 +42,10 @@ public class ActionManager {
 
 	public List<AbstractAction> getEditActions() {
 		return editActions;
+	}
+	
+	public List<AbstractAction> getViewActions() {
+		return viewActions;
 	}
 
 	public List<AbstractAction> getHelpActions() {
