@@ -40,14 +40,14 @@ public class SaveAction extends AbstractAction {
 			if(fileName==null) {
 				if(jfc.showSaveDialog(MainFrame.getInstance())==JFileChooser.APPROVE_OPTION) {
 					file=jfc.getSelectedFile();
+					if(!file.getAbsolutePath().endsWith(".mp")) {
+						file=new File(file+".mp");
+					}
 				}else {
 					return;
 				}
 			}else {
 				file=new File(fileName);
-				if(!file.getAbsolutePath().endsWith(".mp")) {
-					file=new File(file+".mp");
-				}
 			}
 			try {
 				ObjectOutputStream ous=new ObjectOutputStream(new FileOutputStream(file));
