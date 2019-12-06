@@ -3,6 +3,8 @@ package gui.workspace;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 import javax.swing.JTextField;
 import javax.swing.JTree;
@@ -24,6 +26,13 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 		field=new JTextField(node.toString());
 		field.addActionListener(this);
 		return field;
+	}
+	
+	public boolean canEditImmediately(EventObject event) {
+		if(event instanceof MouseEvent) {
+			return ((MouseEvent)event).getClickCount() == 3;
+		}
+		return super.canEditImmediately(event);
 	}
 	
 	public void actionPerformed(ActionEvent event){
