@@ -25,9 +25,4 @@ public class Page extends MPNode {
 			parent=(Document)newParent;
 		}
 	}
-
-	@Override
-	public void addChild() {
-		return;
-	}
 }

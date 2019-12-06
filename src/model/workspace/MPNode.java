@@ -89,8 +89,6 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 		return;
 	}
 	
-	public abstract void addChild();
-	
 	public String getName() {
 		return name;
 	}
