@@ -37,9 +37,4 @@ public class Document extends MPNode {
 			parent = (Project)newParent;
 		}
 	}
-
-	@Override
-	public void addChild() {
-		this.insert(new Page(this), this.getChildCount());
-	}
 }

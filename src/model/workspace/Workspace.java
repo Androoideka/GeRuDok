@@ -34,9 +34,4 @@ public class Workspace extends MPNode {
 	public void setParent(MutableTreeNode newParent) {
 		return;
 	}
-	
-	@Override
-	public void addChild() {
-		this.insert(new Project(this), this.getChildCount());
-	}
 }

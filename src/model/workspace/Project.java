@@ -37,9 +37,4 @@ public class Project extends MPNode {
 			parent = (Workspace)newParent;
 		}
 	}
-	
-	@Override
-	public void addChild() {
-		this.insert(new Document(this), this.getChildCount());
-	}
 }

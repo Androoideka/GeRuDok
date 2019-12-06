@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 import gui.MainFrame;
 import helpers.ImageResizer;
 import model.workspace.MPNode;
+import model.workspace.MPNodeFactory;
 
 public class NewAction extends AbstractAction {
 
@@ -23,11 +24,12 @@ public class NewAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		MPNode node = MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		if(node!=null) {
-			node.addChild();
+		if(node==null) {
+			node = MainFrame.getInstance().getWorkspaceTree().getRoot();
 		}
-		else {
-			MainFrame.getInstance().getWorkspaceTree().getRoot().addChild();
+		MPNodeFactory factory = MPNodeFactory.GenerateNodeFactory(node);
+		if(factory != null) {
+			node.insert(factory.deliverNode(), node.getChildCount());
 		}
 	}
 }
