@@ -45,6 +45,9 @@ public class SaveAction extends AbstractAction {
 				}
 			}else {
 				file=new File(fileName);
+				if(!file.getAbsolutePath().endsWith(".mp")) {
+					file=new File(file+".mp");
+				}
 			}
 			try {
 				ObjectOutputStream ous=new ObjectOutputStream(new FileOutputStream(file));
