@@ -37,12 +37,7 @@ public class OpenAction extends AbstractAction {
 				}catch(ClassNotFoundException e1) {
 					e1.printStackTrace();
 				}
-				MPNode mpParent=(MPNode)mpNode.getParent();
-				if(mpParent==null) {
-					mpParent=MainFrame.getInstance().getWorkspaceTree().getRoot();
-					mpNode.setParent(mpParent);
-				}
-				mpNode.setParent(mpParent);
+				MPNode mpParent=MainFrame.getInstance().getWorkspaceTree().getRoot();
 				mpParent.insert(mpNode, mpParent.getChildCount());
 				ois.close();
 			}catch(FileNotFoundException e2) {
