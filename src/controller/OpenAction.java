@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import gui.MainFrame;
+import helpers.DocumentFileFIlter;
 import helpers.ImageResizer;
 import model.workspace.MPNode;
 
