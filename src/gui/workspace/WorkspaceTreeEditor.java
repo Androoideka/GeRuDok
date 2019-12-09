@@ -36,10 +36,10 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	}
 	
 	public void actionPerformed(ActionEvent event){
-		stopCellEditing();
 		if(node instanceof MPNode) {
 			MPNode mpNode = (MPNode)node;
 			mpNode.setName(event.getActionCommand());
 		}
+		stopCellEditing();
 	}
 }
