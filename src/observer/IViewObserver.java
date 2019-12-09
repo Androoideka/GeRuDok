@@ -1,5 +1,5 @@
 package observer;
 
 public interface IViewObserver {
-	void update(Object event);
+	void update(ObserverNotification event);
 }

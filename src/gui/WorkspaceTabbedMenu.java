@@ -10,6 +10,8 @@ import model.workspace.Document;
 import model.workspace.MPNode;
 import model.workspace.Project;
 import observer.IViewObserver;
+import observer.ObserverEventType;
+import observer.ObserverNotification;
 
 public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	private Project prj;
@@ -30,12 +32,12 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		this.add(view);
 	}
 	
-	private void removeDocuments() {
-		removeAll();
-		for(DocumentView docView : docViews) {
-			docView.getDocument().removeObserver(this);
+	private void removeProject() {
+		if(prj != null) {
+			removeAll();
+			docViews.clear();
+			prj = null;
 		}
-		docViews.clear();
 	}
 	
 	private DocumentView docViewWithDocument(Document d) {
@@ -47,23 +49,17 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		return null;
 	}
 	
-	public Project getProject() {
-		return prj;
-	}
-	
 	public void openSelected(MPNode node) {
 		if(node instanceof Project) {
 			Project prj = (Project)node;
 			if(this.prj == prj) {
 				return;
 			}
-			if(this.prj != null) {
-				this.prj.removeObserver(this);
-			}
+			removeProject();
+			
 			this.prj=prj;
 			prj.addObserver(this);
 			
-			removeDocuments();
 			int br = prj.getChildCount();
 			for(int i = 0; i < br; i++) {
 				Document d = (Document)prj.getChildAt(i);
@@ -87,28 +83,28 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	}
 	
 	@Override
-	public void update(Object event) {
-		if(prj.getParent() == null) {
-			prj = null;
-			removeDocuments();
-		}
-		else if(event instanceof Document) {
-			Document d = (Document)event;
-			createDocViewForDocument(d);
-		}
-		else if(event instanceof AtomicInteger) {
-			AtomicInteger i = (AtomicInteger)event;
-			DocumentView docView = docViews.get(i.get());
-			int index = this.indexOfComponent(docView);
-			if(index != -1) {
-				this.removeTabAt(index);
+	public void update(ObserverNotification event) {
+		if(event.getNode() instanceof Project) {
+			if(event.getEventType() == ObserverEventType.REMOVE) {
+				removeProject();
 			}
-			docViews.remove(docView);
 		}
-		else if(event == null) {
-			for(int i = 0; i < this.getTabCount(); i++) {
-				DocumentView docView = (DocumentView)this.getComponentAt(i);
-				this.setTitleAt(i, docView.getName());
+		else if(event.getNode() instanceof Document) {
+			if(event.getEventType() == ObserverEventType.ADD) {
+				createDocViewForDocument((Document)event.getNode());
+			}
+			DocumentView docView = docViewWithDocument((Document)event.getNode());
+			int index = this.indexOfComponent(docView);
+			if(event.getEventType() == ObserverEventType.RENAME) {
+				if(index != -1) {
+					this.setTitleAt(index, event.getNode().getName());
+				}
+			}
+			else if(event.getEventType() == ObserverEventType.REMOVE) {
+				docViews.remove(docView);
+				if(index != -1) {
+					this.removeTabAt(index);
+				}
 			}
 		}
 	}

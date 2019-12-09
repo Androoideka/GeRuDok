@@ -4,7 +4,7 @@ public class PageFactory extends MPNodeFactory {
 
 	@Override
 	public MPNode createNode() {
-		Page p = new Page(null);
+		Page p = new Page();
 		return p;
 	}
 

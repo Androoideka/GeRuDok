@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import model.workspace.Document;
 import observer.IViewObserver;
+import observer.ObserverNotification;
 
 public class DocumentView extends JPanel implements IViewObserver {
 	private Document d;
@@ -26,7 +27,7 @@ public class DocumentView extends JPanel implements IViewObserver {
 	}
 	
 	@Override
-	public void update(Object event) {
+	public void update(ObserverNotification event) {
 		setName(d.getName());
 		p.setText(d.getName());
 	}

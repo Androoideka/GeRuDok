@@ -1,18 +1,25 @@
-package gui.workspace;
+	package gui.workspace;
 
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 
 import javax.swing.JTree;
 
 import javax.swing.SwingUtilities;
+import javax.swing.tree.TreePath;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
+import gui.MainFrame;
 import interfaces.IWorkspaceView;
 import model.workspace.MPNode;
+import model.workspace.Workspace;
+import model.workspace.WorkspaceModel;
+import observer.ObserverEventType;
+import observer.ObserverNotification;
 
 public class WorkspaceTree extends JTree implements IWorkspaceView {
-	public WorkspaceTree(MPNode ws) {
+	public WorkspaceTree() {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
 	    setCellRenderer(new WorkspaceTreeCellRenderer());
@@ -23,14 +30,14 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 			addMouseListener(a);
 		}
 	    
-	    ws.addObserver(this);
+		this.setRoot(new Workspace());
+		this.getRoot().addObserver(this);
 	}
 
 	@Override
-	public void update(Object event) {
-		if(event instanceof MPNode) {
-			MPNode obs = (MPNode)event;
-			obs.addObserver(this);
+	public void update(ObserverNotification event) {
+		if(event.getEventType() == ObserverEventType.ADD) {
+			event.getNode().addObserver(this);
 		}
 		this.expandRow(0);
 		SwingUtilities.updateComponentTreeUI(this);
@@ -46,10 +53,14 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 		this.setSelectionPath(null);
 	}
 
-
 	@Override
 	public MPNode getRoot() {
 		return (MPNode)this.getModel().getRoot();
+	}
+	
+	@Override
+	public void setRoot(Workspace ws) {
+		this.setModel(new WorkspaceModel(ws));
 	}
 
 	@Override
@@ -57,5 +68,17 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 		if(this.getSelectionPath() != null) {
 			this.startEditingAtPath(this.getSelectionPath());
 		}
+	}
+	
+	@Override
+	public void showMenuAtLocation(int x, int y) {
+        TreePath path = this.getPathForLocation(x, y);
+        this.setSelectionPath(path);
+        Rectangle pathBounds = this.getUI().getPathBounds(this, path);
+        if (pathBounds != null && pathBounds.contains (x, y))
+        {
+            TreePopupMenu menu = new TreePopupMenu(this.getSelectedNode());
+            menu.show (this, pathBounds.x, pathBounds.y + pathBounds.height);
+        }
 	}
 }
