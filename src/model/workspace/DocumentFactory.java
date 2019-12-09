@@ -4,8 +4,7 @@ public class DocumentFactory extends MPNodeFactory {
 
 	@Override
 	public MPNode createNode() {
-		Document d = new Document(null);
+		Document d = new Document();
 		return d;
 	}
-
 }

@@ -1,4 +1,4 @@
-package gui;
+package gui.workspace;
 
 import javax.swing.AbstractAction;
 import javax.swing.JPopupMenu;

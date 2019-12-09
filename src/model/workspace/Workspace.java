@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.tree.MutableTreeNode;
 
+import observer.ObserverEventType;
+import observer.ObserverNotification;
+
 public class Workspace extends MPNode {
 	
 	public Workspace() {
 		children = new ArrayList<MPNode>();
-		this.name = "Workspace";
+		this.setName("Workspace");
 	}
 
 	@Override
@@ -17,8 +20,8 @@ public class Workspace extends MPNode {
 			Project p = (Project)node;
 			p.setParent(this);
 			children.add(p);
+			notifyObservers(new ObserverNotification(p, ObserverEventType.ADD));
 		}
-		notifyObservers(node);
 	}
 
 	@Override
@@ -27,7 +30,6 @@ public class Workspace extends MPNode {
 			Project p = (Project)node;
 			children.remove(p);
 		}
-		notifyObservers(null);
 	}
 
 	@Override

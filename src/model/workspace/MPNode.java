@@ -11,14 +11,16 @@ import javax.swing.tree.TreeNode;
 
 import observer.IModelObserver;
 import observer.IViewObserver;
+import observer.ObserverEventType;
+import observer.ObserverNotification;
 
 public abstract class MPNode implements MutableTreeNode, IModelObserver, Serializable {
-	protected String name;
+	private String name;
 	protected List<MPNode> children;
 	private String file=null;
 	
 	protected transient MPNode parent;
-	private transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
+	protected transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private transient boolean changed=true;
 
 	@Override
@@ -71,16 +73,15 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	@Override
 	public void remove(int index) {
 		children.remove(index);
-		notifyObservers(null);
 	}
 
 	@Override
 	public void removeFromParent() {
 		if(parent != null) {
-			int index = parent.getIndex(this);
 			parent.remove(this);
 			parent = null;
-			notifyObservers(new AtomicInteger(index));
+			notifyObservers(new ObserverNotification(this, ObserverEventType.REMOVE));
+			removeObservers();
 		}
 	}
 
@@ -95,7 +96,7 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 
 	public void setName(String name) {
 		this.name = name;
-		notifyObservers(null);
+		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 	
 	public String getFile() {
@@ -104,7 +105,6 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	
 	public void setFile(String file) {
 		this.file=file;
-		notifyObservers(null);
 	}
 	
 	public boolean getChanged() {
@@ -118,6 +118,15 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	@Override
 	public String toString() {
 		return name;
+	}
+	
+	private void removeObservers() {
+		viewObservers.clear();
+		if(children != null) {
+			for(MPNode node : children) {
+				node.removeObservers();
+			}
+		}
 	}
 
 	@Override
@@ -140,10 +149,15 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 			return;
 		}
 		viewObservers.remove(viewObserver);
+		if(children != null) {
+			for(MPNode node : children) {
+				node.removeObserver(viewObserver);
+			}
+		}
 	}
 
 	@Override
-	public void notifyObservers(Object event) {
+	public void notifyObservers(ObserverNotification event) {
 		if(viewObservers==null) {
 			viewObservers = new ArrayList<IViewObserver>();
 		}
