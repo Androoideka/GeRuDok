@@ -1,4 +1,4 @@
-	package gui.workspace;
+package gui.workspace;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -10,7 +10,6 @@ import javax.swing.tree.TreePath;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
-import gui.MainFrame;
 import interfaces.IWorkspaceView;
 import model.workspace.MPNode;
 import model.workspace.Workspace;
