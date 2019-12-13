@@ -27,7 +27,7 @@ public class ExceptionHandler {
 					JOptionPane.QUESTION_MESSAGE,
 					null,
 					options,
-					options[0]
+					options[2]
 					) + "";
 		}
 		else if(e instanceof Exception) {
