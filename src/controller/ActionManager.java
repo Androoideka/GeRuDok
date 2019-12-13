@@ -23,6 +23,8 @@ public class ActionManager {
 		
 		fileActions.add(new OpenAction());
 		
+		fileActions.add(new SwitchWorkspaceAction());
+		
 		fileActions.add(new SaveAsAction());
 		
 		fileActions.add(new SaveAction());
