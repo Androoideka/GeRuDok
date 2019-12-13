@@ -9,6 +9,7 @@ import java.util.EventObject;
 
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
@@ -17,14 +18,14 @@ import model.workspace.MPNode;
 
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
 
-	private Object node;
+	private MPNode node;
 	private JTextField field=null;
 	public WorkspaceTreeEditor(JTree tree, DefaultTreeCellRenderer renderer) {
 		super(tree, renderer);
 	}
 	
 	public Component getTreeCellEditorComponent(JTree tree, Object node, boolean isSelected, boolean isExpanded, boolean isLeaf, int row) {
-		this.node=node;
+		this.node=(MPNode)node;
 		field=new JTextField(node.toString());
 		field.addActionListener(this);
 		return field;
@@ -44,21 +45,22 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 				throw new InvalidNameException();
 			}
 		}
-
 		catch (InvalidNameException e) {
 			newName = ExceptionHandler.createDialog(e);
 			if(newName == null || newName.isEmpty() || !Character.isLetterOrDigit(newName.charAt(0))) {
-				return;
+				newName = node.getName();
 			}
+		}
+		catch (NullPointerException e) {
+			
 		}
 		catch (Exception e) {
 			ExceptionHandler.createDialog(e);
 		}
 		finally {
-			if(node instanceof MPNode) {
-				MPNode mpNode = (MPNode)node;
-				mpNode.setName(newName);
-			}
+			if(newName == null) return;
+			field.setText(newName);
+			node.setName(newName);
 			stopCellEditing();
 		}
 	}
