@@ -25,6 +25,8 @@ public class ActionManager {
 		
 		fileActions.add(new SaveAsAction());
 		
+		fileActions.add(new SaveAction());
+		
 		editActions.add(new RenameAction());
 		editActions.add(new DeleteAction());
 		

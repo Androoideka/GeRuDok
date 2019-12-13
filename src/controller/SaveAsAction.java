@@ -12,11 +12,11 @@ import model.workspace.MPNode;
 
 public class SaveAsAction extends AbstractAction {
 	public SaveAsAction() {
-		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK | ActionEvent.SHIFT_MASK));
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/save.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/save.png"));
-		putValue(NAME, "Save");
-		putValue(SHORT_DESCRIPTION, "Save changes.");
+		putValue(NAME, "Save as");
+		putValue(SHORT_DESCRIPTION, "Save changes in a new folder.");
 	}
 	
 	@Override
