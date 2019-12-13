@@ -1,6 +1,7 @@
 package gui.workspace;
 
 import java.awt.Component;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +12,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import exceptionhandling.ExceptionHandler;
 import model.workspace.MPNode;
 
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
@@ -36,10 +38,28 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	}
 	
 	public void actionPerformed(ActionEvent event){
-		if(node instanceof MPNode) {
-			MPNode mpNode = (MPNode)node;
-			mpNode.setName(event.getActionCommand());
+		String newName = event.getActionCommand();
+		try {
+			if(newName.isEmpty() || !Character.isLetterOrDigit(newName.charAt(0))) {
+				throw new InvalidNameException();
+			}
 		}
-		stopCellEditing();
+
+		catch (InvalidNameException e) {
+			newName = ExceptionHandler.createDialog(e);
+			if(newName == null || newName.isEmpty() || !Character.isLetterOrDigit(newName.charAt(0))) {
+				return;
+			}
+		}
+		catch (Exception e) {
+			ExceptionHandler.createDialog(e);
+		}
+		finally {
+			if(node instanceof MPNode) {
+				MPNode mpNode = (MPNode)node;
+				mpNode.setName(newName);
+			}
+			stopCellEditing();
+		}
 	}
 }
