@@ -1,19 +1,17 @@
 package observer;
 
-import model.workspace.MPNode;
-
 public class ObserverNotification {
 
-	private MPNode node;
+	private IModelObserver modelObserver;
 	private ObserverEventType eventType;
 	
-	public ObserverNotification(MPNode node, ObserverEventType type) {
-		this.node = node;
+	public ObserverNotification(IModelObserver modelObserver, ObserverEventType type) {
+		this.modelObserver = modelObserver;
 		this.eventType = type;
 	}
 
-	public MPNode getNode() {
-		return node;
+	public IModelObserver getModelObserver() {
+		return modelObserver;
 	}
 
 	public ObserverEventType getEventType() {

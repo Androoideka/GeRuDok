@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import gui.workspace.WorkspaceTree;

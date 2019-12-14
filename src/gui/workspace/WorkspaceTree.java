@@ -36,7 +36,7 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 	@Override
 	public void update(ObserverNotification event) {
 		if(event.getEventType() == ObserverEventType.ADD) {
-			event.getNode().addObserver(this);
+			event.getModelObserver().addObserver(this);
 		}
 		this.expandRow(0);
 		SwingUtilities.updateComponentTreeUI(this);
