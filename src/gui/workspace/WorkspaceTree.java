@@ -10,7 +10,7 @@ import javax.swing.tree.TreePath;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
-import interfaces.IWorkspaceView;
+import gui.IWorkspaceView;
 import model.workspace.MPNode;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
