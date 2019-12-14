@@ -1,4 +1,4 @@
-package interfaces;
+package gui;
 
 import model.workspace.MPNode;
 import model.workspace.Workspace;
