@@ -83,20 +83,21 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	
 	@Override
 	public void update(ObserverNotification event) {
-		if(event.getNode() instanceof Project) {
+		if(event.getModelObserver() instanceof Project) {
 			if(event.getEventType() == ObserverEventType.REMOVE) {
 				removeProject();
 			}
 		}
-		else if(event.getNode() instanceof Document) {
+		else if(event.getModelObserver() instanceof Document) {
+			Document d = (Document)event.getModelObserver();
 			if(event.getEventType() == ObserverEventType.ADD) {
-				createDocViewForDocument((Document)event.getNode());
+				createDocViewForDocument(d);
 			}
-			DocumentView docView = docViewWithDocument((Document)event.getNode());
+			DocumentView docView = docViewWithDocument(d);
 			int index = this.indexOfComponent(docView);
 			if(event.getEventType() == ObserverEventType.RENAME) {
 				if(index != -1) {
-					this.setTitleAt(index, event.getNode().getName());
+					this.setTitleAt(index, d.getName());
 				}
 			}
 			else if(event.getEventType() == ObserverEventType.REMOVE) {
