@@ -61,9 +61,6 @@ public class DocumentView extends JPanel implements IViewObserver {
 		pageView.setPreferredSize(new Dimension(0, this.getSize().width));
 		
 		pageSlider.add(pageView);
-
-		this.validate();
-		this.repaint();
 	}
 	
 	public Document getDocument() {
