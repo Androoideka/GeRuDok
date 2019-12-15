@@ -21,7 +21,7 @@ public class CircleSlot extends Slot {
 	
 	public static Slot create(Point2D center, Point2D end) {
 		Dimension size=new Dimension();
-		size.setSize(Math.abs(center.getX() - end.getX()), Math.abs(center.getY() - end.getY()));
+		size.setSize(center.distance(end), center.distance(end));
 		CircleSlot slot = new CircleSlot(center, size);
 		return slot;
 	}
