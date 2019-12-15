@@ -6,10 +6,12 @@ public class StateManager {
 	private State currentState;
 	private CircleState circleState;
 	private RectangleState rectangleState;
+	private TriangleState triangleState;
 	private SelectState selectState;
 
 	public StateManager(Document doc) {
 		rectangleState = new RectangleState(doc);
+		triangleState = new TriangleState(doc);
 		circleState = new CircleState(doc);
 		selectState = new SelectState(doc);
 		
@@ -20,6 +22,13 @@ public class StateManager {
 			selectState.deselect();
 		}
 		currentState = rectangleState;
+	}
+	
+	public void setTriangleState() {
+		if(currentState==selectState) {
+			selectState.deselect();
+		}
+		currentState=triangleState;
 	}
 	
 	public void setCircleState() {
