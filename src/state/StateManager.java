@@ -15,6 +15,9 @@ public class StateManager {
 		currentState = selectState;
 	}
 	public void setRectangleState() {
+		if(currentState == selectState) {
+			selectState.deselect();
+		}
 		currentState = rectangleState;
 	}
 	public void setSelectState() {

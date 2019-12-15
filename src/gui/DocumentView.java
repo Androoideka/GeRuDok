@@ -2,11 +2,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.border.EtchedBorder;
 
 import controller.NewPageAction;
@@ -76,15 +72,6 @@ public class DocumentView extends JPanel implements IViewObserver {
 	
 	public Document getDocument() {
 		return d;
-	}
-	
-	public Page getPageAtLocation(Point position) {
-		Component current = pageSlider.getComponentAt(position);
-		if(current != null && current != pageSlider) {
-			PageView pageView = (PageView)current;
-			return pageView.getPage();
-		}
-		return null;
 	}
 	
 	/*public PageView getCurrentView() {
