@@ -11,6 +11,7 @@ import gui.painters.SlotPainter;
 import model.document.Page;
 import model.document.Slot;
 import observer.IViewObserver;
+import observer.ObserverEventType;
 import observer.ObserverNotification;
 
 public class PageView extends JPanel implements IViewObserver {
@@ -44,6 +45,9 @@ public class PageView extends JPanel implements IViewObserver {
 
 	@Override
 	public void update(ObserverNotification event) {
+		if(event.getEventType() == ObserverEventType.ADD) {
+			event.getModelObserver().addObserver(this);
+		}
 		repaint();
 	}
 }

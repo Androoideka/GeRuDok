@@ -8,7 +8,6 @@ import javax.swing.KeyStroke;
 
 import gui.DocumentView;
 import gui.MainFrame;
-import gui.PageView;
 import helpers.ImageResizer;
 
 public class RectangleAction extends AbstractAction {

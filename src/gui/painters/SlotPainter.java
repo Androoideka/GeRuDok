@@ -11,11 +11,16 @@ public abstract class SlotPainter {
 	protected Shape shape;
 	
 	public void paint(Graphics2D g, Slot slot){
-		g.setPaint(slot.getStrokeColour());
-		g.setStroke(slot.getStroke());
-		g.draw(shape);
-		g.setPaint(slot.getPaint());
-		g.fill(shape);
+		//Kreirana kopija da ne bi menjala granicu panela
+		Graphics2D g2 = (Graphics2D)g.create();
+		
+		g2.setPaint(slot.getStrokeColour());
+		g2.setStroke(slot.getStroke());
+		g2.draw(shape);
+		if(slot.getPaint() != null) {
+			g2.setPaint(slot.getPaint());
+			g2.fill(shape);
+		}
 	}
 	
 	public boolean isWithinSlot(Point2D position){

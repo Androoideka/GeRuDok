@@ -7,13 +7,10 @@ import java.util.List;
 import model.workspace.ModelElement;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
-import state.StateManager;
 
 public class Page extends ModelElement {
 	
 	private List<Slot> slots = new ArrayList<>();
-	
-	//private StateManager stateManager = new StateManager(this);
 	
 	public Page() {
 		this.setName("page");
@@ -47,16 +44,4 @@ public class Page extends ModelElement {
 		}
 		return s;
 	}
-	
-	/*public void setRectangleState() {
-		stateManager.setRectangleState();
-	}
-	
-	public void setSelectState() {
-		stateManager.setSelectState();
-	}
-	
-	public StateManager getStateManager() {
-		return stateManager;
-	}*/
 }
