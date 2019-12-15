@@ -8,7 +8,6 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import helpers.ImageResizer;
 import model.workspace.Document;
-import model.workspace.Page;
 import model.workspace.Project;
 import model.workspace.Workspace;
 
@@ -28,9 +27,6 @@ public class WorkspaceTreeCellRenderer extends DefaultTreeCellRenderer {
 			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/document.png"));
 		}
 		
-		else if(value instanceof Page) {
-			setIcon(ImageResizer.getInstance().loadSmallIcon("ikonice/document.png"));
-		}
 		setFont(new Font(getFont().getFamily(), Font.BOLD, 14));
 		return this;
 	}
