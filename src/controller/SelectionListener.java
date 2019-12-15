@@ -9,7 +9,7 @@ import model.workspace.MPNode;
 
 public class SelectionListener extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
-		if(e.getButton() == 1 && e.getClickCount()==2) {
+		if(e.getButton() == MouseEvent.BUTTON1 && e.getClickCount()==2) {
 			MPNode node=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
 			WorkspaceTabbedMenu wtb=MainFrame.getInstance().getWorkspaceTabbedMenu();
 			wtb.openSelected(node);

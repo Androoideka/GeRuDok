@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,15 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		if(index != -1) {
 			this.removeTabAt(index);
 		}
+	}
+	
+	public DocumentView getCurrentView() {
+		Component current = this.getSelectedComponent();
+		
+		if(current instanceof DocumentView) {
+			return (DocumentView)current;
+		}
+		return null;
 	}
 	
 	@Override

@@ -2,12 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +14,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JViewport;
 import javax.swing.border.EtchedBorder;
 
 import controller.NewPageAction;
+import controller.DocumentController;
 import model.document.Page;
 import model.workspace.Document;
 import observer.IViewObserver;
@@ -28,15 +27,22 @@ import observer.ObserverNotification;
 public class DocumentView extends JPanel implements IViewObserver {
 	private Document d;
 	private JPanel pageSlider;
+	private JScrollPane scrollSlider;
 	private List<PageView> pageViews = new ArrayList<>();
+	private JPanel newPage;
+	private DocumentController dc;
 	
 	public DocumentView(Document d) {
 		super();
 		this.d = d;
 		d.addObserver(this);
 		setName(d.getName());
+		dc = new DocumentController(d);
 		
 		setLayout(new BorderLayout());
+		
+		Palette palette = new Palette();
+		this.add(palette, BorderLayout.EAST);
 		
 		pageSlider = new JPanel(new GridLayout(0, 1, 0, 20));
 		
@@ -44,28 +50,58 @@ public class DocumentView extends JPanel implements IViewObserver {
 			createNewPage(p);
 		}
 		
-		this.add(new JScrollPane(pageSlider));
+		JButton newPageButton = new JButton("Add");
+		newPageButton.addActionListener(new NewPageAction(this));
+		newPage = new JPanel();
+		newPage.add(newPageButton);
 		
-		JButton add = new JButton("Add");
-        add.addActionListener(new NewPageAction(this));
-        
-        add(add, BorderLayout.SOUTH);
+		pageSlider.add(newPage);
+		
+		scrollSlider = new JScrollPane(pageSlider);
+		this.add(scrollSlider, BorderLayout.CENTER);
 	}
 	
 	public void createNewPage(Page p) {
+		pageSlider.remove(newPage);
 		d.addPage(p);
 		
-		PageView pageView = new PageView(p);
+		PageView pageView = new PageView(p, dc);
 		pageView.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		pageView.setBackground(Color.WHITE);
-		pageView.setPreferredSize(new Dimension(0, this.getSize().width));
+		pageView.setPreferredSize(new Dimension(0, this.getSize().width/16*9));
 		
 		pageSlider.add(pageView);
+		pageSlider.add(newPage);
 	}
 	
 	public Document getDocument() {
 		return d;
 	}
+	
+	public Page getPageAtLocation(Point position) {
+		Component current = pageSlider.getComponentAt(position);
+		if(current != null && current != pageSlider) {
+			PageView pageView = (PageView)current;
+			return pageView.getPage();
+		}
+		return null;
+	}
+	
+	/*public PageView getCurrentView() {
+		JViewport viewport = scrollSlider.getViewport();
+		
+		Point2D topLeft = viewport.getViewPosition();
+		Dimension viewRect = viewport.getExtentSize();
+		Point2D center = (Point2D)topLeft.clone();
+		center.setLocation(topLeft.getX() + viewRect.width/2, topLeft.getY() + viewRect.height/2);
+		
+		Component current = pageSlider.getComponentAt((Point)center);
+		if(current != null && current != pageSlider) {
+			PageView pageView = (PageView)current;
+			return pageView;
+		}
+		return null;
+	}*/
 	
 	@Override
 	public void update(ObserverNotification event) {

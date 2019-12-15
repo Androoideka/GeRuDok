@@ -15,6 +15,7 @@ public class ActionManager {
 	private List<AbstractAction> helpActions = new ArrayList<>();
 	private List<AbstractAction> viewActions = new ArrayList<>();
 	private List<MouseAdapter> mouseListeners = new ArrayList<>();
+	private List<AbstractAction> paletteActions = new ArrayList<>();
 	
 	private ActionManager() {
 		newAction = new NewAction();
@@ -38,6 +39,9 @@ public class ActionManager {
 		mouseListeners.add(new SelectionListener());
 		
 		helpActions.add(new AboutAction());
+		
+		paletteActions.add(new SelectAction());
+		paletteActions.add(new RectangleAction());
 	}
 
 	public List<AbstractAction> getFileActions() {
@@ -58,6 +62,10 @@ public class ActionManager {
 
 	public List<MouseAdapter> getMouseListeners() {
 		return mouseListeners;
+	}
+	
+	public List<AbstractAction> getPaletteActions() {
+		return paletteActions;
 	}
 
 	public AbstractAction getNewAction() {

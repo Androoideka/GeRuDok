@@ -2,16 +2,26 @@ package state;
 
 import java.awt.event.MouseEvent;
 
-public class State {
-	public void mousePressed(MouseEvent e) {
-		
+import model.document.Page;
+import model.workspace.Document;
+
+public abstract class State {
+	protected Document mediator;
+	
+	public State(Document mediator) {
+		this.mediator = mediator;
 	}
 	
-	public void mouseDragged(MouseEvent e) {
+	public void mousePressed(MouseEvent e, Page p) {
 		
 	}
-	
-	public void mouseReleased(MouseEvent e) {
+	public void mouseDragged(MouseEvent e, Page p) {
+		
+	}
+	public void mouseReleased(MouseEvent e, Page p) {
+		
+	}
+	public void mouseMoved(MouseEvent e, Page p) {
 		
 	}
 }
