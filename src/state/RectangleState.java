@@ -13,8 +13,8 @@ public class RectangleState extends State {
 	private Point2D end;
 	private Slot newSlot;
 
-	public RectangleState(Document mediator) {
-		super(mediator);
+	public RectangleState(Document doc) {
+		super(doc);
 	}
 	
 	public void mousePressed(MouseEvent e, Page p) {
