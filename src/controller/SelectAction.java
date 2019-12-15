@@ -16,8 +16,7 @@ public class SelectAction extends AbstractAction {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_C, 0)); //0 specifies no modifiers
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/select.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/select.png"));
-		putValue(NAME, "Select slot");
-		putValue(SHORT_DESCRIPTION, "Select existing slot on the canvas.");
+		putValue(SHORT_DESCRIPTION, "Select an existing slot on the canvas.");
 	}
 
 	@Override

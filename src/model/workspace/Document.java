@@ -14,7 +14,7 @@ public class Document extends MPNode {
 	
 	private List<Page> pages = new ArrayList<>();
 	
-	private StateManager stateManager = new StateManager(this);
+	private transient StateManager stateManager = new StateManager(this);
 	
 	public Document() {
 		this.setName("document");
@@ -53,18 +53,6 @@ public class Document extends MPNode {
 		return stateManager;
 	}
 	
-	/*public void setSelectState() {
-		for(Page p : pages) {
-			p.getStateManager().setSelectState();
-		}
-	}
-	
-	public void setRectangleState() {
-		for(Page p : pages) {
-			p.getStateManager().setRectangleState();
-		}
-	}*/
-
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		return;
