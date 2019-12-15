@@ -42,6 +42,7 @@ public class ActionManager {
 		
 		paletteActions.add(new SelectAction());
 		paletteActions.add(new RectangleAction());
+		paletteActions.add(new CircleAction());
 	}
 
 	public List<AbstractAction> getFileActions() {

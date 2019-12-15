@@ -10,8 +10,8 @@ public class SelectState extends State {
 	
 	private Slot selectedSlot;
 
-	public SelectState(Document mediator) {
-		super(mediator);
+	public SelectState(Document doc) {
+		super(doc);
 	}
 
 	public void mousePressed(MouseEvent e, Page p) {

@@ -45,6 +45,10 @@ public class Document extends MPNode {
 		stateManager.setRectangleState();
 	}
 	
+	public void setCircleState() {
+		stateManager.setCircleState();
+	}
+	
 	public void setSelectState() {
 		stateManager.setSelectState();
 	}
