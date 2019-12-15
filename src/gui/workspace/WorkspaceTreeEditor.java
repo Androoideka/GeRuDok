@@ -51,13 +51,12 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 			}
 		}
 		catch (NullPointerException e) {
-			
+			newName = node.getName();
 		}
 		catch (Exception e) {
 			ExceptionHandler.createDialog(e);
 		}
 		finally {
-			if(newName == null) return;
 			field.setText(newName);
 			node.setName(newName);
 			stopCellEditing();
