@@ -25,31 +25,11 @@ public class Page extends ModelElement {
 	
 	public void addSlot(Slot s) {
 		slots.add(s);
-		this.notifyObservers(new ObserverNotification(this, ObserverEventType.ADD));
+		this.notifyObservers(new ObserverNotification(s, ObserverEventType.ADD));
 	}
 	
 	public void removeSlot(Slot s) {
 		slots.remove(s);
-		this.notifyObservers(new ObserverNotification(this, ObserverEventType.REMOVE));
+		this.notifyObservers(new ObserverNotification(s, ObserverEventType.REMOVE));
 	}
-
-	/*@Override
-	public void insert(MutableTreeNode arg0, int arg1) {
-		return;
-	}
-
-	@Override
-	public void remove(MutableTreeNode node) {
-		return;
-	}
-
-	@Override
-	public void setParent(MutableTreeNode newParent) {
-		if(newParent instanceof Document) {
-			if(parent != null) {
-				parent.removeFromParent();
-			}
-			parent=(Document)newParent;
-		}
-	}*/
 }
