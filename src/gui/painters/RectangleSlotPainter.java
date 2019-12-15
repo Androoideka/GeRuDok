@@ -11,13 +11,13 @@ public class RectangleSlotPainter extends SlotPainter {
 		RectangleSlot rectangle = (RectangleSlot) slot;
 
 		shape=new GeneralPath();
-		((GeneralPath)shape).moveTo(rectangle.getPosition().x,rectangle.getPosition().y);
+		((GeneralPath)shape).moveTo(rectangle.getPosition().getX(),rectangle.getPosition().getY());
 		
-		((GeneralPath)shape).lineTo(rectangle.getPosition().x+rectangle.getSize().width,rectangle.getPosition().y);
+		((GeneralPath)shape).lineTo(rectangle.getPosition().getX()+rectangle.getSize().width,rectangle.getPosition().getY());
 		
-		((GeneralPath)shape).lineTo(rectangle.getPosition().x+rectangle.getSize().width,rectangle.getPosition().y+rectangle.getSize().height);
+		((GeneralPath)shape).lineTo(rectangle.getPosition().getX()+rectangle.getSize().width,rectangle.getPosition().getY()+rectangle.getSize().height);
 		
-		((GeneralPath)shape).lineTo(rectangle.getPosition().x,rectangle.getPosition().y+rectangle.getSize().height);
+		((GeneralPath)shape).lineTo(rectangle.getPosition().getX(),rectangle.getPosition().getY()+rectangle.getSize().height);
 		
 		((GeneralPath)shape).closePath();
 	}

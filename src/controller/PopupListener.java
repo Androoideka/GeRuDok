@@ -8,7 +8,7 @@ import gui.MainFrame;
 public class PopupListener extends MouseAdapter {
 	
 	public void mousePressed(MouseEvent e) {
-		if (e.getButton() == 3) {
+		if (e.getButton() == MouseEvent.BUTTON3) {
 			MainFrame.getInstance().getWorkspaceTree().showMenuAtLocation(e.getX(), e.getY());
         }
 	}

@@ -8,10 +8,13 @@ import javax.swing.tree.MutableTreeNode;
 import model.document.Page;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
+import state.StateManager;
 
 public class Document extends MPNode {
 	
 	private List<Page> pages = new ArrayList<>();
+	
+	private StateManager stateManager = new StateManager(this);
 	
 	public Document() {
 		this.setName("document");
@@ -37,6 +40,30 @@ public class Document extends MPNode {
 			notifyObservers(new ObserverNotification(p, ObserverEventType.REMOVE));
 		}
 	}
+	
+	public void setRectangleState() {
+		stateManager.setRectangleState();
+	}
+	
+	public void setSelectState() {
+		stateManager.setSelectState();
+	}
+	
+	public StateManager getStateManager() {
+		return stateManager;
+	}
+	
+	/*public void setSelectState() {
+		for(Page p : pages) {
+			p.getStateManager().setSelectState();
+		}
+	}
+	
+	public void setRectangleState() {
+		for(Page p : pages) {
+			p.getStateManager().setRectangleState();
+		}
+	}*/
 
 	@Override
 	public void insert(MutableTreeNode node, int index) {

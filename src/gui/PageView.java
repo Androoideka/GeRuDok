@@ -6,6 +6,7 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
+import controller.DocumentController;
 import gui.painters.SlotPainter;
 import model.document.Page;
 import model.document.Slot;
@@ -16,11 +17,14 @@ public class PageView extends JPanel implements IViewObserver {
 	
 	private Page p;
 
-	public PageView(Page p) {
+	public PageView(Page p, DocumentController dc) {
 		super();
 		this.p = p;
 		p.addObserver(this);
 		setName(p.getName());
+		
+		this.addMouseListener(dc);
+		this.addMouseMotionListener(dc);
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -32,6 +36,10 @@ public class PageView extends JPanel implements IViewObserver {
 			SlotPainter painter = slot.getSlotPainter();
 			painter.paint(g2, slot);
 		}
+	}
+	
+	public Page getPage() {
+		return p;
 	}
 
 	@Override
