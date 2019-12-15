@@ -21,7 +21,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		setTabLayoutPolicy(SCROLL_TAB_LAYOUT);
 	}
 	
-	private void createDocViewForDocument(Document d) {
+	private void createViewForDocument(Document d) {
 		if(prj == null) {
 			return;
 		}
@@ -62,7 +62,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 			int br = prj.getChildCount();
 			for(int i = 0; i < br; i++) {
 				Document d = (Document)prj.getChildAt(i);
-				createDocViewForDocument(d);
+				createViewForDocument(d);
 			}
 		}
 		else if(node instanceof Document) {
@@ -91,7 +91,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		else if(event.getModelObserver() instanceof Document) {
 			Document d = (Document)event.getModelObserver();
 			if(event.getEventType() == ObserverEventType.ADD) {
-				createDocViewForDocument(d);
+				createViewForDocument(d);
 			}
 			DocumentView docView = docViewWithDocument(d);
 			int index = this.indexOfComponent(docView);

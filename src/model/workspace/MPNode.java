@@ -1,25 +1,21 @@
 package model.workspace;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import observer.IModelObserver;
 import observer.IViewObserver;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
 
-public abstract class MPNode implements MutableTreeNode, IModelObserver, Serializable {
-	private String name;
+public abstract class MPNode extends ModelElement implements MutableTreeNode {
+	
 	protected List<MPNode> children;
 	private String file=null;
 	
 	protected transient MPNode parent;
-	protected transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	private transient boolean changed=true;
 
 	@Override
@@ -80,22 +76,13 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 			parent.remove(this);
 			parent = null;
 			notifyObservers(new ObserverNotification(this, ObserverEventType.REMOVE));
-			removeObservers();
+			clearObservers();
 		}
 	}
 
 	@Override
 	public void setUserObject(Object object) {
 		return;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 	
 	public String getFile() {
@@ -115,54 +102,28 @@ public abstract class MPNode implements MutableTreeNode, IModelObserver, Seriali
 	}
 	
 	@Override
-	public String toString() {
-		return name;
-	}
-	
-	private void removeObservers() {
-		viewObservers.clear();
-		if(children != null) {
-			for(MPNode node : children) {
-				node.removeObservers();
-			}
-		}
-	}
-
-	@Override
-	public void addObserver(IViewObserver viewObserver) {
-		if(viewObservers==null) {
-			viewObservers = new ArrayList<IViewObserver>();
-		}
-		if(viewObserver==null) {
-			return;
-		}
-		if(this.viewObservers.contains(viewObserver)) {
-			return;
-		}
-		this.viewObservers.add(viewObserver);
-	}
-
-	@Override
 	public void removeObserver(IViewObserver viewObserver) {
-		if(viewObserver==null || !viewObservers.contains(viewObserver)) {
-			return;
-		}
-		viewObservers.remove(viewObserver);
+		super.removeObserver(viewObserver);
 		if(children != null) {
 			for(MPNode node : children) {
 				node.removeObserver(viewObserver);
 			}
 		}
 	}
-
+	
 	@Override
 	public void notifyObservers(ObserverNotification event) {
-		if(viewObservers==null) {
-			viewObservers = new ArrayList<IViewObserver>();
-		}
-		for(IViewObserver viewObserver : viewObservers) {
-			viewObserver.update(event);
-		}
+		super.notifyObservers(event);
 		changed=true;
+	}
+	
+	@Override
+	protected void clearObservers() {
+		super.clearObservers();
+		if(children != null) {
+			for(MPNode node : children) {
+				node.clearObservers();
+			}
+		}
 	}
 }
