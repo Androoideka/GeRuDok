@@ -29,4 +29,8 @@ public class CircleState extends State {
 		newSlot = CircleSlot.create(center, end);
 		p.addSlot(newSlot);
 	}
+	
+	public void mouseReleased(MouseEvent e, Page p) {
+		newSlot=null;
+	}
 }
