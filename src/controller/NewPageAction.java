@@ -21,5 +21,8 @@ public class NewPageAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		docView.createNewPage(new Page());
+		
+		docView.validate();
+		docView.repaint();
 	}
 }
