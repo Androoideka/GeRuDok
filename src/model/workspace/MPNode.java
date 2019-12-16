@@ -93,7 +93,7 @@ public abstract class MPNode extends ModelElement implements MutableTreeNode {
 		this.file=file;
 	}
 	
-	public boolean getChanged() {
+	public boolean isChanged() {
 		return changed;
 	}
 	

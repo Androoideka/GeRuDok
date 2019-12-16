@@ -17,7 +17,7 @@ public class CloseListener extends WindowAdapter {
 		MainFrame frame= MainFrame.getInstance();
 		MPNode ws = (MPNode)MainFrame.getInstance().getWorkspaceTree().getRoot();
 		try {
-			if(ws.getChanged()) {
+			if(ws.isChanged()) {
 				throw new UnsavedWorkspaceException();
 			}
 
