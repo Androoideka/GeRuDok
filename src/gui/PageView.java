@@ -38,7 +38,7 @@ public class PageView extends JPanel implements IViewObserver {
 			painter.paint(g2, slot);
 		}
 	}
-	
+
 	public Page getPage() {
 		return p;
 	}
