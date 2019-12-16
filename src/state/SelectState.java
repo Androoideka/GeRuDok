@@ -29,9 +29,11 @@ public class SelectState extends State {
 				}
 				selectedSlot = slot;
 				selectedSlot.setSelected(true);
+			}
+			if(selectedSlot != null) {
 				start = e.getPoint();
 				selectedHandle = selectedSlot.getHandleForPoint(start);
-			}
+			}			
 		}
 	}
 	
@@ -41,7 +43,7 @@ public class SelectState extends State {
 			double distanceX = end.getX() - start.getX();
 			double distanceY = end.getY() - start.getY();
 			if(selectedHandle != null) {
-				scale(selectedHandle, distanceX, distanceY);
+				selectedSlot.scale(selectedHandle, distanceX, distanceY);
 			}
 			else {
 				Point2D position = (Point2D) selectedSlot.getPosition().clone();
@@ -66,35 +68,5 @@ public class SelectState extends State {
 			selectedSlot.setSelected(false);
 		}
 		selectedSlot = null;
-	}
-	
-	public void scale(Handle h, double distanceX, double distanceY) {
-		Point2D position = selectedSlot.getPosition();
-		Dimension size = selectedSlot.getSize();
-		double x=position.getX(), y=position.getY(),
-				sizeX = size.getWidth(), sizeY = size.getHeight();
-		
-		if(h == Handle.NORTHWEST || h == Handle.NORTH || h == Handle.NORTHEAST){
-			y += distanceY;
-			sizeY -= distanceY;
-		}
-		if(h == Handle.SOUTHWEST || h == Handle.SOUTH || h == Handle.SOUTHEAST){
-			sizeY += distanceY;
-		}
-		if(h == Handle.NORTHWEST || h == Handle.WEST || h == Handle.SOUTHWEST){
-			x += distanceX;
-			sizeX -= distanceX;
-		}
-		if(h == Handle.NORTHEAST || h == Handle.EAST || h == Handle.SOUTHEAST){
-			sizeX += distanceX;
-		}
-		
-		Point2D newPosition = (Point2D)position.clone();
-		newPosition.setLocation(x, y);
-		Dimension newSize = new Dimension();
-		newSize.setSize(sizeX, sizeY);
-		
-		selectedSlot.setPosition(newPosition);
-		selectedSlot.setSize(newSize);
 	}
 }

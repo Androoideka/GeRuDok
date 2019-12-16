@@ -110,12 +110,6 @@ public abstract class Slot extends ModelElement {
 		if(selected) {
 			for(Handle h : Handle.values()) {
 				Point2D handleCenter = this.getHandlePoint(position, size, h);
-				/*if ((Math.abs(point.getX()-handleCenter.getX())<=(double)Handle.handleSize/2) &&
-						(Math.abs(point.getY()-handleCenter.getY())<=(double)Handle.handleSize/2) )
-				{
-					System.out.println("test4");
-					return h;
-				}*/
 				if(handleCenter.distance(point) <= (double)Handle.handleSize) {
 					return h;
 				}
@@ -148,4 +142,6 @@ public abstract class Slot extends ModelElement {
 
 		return new Point2D.Double(x,y);
 	}
+	
+	public abstract void scale(Handle h, double distanceX, double distanceY);
 }
