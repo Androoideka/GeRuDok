@@ -24,6 +24,8 @@ public abstract class SlotPainter implements Serializable {
 		}
 	}
 	
+	public abstract void recalcShape(Slot slot);
+	
 	public boolean isWithinSlot(Point2D position){
 		return shape.contains(position);
 	}

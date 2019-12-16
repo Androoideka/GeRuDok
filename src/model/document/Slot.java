@@ -81,6 +81,7 @@ public abstract class Slot extends ModelElement {
 
 	public void setSize(Dimension size) {
 		this.size = size;
+		this.slotPainter.recalcShape(this);
 		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 
@@ -90,6 +91,7 @@ public abstract class Slot extends ModelElement {
 
 	public void setPosition(Point2D position) {
 		this.position = position;
+		this.slotPainter.recalcShape(this);
 		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 
