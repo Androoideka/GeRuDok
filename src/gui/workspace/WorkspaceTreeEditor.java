@@ -57,6 +57,8 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 			ExceptionHandler.createDialog(e);
 		}
 		finally {
+			System.out.println(field);
+			System.out.println(newName);
 			field.setText(newName);
 			node.setName(newName);
 			stopCellEditing();

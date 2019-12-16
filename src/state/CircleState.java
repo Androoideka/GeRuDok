@@ -27,15 +27,15 @@ public class CircleState extends State {
 		end=e.getPoint();
 		
 		Point2D realStart = (Point2D)center.clone();
-		Point2D realEnd = (Point2D)end.clone();
 		
-		realStart.setLocation(Math.min(center.getX(), end.getX()), 
-				Math.min(center.getY(), end.getY()));
-		realEnd.setLocation(Math.max(center.getX(), end.getX()), 
-				Math.max(center.getY(), end.getY()));
+		double distance = Math.max(Math.abs(center.getX() - end.getX()),
+				Math.abs(center.getY() - end.getY()));;
+		
+		realStart.setLocation(center.getX() - distance, 
+				center.getY() - distance);
 		
 		p.removeSlot(newSlot);
-		newSlot = CircleSlot.create(realStart, realEnd);
+		newSlot = CircleSlot.create(realStart, distance);
 		p.addSlot(newSlot);
 	}
 	
