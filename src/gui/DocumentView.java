@@ -54,6 +54,7 @@ public class DocumentView extends JPanel implements IViewObserver {
 		}
 		
 		scrollSlider = new JScrollPane(pageSlider);
+		scrollSlider.getVerticalScrollBar().setUnitIncrement(16);
 		this.add(scrollSlider, BorderLayout.CENTER);
 	}
 	
