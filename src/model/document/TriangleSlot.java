@@ -1,9 +1,6 @@
 package model.document;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Paint;
-import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
 import gui.painters.TriangleSlotPainter;
