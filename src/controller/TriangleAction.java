@@ -13,9 +13,9 @@ import helpers.ImageResizer;
 public class TriangleAction extends AbstractAction {
 	public TriangleAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_C, 0)); //0 specifies no modifiers
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/rectangle.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/rectangle.png"));
-		putValue(SHORT_DESCRIPTION, "Create rectangular slots on the canvas.");
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/triangle.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/triangle.png"));
+		putValue(SHORT_DESCRIPTION, "Create triangular slots on the canvas.");
 	}
 
 	@Override
