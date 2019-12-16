@@ -84,9 +84,9 @@ public abstract class SlotPainter implements Serializable {
 		return new Point2D.Double(x, y);
 	}
 	
-	public void setMouseCursor(Point2D point){
+	public void setMouseCursor(Point2D point, Slot slot){
 
-		Handle handle = getDeviceAndHandleForPoint(point);
+		Handle handle = getDeviceAndHandleForPoint(point, slot);
 
 		if(handle != null){
 			Cursor cursor = null;
@@ -107,8 +107,21 @@ public abstract class SlotPainter implements Serializable {
 			//framework.setCursor(Cursor.getDefaultCursor());
 	}
 
-	private Handle getDeviceAndHandleForPoint(Point2D point) {
-		// TODO Auto-generated method stub
-		return null;
+	private Handle getDeviceAndHandleForPoint(Point2D point, Slot slot) {
+		return getHandleForPoint(slot, point);
+	}
+
+	private Handle getHandleForPoint(Slot slot, Point2D point) {
+		for(Handle h: Handle.values()){
+			if(isPointInHandle(slot, point, h)){
+				return h;
+			}
+		}
+		return null;	
+	}
+
+	private boolean isPointInHandle(Slot slot, Point2D point, Handle h) {
+		Point2D handleCenter = getHandlePoint(slot.getPosition(), slot.getSize(), h, slot);
+		return ( (Math.abs(point.getX()-handleCenter.getX())<=(double)handleSize/2) && (Math.abs(point.getY()-handleCenter.getY())<=(double)handleSize/2) );
 	}
 }
