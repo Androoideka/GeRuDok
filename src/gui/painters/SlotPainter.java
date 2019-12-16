@@ -22,20 +22,22 @@ public abstract class SlotPainter implements Serializable {
 		g2.setPaint(slot.getStrokeColour());
 		g2.setStroke(slot.getStroke());
 		g2.draw(shape);
-		
+
 		if(slot.getPaint() != null) {
 			g2.setPaint(slot.getPaint());
 			g2.fill(shape);
 		}
+		
 		if(slot.isSelected()) {
 			paintSelection(g2, slot);
 		}
 	}
 	
 	private void paintSelection(Graphics2D g, Slot slot) {
+		g.setPaint(Color.BLACK);
 		g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE,
 				BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0 ));
-		g.setPaint(Color.BLACK);
+		
 		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
 				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
 		
