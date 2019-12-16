@@ -2,6 +2,7 @@ package gui.painters;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Dimension2D;
@@ -81,5 +82,33 @@ public abstract class SlotPainter implements Serializable {
 			x=(int) (s.getPosition().getX()+size.getWidth());
 		}
 		return new Point2D.Double(x, y);
+	}
+	
+	public void setMouseCursor(Point2D point){
+
+		Handle handle = getDeviceAndHandleForPoint(point);
+
+		if(handle != null){
+			Cursor cursor = null;
+
+			switch(handle){
+				case NORTH: cursor = Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR);break;
+				case SOUTH: cursor = Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);break;
+				case EAST: cursor = Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR);break;
+				case WEST: cursor = Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR);break;
+				case SOUTHEAST: cursor = Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR);break;
+				case NORTHWEST: cursor = Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR);break;
+				case SOUTHWEST: cursor = Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR);break;
+				case NORTHEAST: cursor = Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR);break;
+			}
+			//framework.setCursor(cursor);
+		}
+		//else
+			//framework.setCursor(Cursor.getDefaultCursor());
+	}
+
+	private Handle getDeviceAndHandleForPoint(Point2D point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
