@@ -29,11 +29,14 @@ public class SelectState extends State {
 				}
 				selectedSlot = slot;
 				selectedSlot.setSelected(true);
+				start = e.getPoint();
 			}
 			if(selectedSlot != null) {
-				start = e.getPoint();
-				selectedHandle = selectedSlot.getHandleForPoint(start);
-			}			
+				selectedHandle = selectedSlot.getHandleForPoint(e.getPoint());
+				if(selectedHandle != null) {
+					start = e.getPoint();
+				}
+			}
 		}
 	}
 	

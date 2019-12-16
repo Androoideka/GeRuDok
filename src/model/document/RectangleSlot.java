@@ -26,7 +26,6 @@ public class RectangleSlot extends Slot {
 	
 	@Override
 	public void scale(Handle h, double distanceX, double distanceY) {
-		System.out.println("test");
 		double x=position.getX(), y=position.getY(),
 				sizeX = size.getWidth(), sizeY = size.getHeight();
 		
