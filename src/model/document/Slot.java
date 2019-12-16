@@ -130,6 +130,25 @@ public abstract class Slot extends ModelElement {
 	}
 
 	public Point2D getHandlePoint(Point2D topLeft, Dimension2D size, Handle handle) {
-		
+		int x=0, y=0;
+		if(handle==Handle.NORTHWEST || handle==Handle.NORTH || handle==Handle.NORTHEAST) {
+			y=(int) position.getY();
+		}
+		if(handle==Handle.EAST || handle==Handle.WEST) {
+			y=(int) (position.getY()+size.getHeight());
+		}
+		if(handle==Handle.SOUTHWEST || handle==Handle.SOUTH || handle==Handle.SOUTHEAST) {
+			y=(int) (position.getY()+size.getHeight());
+		}
+		if(handle==Handle.NORTHWEST || handle==Handle.NORTH || handle==Handle.NORTHEAST) {
+			x=(int) position.getX();
+		}
+		if(handle==Handle.EAST || handle==Handle.WEST) {
+			x=(int) (position.getX()+size.getWidth());
+		}
+		if(handle==Handle.SOUTHWEST || handle==Handle.SOUTH || handle==Handle.SOUTHEAST) {
+			x=(int) (position.getX()+size.getWidth());
+		}
+		return new Point2D.Double(x, y);
 	}
 }
