@@ -118,8 +118,8 @@ public abstract class Slot extends ModelElement {
 			g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1f, new float[] {9, 0}, 0));
 			g.setPaint(Color.BLACK);
 			g.drawRect((int)this.getPosition().getX(), (int)this.getPosition().getY(), (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
-			for (Handle e : Handle.values()) {
-					paintSelectedHandle(getHandlePoint(this.getPosition(), this.getSize(), e));
+			for (Handle h : Handle.values()) {
+					paintSelectedHandle(g, getHandlePoint(this.getPosition(), this.getSize(), h));
 			}
 		}
 	}

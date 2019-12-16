@@ -15,7 +15,7 @@ public class CircleAction extends AbstractAction {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_C, 0)); //0 specifies no modifiers
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/circle.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/circle.png"));
-		putValue(SHORT_DESCRIPTION, "Create rectangular slots on the canvas.");
+		putValue(SHORT_DESCRIPTION, "Create circular slots on the canvas.");
 	}
 
 	@Override
