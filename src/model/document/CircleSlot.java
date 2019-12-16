@@ -11,12 +11,10 @@ public class CircleSlot extends Slot {
 		slotPainter=new CircleSlotPainter(this);
 	}
 	
-	public static Slot create(Point2D center, Point2D end) {
+	public static Slot create(Point2D start, double distance) {
 		Dimension size=new Dimension();
-		size.setSize(Math.abs(center.getX() - end.getX()),
-				Math.abs(center.getY() - end.getY()));
-		//size.setSize(center.distance(end), center.distance(end));
-		CircleSlot slot = new CircleSlot(center, size);
+		size.setSize(distance * 2, distance * 2);
+		CircleSlot slot = new CircleSlot(start, size);
 		return slot;
 	}
 }
