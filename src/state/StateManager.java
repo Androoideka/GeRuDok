@@ -41,6 +41,7 @@ public class StateManager {
 	public void setSelectState() {
 		currentState = selectState;
 	}
+	
 	public State getCurrentState() {
 		return currentState;
 	}
