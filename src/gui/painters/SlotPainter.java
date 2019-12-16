@@ -3,10 +3,11 @@ package gui.painters;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 
 import model.document.Slot;
 
-public abstract class SlotPainter {
+public abstract class SlotPainter implements Serializable {
 	
 	protected Shape shape;
 	
