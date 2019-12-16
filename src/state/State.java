@@ -1,15 +1,20 @@
 package state;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.event.MouseEvent;
 
 import model.document.Page;
+import model.document.Slot;
 import model.workspace.Document;
 
 public abstract class State {
-	protected Document mediator;
+	protected Document doc;
 	
-	public State(Document mediator) {
-		this.mediator = mediator;
+	public State(Document doc) {
+		this.doc = doc;
 	}
 	
 	public void mousePressed(MouseEvent e, Page p) {
@@ -22,6 +27,14 @@ public abstract class State {
 		
 	}
 	public void mouseMoved(MouseEvent e, Page p) {
+		
+	}
+	
+	public void resize(MouseEvent e, Slot s) {
+		
+	}
+	
+	public void rotate(MouseEvent e, Slot s) {
 		
 	}
 }

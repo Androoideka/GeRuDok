@@ -3,16 +3,21 @@ package model.document;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Stroke;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 import gui.painters.SlotPainter;
 import model.workspace.ModelElement;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
+import state.Handle;
 
 public abstract class Slot extends ModelElement {
+	static final int handleSize=8;
 	//lose mesto za ove vrednosti, opterecuje klasu
 	protected transient static float currentThickness = 2f;
 	protected transient static int currentCap = BasicStroke.CAP_SQUARE;
@@ -106,5 +111,25 @@ public abstract class Slot extends ModelElement {
 
 	public SlotPainter getSlotPainter() {
 		return slotPainter;
+	}
+	
+	public void paintHandles(Graphics2D g) {
+		if(doc.getStateManager().getCurrentState()==this) {
+			g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1f, new float[] {9, 0}, 0));
+			g.setPaint(Color.BLACK);
+			g.drawRect((int)this.getPosition().getX(), (int)this.getPosition().getY(), (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
+			for (Handle e : Handle.values()) {
+					paintSelectedHandle(getHandlePoint(this.getPosition(), this.getSize(), e));
+			}
+		}
+	}
+	
+	private void paintSelectedHandle(Graphics2D g, Point2D handlePoint) {
+		int size=handleSize;
+		g.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2, size, size));
+	}
+
+	public Point2D getHandlePoint(Point2D topLeft, Dimension2D size, Handle handle) {
+		
 	}
 }
