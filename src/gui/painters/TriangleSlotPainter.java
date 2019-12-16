@@ -8,10 +8,14 @@ import model.document.TriangleSlot;
 public class TriangleSlotPainter extends SlotPainter {
 	public TriangleSlotPainter(Slot slot) {
 		TriangleSlot triangle=(TriangleSlot)slot;
+		recalcShape(triangle);
+	}
+	
+	public void recalcShape(Slot slot) {
 		shape=new GeneralPath();
-		((GeneralPath)shape).moveTo(triangle.getPosition().getX(),triangle.getPosition().getY());
-		((GeneralPath)shape).lineTo(triangle.getPosition().getX()+triangle.getSize().width,triangle.getPosition().getY());
-		((GeneralPath)shape).lineTo(triangle.getPosition().getX()+triangle.getSize().width,triangle.getPosition().getY()+triangle.getSize().height);
+		((GeneralPath)shape).moveTo(slot.getPosition().getX(),slot.getPosition().getY());
+		((GeneralPath)shape).lineTo(slot.getPosition().getX()+slot.getSize().width,slot.getPosition().getY());
+		((GeneralPath)shape).lineTo(slot.getPosition().getX()+slot.getSize().width,slot.getPosition().getY()+slot.getSize().height);
 		((GeneralPath)shape).closePath();
 	}
 }
