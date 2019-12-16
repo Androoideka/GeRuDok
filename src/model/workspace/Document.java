@@ -58,6 +58,9 @@ public class Document extends MPNode {
 	}
 	
 	public StateManager getStateManager() {
+		if(stateManager == null) {
+			stateManager = new StateManager(this);
+		}
 		return stateManager;
 	}
 	

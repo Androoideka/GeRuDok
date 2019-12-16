@@ -14,14 +14,17 @@ import observer.ObserverNotification;
 
 public abstract class Slot extends ModelElement {
 	//lose mesto za ove vrednosti, opterecuje klasu
-	protected static float thickness = 2f;
-	protected static int cap = BasicStroke.CAP_SQUARE;
-	protected static int join = BasicStroke.JOIN_BEVEL;
-	protected static Color currentStrokeColour = Color.BLACK;
-	protected static Color currentPaint = null;
+	protected transient static float currentThickness = 2f;
+	protected transient static int currentCap = BasicStroke.CAP_SQUARE;
+	protected transient static int currentJoin = BasicStroke.JOIN_BEVEL;
+	protected transient static Color currentStrokeColour = Color.BLACK;
+	protected transient static Color currentPaint = null;
+	
+	protected float thickness;
+	protected int cap;
+	protected int join;
 
 	protected Paint paint;
-	protected Stroke stroke;
 	protected Color strokeColour;
 	
 	protected Dimension size;
@@ -31,21 +34,12 @@ public abstract class Slot extends ModelElement {
 	
 	protected boolean selected = false;
 	
-	public Slot(Paint paint, Stroke stroke, Dimension size, Point2D position, Color strokeColour) {
-		super();
-		this.paint = paint;
-		this.stroke = stroke;
-		this.size = size;
-		this.position = position;
-		this.strokeColour = strokeColour;
-	}
-	
 	public Slot(Point2D position, Dimension size) {
 		super();
 		this.position = position;
 		this.size = size;
 		
-		this.stroke = new BasicStroke(thickness, cap, join);
+		setStroke();
 		this.strokeColour = currentStrokeColour;
 		this.paint = currentPaint;
 	}
@@ -70,16 +64,17 @@ public abstract class Slot extends ModelElement {
 
 	public Stroke getStroke() {
 		if(!selected) {
-			return stroke;
+			return new BasicStroke(thickness, cap, join);
 		}
-		return new BasicStroke(thickness, cap, join, 0, new float[] {9}, 0);
+		return new BasicStroke(currentThickness, currentCap, currentJoin, 0, new float[] {9}, 0);
 	}
-
-	public void setStroke(Stroke stroke) {
-		this.stroke = stroke;
-		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
+	
+	public void setStroke() {
+		this.thickness = currentThickness;
+		this.cap = currentCap;
+		this.join = currentJoin;
 	}
-
+	
 	public Dimension getSize() {
 		return size;
 	}

@@ -25,8 +25,17 @@ public class CircleState extends State {
 	
 	public void mouseDragged(MouseEvent e, Page p) {
 		end=e.getPoint();
+		
+		Point2D realStart = (Point2D)center.clone();
+		Point2D realEnd = (Point2D)end.clone();
+		
+		realStart.setLocation(Math.min(center.getX(), end.getX()), 
+				Math.min(center.getY(), end.getY()));
+		realEnd.setLocation(Math.max(center.getX(), end.getX()), 
+				Math.max(center.getY(), end.getY()));
+		
 		p.removeSlot(newSlot);
-		newSlot = CircleSlot.create(center, end);
+		newSlot = CircleSlot.create(realStart, realEnd);
 		p.addSlot(newSlot);
 	}
 	
