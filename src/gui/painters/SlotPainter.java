@@ -2,20 +2,17 @@ package gui.painters;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 import model.document.Slot;
-import state.Handle;
 
 public abstract class SlotPainter implements Serializable {
-	static final int handleSize=8;
-
+	
 	protected Shape shape;
 	
 	public void paint(Graphics2D g, Slot slot){
@@ -25,9 +22,28 @@ public abstract class SlotPainter implements Serializable {
 		g2.setPaint(slot.getStrokeColour());
 		g2.setStroke(slot.getStroke());
 		g2.draw(shape);
+		
 		if(slot.getPaint() != null) {
 			g2.setPaint(slot.getPaint());
 			g2.fill(shape);
+		}
+		if(slot.isSelected()) {
+			paintSelection(g2, slot);
+		}
+	}
+	
+	private void paintSelection(Graphics2D g, Slot slot) {
+		g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE,
+				BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0 ));
+		g.setPaint(Color.BLACK);
+		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
+				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
+		
+		for(Handle h : Handle.values()) {
+			Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
+			double size = Handle.handleSize;
+			g.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2,
+					size, size));
 		}
 	}
 	
@@ -43,85 +59,5 @@ public abstract class SlotPainter implements Serializable {
 
 	public void setShape(Shape shape) {
 		this.shape = shape;
-	}
-	
-	public void paintHandles(Graphics2D g, Slot s) {
-		if(s.isSelected()==true) {
-			g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1f, new float[] {9, 0}, 0));
-			g.setPaint(Color.BLACK);
-			g.drawRect((int)s.getPosition().getX(), (int)s.getPosition().getY(), (int)s.getSize().getWidth(), (int)s.getSize().getHeight());
-			for (Handle h : Handle.values()) {
-					paintSelectedHandle(g, s, getHandlePoint(s.getPosition(), s.getSize(), h, s));
-			}
-		}
-	}
-	
-	private void paintSelectedHandle(Graphics2D g, Slot s, Point2D handlePoint) {
-		int size=handleSize;
-		g.fill(new Rectangle2D.Double(s.getPosition().getX()-size/2, s.getPosition().getY()-size/2, size, size));
-	}
-
-	public Point2D getHandlePoint(Point2D topLeft, Dimension2D size, Handle handle, Slot s) {
-		int x=0, y=0;
-		if(handle==Handle.NORTHWEST || handle==Handle.NORTH || handle==Handle.NORTHEAST) {
-			y=(int) s.getPosition().getY();
-		}
-		if(handle==Handle.EAST || handle==Handle.WEST) {
-			y=(int) (s.getPosition().getY()+size.getHeight());
-		}
-		if(handle==Handle.SOUTHWEST || handle==Handle.SOUTH || handle==Handle.SOUTHEAST) {
-			y=(int) (s.getPosition().getY()+size.getHeight());
-		}
-		if(handle==Handle.NORTHWEST || handle==Handle.NORTH || handle==Handle.NORTHEAST) {
-			x=(int) s.getPosition().getX();
-		}
-		if(handle==Handle.EAST || handle==Handle.WEST) {
-			x=(int) (s.getPosition().getX()+size.getWidth());
-		}
-		if(handle==Handle.SOUTHWEST || handle==Handle.SOUTH || handle==Handle.SOUTHEAST) {
-			x=(int) (s.getPosition().getX()+size.getWidth());
-		}
-		return new Point2D.Double(x, y);
-	}
-	
-	public void setMouseCursor(Point2D point, Slot slot){
-
-		Handle handle = getDeviceAndHandleForPoint(point, slot);
-
-		if(handle != null){
-			Cursor cursor = null;
-
-			switch(handle){
-				case NORTH: cursor = Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR);break;
-				case SOUTH: cursor = Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);break;
-				case EAST: cursor = Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR);break;
-				case WEST: cursor = Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR);break;
-				case SOUTHEAST: cursor = Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR);break;
-				case NORTHWEST: cursor = Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR);break;
-				case SOUTHWEST: cursor = Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR);break;
-				case NORTHEAST: cursor = Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR);break;
-			}
-			//framework.setCursor(cursor);
-		}
-		//else
-			//framework.setCursor(Cursor.getDefaultCursor());
-	}
-
-	private Handle getDeviceAndHandleForPoint(Point2D point, Slot slot) {
-		return getHandleForPoint(slot, point);
-	}
-
-	private Handle getHandleForPoint(Slot slot, Point2D point) {
-		for(Handle h: Handle.values()){
-			if(isPointInHandle(slot, point, h)){
-				return h;
-			}
-		}
-		return null;	
-	}
-
-	private boolean isPointInHandle(Slot slot, Point2D point, Handle h) {
-		Point2D handleCenter = getHandlePoint(slot.getPosition(), slot.getSize(), h, slot);
-		return ( (Math.abs(point.getX()-handleCenter.getX())<=(double)handleSize/2) && (Math.abs(point.getY()-handleCenter.getY())<=(double)handleSize/2) );
 	}
 }

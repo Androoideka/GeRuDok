@@ -7,6 +7,7 @@ import java.awt.Paint;
 import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
+import gui.painters.Handle;
 import gui.painters.SlotPainter;
 import model.workspace.ModelElement;
 import observer.ObserverEventType;
@@ -63,10 +64,7 @@ public abstract class Slot extends ModelElement {
 	}
 
 	public Stroke getStroke() {
-		if(!selected) {
-			return new BasicStroke(thickness, cap, join);
-		}
-		return new BasicStroke(currentThickness, currentCap, currentJoin, 0, new float[] {9}, 0);
+		return new BasicStroke(thickness, cap, join);
 	}
 	
 	public void setStroke() {
@@ -106,5 +104,48 @@ public abstract class Slot extends ModelElement {
 
 	public SlotPainter getSlotPainter() {
 		return slotPainter;
+	}
+	
+	public Handle getHandleForPoint(Point2D point) {
+		if(selected) {
+			for(Handle h : Handle.values()) {
+				Point2D handleCenter = this.getHandlePoint(position, size, h);
+				/*if ((Math.abs(point.getX()-handleCenter.getX())<=(double)Handle.handleSize/2) &&
+						(Math.abs(point.getY()-handleCenter.getY())<=(double)Handle.handleSize/2) )
+				{
+					System.out.println("test4");
+					return h;
+				}*/
+				if(handleCenter.distance(point) <= (double)Handle.handleSize) {
+					return h;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public Point2D getHandlePoint(Point2D position, Dimension size, Handle handlePosition) {
+		double x=0, y=0;
+		
+		if(handlePosition == Handle.NORTHWEST || handlePosition == Handle.NORTH || handlePosition == Handle.NORTHEAST){
+			y = position.getY();
+		}
+		if(handlePosition == Handle.EAST || handlePosition == Handle.WEST){
+			y = position.getY()+size.getHeight()/2;
+		}
+		if(handlePosition == Handle.SOUTHWEST || handlePosition == Handle.SOUTH || handlePosition == Handle.SOUTHEAST){
+			y = position.getY() + size.getHeight();
+		}
+		if(handlePosition == Handle.NORTHWEST || handlePosition == Handle.WEST || handlePosition == Handle.SOUTHWEST){
+			x = position.getX();
+		}
+		if(handlePosition == Handle.NORTH || handlePosition == Handle.SOUTH){
+			x = position.getX() + size.getWidth()/2;
+		}
+		if(handlePosition == Handle.NORTHEAST || handlePosition == Handle.EAST || handlePosition == Handle.SOUTHEAST){
+			x = position.getX() + size.getWidth();
+		}
+
+		return new Point2D.Double(x,y);
 	}
 }

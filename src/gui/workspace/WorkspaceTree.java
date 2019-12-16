@@ -10,14 +10,14 @@ import javax.swing.tree.TreePath;
 
 import controller.ActionManager;
 import controller.workspace.WorkspaceTreeController;
-import gui.IWorkspaceView;
 import model.workspace.MPNode;
 import model.workspace.Workspace;
 import model.workspace.WorkspaceModel;
+import observer.IViewObserver;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
 
-public class WorkspaceTree extends JTree implements IWorkspaceView {
+public class WorkspaceTree extends JTree implements IViewObserver {
 	public WorkspaceTree() {
 		addTreeSelectionListener(new WorkspaceTreeController());
 	    setCellEditor(new WorkspaceTreeEditor(this,new WorkspaceTreeCellRenderer()));
@@ -33,7 +33,6 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 		this.getRoot().addObserver(this);
 	}
 
-	@Override
 	public void update(ObserverNotification event) {
 		if(event.getEventType() == ObserverEventType.ADD) {
 			event.getModelObserver().addObserver(this);
@@ -42,34 +41,28 @@ public class WorkspaceTree extends JTree implements IWorkspaceView {
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
-	@Override
 	public MPNode getSelectedNode() {
 		return (MPNode)this.getLastSelectedPathComponent();
 	}
 	
-	@Override
 	public void resetSelectedNode() {
 		this.setSelectionPath(null);
 	}
 
-	@Override
 	public MPNode getRoot() {
 		return (MPNode)this.getModel().getRoot();
 	}
 	
-	@Override
 	public void setRoot(Workspace ws) {
 		this.setModel(new WorkspaceModel(ws));
 	}
 
-	@Override
 	public void startEditing() {
 		if(this.getSelectionPath() != null) {
 			this.startEditingAtPath(this.getSelectionPath());
 		}
 	}
 	
-	@Override
 	public void showMenuAtLocation(int x, int y) {
         TreePath path = this.getPathForLocation(x, y);
         this.setSelectionPath(path);
