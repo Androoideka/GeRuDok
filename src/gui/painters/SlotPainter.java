@@ -42,6 +42,7 @@ public abstract class SlotPainter implements Serializable {
 		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
 				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
 		if(slot.isSelected()) {
+			System.out.println("dakako");
 			for(Handle h : Handle.values()) {
 				Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
 				double size = Handle.handleSize;
@@ -50,11 +51,12 @@ public abstract class SlotPainter implements Serializable {
 			}
 		}
 		if(slot.isRotatable()) {
+			System.out.println("jesje");
 			for(Handle h : Handle.values()) {
 				if(h==Handle.NORTHEAST || h==Handle.NORTHWEST || h==Handle.SOUTHEAST || h==Handle.SOUTHWEST) {
 					Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
 					double size = Handle.handleSize;
-					g.fill(new Ellipse2D.Double((double)position.getX(), (double)position.getY(), size, size));
+					g.fill(new Ellipse2D.Double(position.getX(), position.getY(), size, size));
 				}
 			}
 		}
