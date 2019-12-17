@@ -38,12 +38,16 @@ public class OpenRepository {
 
 	public void openDocument() {
 		MPNode mpNode=this.open();
-		MPNode mpParent=MainFrame.getInstance().getWorkspaceTree().getRoot();
-		mpParent.insert(mpNode, mpParent.getChildCount());
+		if(mpNode!=null) {
+			MPNode mpParent=MainFrame.getInstance().getWorkspaceTree().getRoot();
+			mpParent.insert(mpNode, mpParent.getChildCount());
+		}
 	}
 
 	public void switchWorkspace() {
 		MPNode mpNode=this.open();
-		MainFrame.getInstance().getWorkspaceTree().setRoot((Workspace)mpNode);
+		if(mpNode!=null) {
+			MainFrame.getInstance().getWorkspaceTree().setRoot((Workspace)mpNode);
+		}
 	}
 }
