@@ -14,7 +14,6 @@ public class SelectState extends State {
 	private Slot selectedSlot;
 	private Point2D start;
 	private Point2D end;
-	private Handle selectedHandle;
 
 	public SelectState(Document doc) {
 		super(doc);
@@ -32,9 +31,8 @@ public class SelectState extends State {
 				start = e.getPoint();
 			}
 			if(selectedSlot != null) {
-				selectedHandle = selectedSlot.getHandleForPoint(e.getPoint());
-				if(selectedHandle != null) {
-					start = e.getPoint();
+				if(selectedSlot.getHandleForPoint(e.getPoint()) != null) {
+					doc.getStateManager().setRescaleState(selectedSlot, e.getPoint());
 				}
 			}
 		}/*else if(e.getButton()==MouseEvent.BUTTON3) {
@@ -57,26 +55,19 @@ public class SelectState extends State {
 	}
 	
 	public void mouseDragged(MouseEvent e, Page p) {
-		if(start != null) {
-			if(selectedSlot.isSelected()) {
-				end = e.getPoint();
-				double distanceX = end.getX() - start.getX();
-				double distanceY = end.getY() - start.getY();
-				if(selectedHandle != null) {
-					selectedSlot.scale(selectedHandle, distanceX, distanceY);
-				}else {
-					Point2D position = (Point2D) selectedSlot.getPosition().clone();
-					position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
-					selectedSlot.setPosition(position);
-				}
-			}
+		if(start != null) {				
+			end = e.getPoint();
+			double distanceX = end.getX() - start.getX();
+			double distanceY = end.getY() - start.getY();
+			Point2D position = (Point2D) selectedSlot.getPosition().clone();
+			position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
+			selectedSlot.setPosition(position);
 			start = end;
 		}
 	}
 	
 	public void mouseReleased(MouseEvent e, Page p) {
 		start = null;
-		selectedHandle = null;
 	}
 	
 	public Slot getSelectedSlot() {

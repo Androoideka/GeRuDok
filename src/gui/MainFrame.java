@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
-		setSize(new Dimension(screenSize.width, screenSize.height));
+		setSize(new Dimension(screenSize.width/2, screenSize.height/2));
 		
 		menu = new MainMenu();
 		setJMenuBar(menu);

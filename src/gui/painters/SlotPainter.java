@@ -42,7 +42,6 @@ public abstract class SlotPainter implements Serializable {
 		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
 				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
 		if(slot.isSelected()) {
-			System.out.println("dakako");
 			for(Handle h : Handle.values()) {
 				Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
 				double size = Handle.handleSize;

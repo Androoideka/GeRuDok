@@ -1,5 +1,8 @@
 package state;
 
+import java.awt.geom.Point2D;
+
+import model.document.Slot;
 import model.workspace.Document;
 
 public class StateManager {
@@ -8,13 +11,16 @@ public class StateManager {
 	private RectangleState rectangleState;
 	private TriangleState triangleState;
 	private SelectState selectState;
+	private RescaleState rescaleState;
+	private RotateState rotateState;
 
 	public StateManager(Document doc) {
 		rectangleState = new RectangleState(doc);
 		triangleState = new TriangleState(doc);
 		circleState = new CircleState(doc);
 		selectState = new SelectState(doc);
-		
+		rescaleState = new RescaleState(doc);
+		rotateState = new RotateState(doc);
 		currentState = selectState;
 	}
 	public void setRectangleState() {
@@ -36,6 +42,15 @@ public class StateManager {
 			selectState.deselect();
 		}
 		currentState=circleState;
+	}
+	
+	public void setRescaleState(Slot slot, Point2D start) {
+		currentState=rescaleState;
+		rescaleState.setSlot(slot, start);
+	}
+	
+	public void setRotateState() {
+		currentState=rotateState;
 	}
 	
 	public void setSelectState() {
