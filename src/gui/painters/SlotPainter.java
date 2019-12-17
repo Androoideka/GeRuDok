@@ -24,7 +24,7 @@ public abstract class SlotPainter implements Serializable {
 		g2.setPaint(slot.getStrokeColour());
 		g2.setStroke(slot.getStroke());
 		AffineTransform old=g2.getTransform();
-		g2.rotate(Math.toRadians(slot.getAngle()));
+		g2.rotate(Math.toRadians(slot.getAngle()), slot.getPosition().getX() + slot.getSize().getWidth() / 2, slot.getPosition().getY() + slot.getSize().getHeight() / 2);
 		g2.draw(shape);
 		
 		if(slot.getPaint() != null) {
