@@ -37,21 +37,45 @@ public class SelectState extends State {
 					start = e.getPoint();
 				}
 			}
+		}else if(e.getButton()==MouseEvent.BUTTON3) {
+			Slot slot = p.findSlotAtPosition(e.getPoint());
+			if(slot != null) {
+				if(selectedSlot != null) {
+					selectedSlot.setRotatable(false);
+				}
+				selectedSlot = slot;
+				selectedSlot.setRotatable(true);
+				start = e.getPoint();
+			}
+			if(selectedSlot != null) {
+				selectedHandle = selectedSlot.getHandleForPoint(e.getPoint());
+				if(selectedHandle != null) {
+					start = e.getPoint();
+				}
+			}
 		}
 	}
 	
 	public void mouseDragged(MouseEvent e, Page p) {
 		if(start != null) {
-			end = e.getPoint();
-			double distanceX = end.getX() - start.getX();
-			double distanceY = end.getY() - start.getY();
-			if(selectedHandle != null) {
-				selectedSlot.scale(selectedHandle, distanceX, distanceY);
-			}
-			else {
-				Point2D position = (Point2D) selectedSlot.getPosition().clone();
-				position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
-				selectedSlot.setPosition(position);
+			if(selectedSlot.isSelected()) {
+				end = e.getPoint();
+				double distanceX = end.getX() - start.getX();
+				double distanceY = end.getY() - start.getY();
+				if(selectedHandle != null) {
+					selectedSlot.scale(selectedHandle, distanceX, distanceY);
+				}else {
+					Point2D position = (Point2D) selectedSlot.getPosition().clone();
+					position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
+					selectedSlot.setPosition(position);
+				}
+			}else if(selectedSlot.isRotatable()) {
+				end = e.getPoint();
+				double distanceX = end.getX() - start.getX();
+				double distanceY = end.getY() - start.getY();
+				if(selectedHandle != null) {
+					selectedSlot.rotate(selectedHandle, distanceX, distanceY);
+				}
 			}
 			start = end;
 		}

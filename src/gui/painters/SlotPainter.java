@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
@@ -35,17 +36,27 @@ public abstract class SlotPainter implements Serializable {
 	
 	private void paintSelection(Graphics2D g, Slot slot) {
 		g.setPaint(Color.BLACK);
-		g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE,
+		g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_ROUND,
 				BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0 ));
 		
 		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
 				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
-		
-		for(Handle h : Handle.values()) {
-			Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
-			double size = Handle.handleSize;
-			g.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2,
-					size, size));
+		if(slot.isSelected()) {
+			for(Handle h : Handle.values()) {
+				Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
+				double size = Handle.handleSize;
+				g.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2,
+						size, size));
+			}
+		}
+		if(slot.isRotatable()) {
+			for(Handle h : Handle.values()) {
+				if(h==Handle.NORTHEAST || h==Handle.NORTHWEST || h==Handle.SOUTHEAST || h==Handle.SOUTHWEST) {
+					Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
+					double size = Handle.handleSize;
+					g.fill(new Ellipse2D.Double((double)position.getX(), (double)position.getY(), size, size));
+				}
+			}
 		}
 	}
 	
