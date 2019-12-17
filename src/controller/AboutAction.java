@@ -7,7 +7,6 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import gui.AboutDialog;
-import gui.MainFrame;
 import helpers.ImageResizer;
 
 public class AboutAction extends AbstractAction {
