@@ -29,7 +29,7 @@ public abstract class SlotPainter implements Serializable {
 			g2.fill(shape);
 		}
 		
-		if(slot.isSelected()) {
+		if(slot.isSelected() || slot.isRotatable()) {
 			paintSelection(g2, slot);
 		}
 	}
