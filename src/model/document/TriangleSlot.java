@@ -46,4 +46,10 @@ public class TriangleSlot extends Slot {
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
+
+	@Override
+	public void rotate(Handle h, double sideX, double sideY) {
+		// TODO Auto-generated method stub
+		
+	}
 }
