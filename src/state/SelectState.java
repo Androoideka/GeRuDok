@@ -96,4 +96,10 @@ public class SelectState extends State {
 		}
 		selectedSlot = null;
 	}
+	
+	public void unrotatable() {
+		if(selectedSlot!=null) {
+			selectedSlot.setRotatable(false);
+		}
+	}
 }
