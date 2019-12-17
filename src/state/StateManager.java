@@ -49,8 +49,9 @@ public class StateManager {
 		rescaleState.setSlot(slot, start);
 	}
 	
-	public void setRotateState() {
+	public void setRotateState(Slot slot, Point2D start) {
 		currentState=rotateState;
+		rotateState.setSlot(slot, start);
 	}
 	
 	public void setSelectState() {

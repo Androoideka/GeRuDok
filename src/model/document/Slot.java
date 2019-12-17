@@ -30,6 +30,7 @@ public abstract class Slot extends ModelElement {
 	
 	protected Dimension size;
 	protected Point2D position;
+	protected double angle;
 	
 	protected SlotPainter slotPainter;
 	
@@ -39,6 +40,7 @@ public abstract class Slot extends ModelElement {
 		super();
 		this.position = position;
 		this.size = size;
+		this.angle=0;
 		
 		setStroke();
 		this.strokeColour = currentStrokeColour;
@@ -90,6 +92,15 @@ public abstract class Slot extends ModelElement {
 	public void setPosition(Point2D position) {
 		this.position = position;
 		this.slotPainter.recalcShape(this);
+		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
+	}
+	
+	public double getAngle() {
+		return angle;
+	}
+	
+	public void setAngle(double angle) {
+		this.angle=angle;
 		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 
@@ -145,5 +156,8 @@ public abstract class Slot extends ModelElement {
 	
 	public abstract void scale(Handle h, double distanceX, double distanceY);
 	
-	public abstract void rotate(Handle h, double sideX, double sideY);
+	public void rotate(double angle) {
+		this.setAngle(this.angle+angle);
+		System.out.println(angle);
+	}
 }

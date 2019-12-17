@@ -49,30 +49,4 @@ public class RectangleSlot extends Slot {
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
-
-	@Override
-	public void rotate(Handle h, double sideX, double sideY) {
-		double x=position.getX(), y=position.getY(),
-				sizeX = size.getWidth(), sizeY = size.getHeight();
-		
-		if(h == Handle.NORTHWEST || h == Handle.NORTH || h == Handle.NORTHEAST){
-			y += sideY;
-			sizeY -= sideY;
-		}
-		if(h == Handle.SOUTHWEST || h == Handle.SOUTH || h == Handle.SOUTHEAST){
-			sizeY += sideY;
-		}
-		if(h == Handle.NORTHWEST || h == Handle.WEST || h == Handle.SOUTHWEST){
-			x += sideX;
-			sizeX -= sideX;
-		}
-		if(h == Handle.NORTHEAST || h == Handle.EAST || h == Handle.SOUTHEAST){
-			sizeX += sideX;
-		}
-		
-		//position.setLocation(x, y);
-		//size.setSize(sizeX, sizeY);
-		//this.getSlotPainter().recalcShape(this);
-		//notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
-	}
 }
