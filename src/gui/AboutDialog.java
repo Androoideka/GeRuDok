@@ -11,8 +11,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AboutDialog extends JDialog {	
-	public AboutDialog(MainFrame frame) {
+public class AboutDialog extends JDialog {
+	private static AboutDialog instance=null;
+	
+	private AboutDialog(MainFrame frame) {
 		super(frame, "About");
 		
 		JPanel gornjiPanel=new JPanel(new GridLayout(0, 2));
@@ -107,5 +109,12 @@ public class AboutDialog extends JDialog {
 		setSize(new Dimension(500, 500));
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public static AboutDialog getInstance() {
+		if(instance==null) {
+			instance=new AboutDialog(MainFrame.getInstance());
+		}
+		return instance;
 	}
 }

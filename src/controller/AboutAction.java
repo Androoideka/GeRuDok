@@ -22,7 +22,7 @@ public class AboutAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		new AboutDialog(MainFrame.getInstance());
+		AboutDialog.getInstance().setVisible(true);
 	}
 	
 }
