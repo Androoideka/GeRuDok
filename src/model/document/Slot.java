@@ -34,7 +34,6 @@ public abstract class Slot extends ModelElement {
 	protected SlotPainter slotPainter;
 	
 	protected boolean selected = false;
-	protected boolean rotatable=false;
 	
 	public Slot(Point2D position, Dimension size) {
 		super();
@@ -52,24 +51,9 @@ public abstract class Slot extends ModelElement {
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
-		if(this.selected==true) {
-			this.rotatable=false;
-		}
 		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
 	
-	public boolean isRotatable() {
-		return rotatable;
-	}
-	
-	public void setRotatable(boolean rotatable) {
-		this.rotatable=rotatable;
-		if(this.rotatable==true) {
-			this.selected=false;
-		}
-		this.notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
-	}
-
 	public Paint getPaint() {
 		return paint;
 	}
@@ -128,15 +112,6 @@ public abstract class Slot extends ModelElement {
 				Point2D handleCenter = this.getHandlePoint(position, size, h);
 				if(handleCenter.distance(point) <= (double)Handle.handleSize) {
 					return h;
-				}
-			}
-		}else if(rotatable) {
-			for(Handle h : Handle.values()) {
-				if(h==Handle.NORTHEAST || h==Handle.NORTHWEST || h==Handle.SOUTHEAST || h==Handle.SOUTHWEST) {
-					Point2D handleCenter = this.getHandlePoint(position, size, h);
-					if(handleCenter.distance(point) <= (double)Handle.handleSize) {
-						return h;
-					}
 				}
 			}
 		}

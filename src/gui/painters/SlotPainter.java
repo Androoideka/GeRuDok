@@ -29,7 +29,7 @@ public abstract class SlotPainter implements Serializable {
 			g2.fill(shape);
 		}
 		
-		if(slot.isSelected() || slot.isRotatable()) {
+		if(slot.isSelected()) {
 			paintSelection(g2, slot);
 		}
 	}
@@ -48,16 +48,6 @@ public abstract class SlotPainter implements Serializable {
 				double size = Handle.handleSize;
 				g.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2,
 						size, size));
-			}
-		}
-		if(slot.isRotatable()) {
-			System.out.println("jesje");
-			for(Handle h : Handle.values()) {
-				if(h==Handle.NORTHEAST || h==Handle.NORTHWEST || h==Handle.SOUTHEAST || h==Handle.SOUTHWEST) {
-					Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);
-					double size = Handle.handleSize;
-					g.fill(new Ellipse2D.Double(position.getX(), position.getY(), size, size));
-				}
 			}
 		}
 	}
