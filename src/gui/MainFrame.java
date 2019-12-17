@@ -43,6 +43,7 @@ public class MainFrame extends JFrame {
 		add(podela, BorderLayout.CENTER);
 		podela.setDividerLocation(screenSize.width/16);
 		
+		addWindowListener(new StartListener());
 		addWindowListener(new CloseListener());
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
