@@ -41,6 +41,7 @@ public class RectangleState extends State {
 	
 	public void mouseReleased(MouseEvent e, Page p) {
 		newSlot = null;
+		doc.getStateManager().setSelectState();
 	}
 	
 	public void resize(MouseEvent e, Slot s) {
