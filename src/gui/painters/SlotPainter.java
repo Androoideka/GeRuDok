@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -22,12 +23,16 @@ public abstract class SlotPainter implements Serializable {
 		
 		g2.setPaint(slot.getStrokeColour());
 		g2.setStroke(slot.getStroke());
+		AffineTransform old=g2.getTransform();
+		g2.rotate(Math.toRadians(slot.getAngle()));
 		g2.draw(shape);
-
+		
 		if(slot.getPaint() != null) {
 			g2.setPaint(slot.getPaint());
 			g2.fill(shape);
 		}
+		
+		g2.setTransform(old);
 		
 		if(slot.isSelected()) {
 			paintSelection(g2, slot);

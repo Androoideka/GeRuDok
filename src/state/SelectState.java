@@ -35,7 +35,19 @@ public class SelectState extends State {
 					doc.getStateManager().setRescaleState(selectedSlot, e.getPoint());
 				}
 			}
-		}/*else if(e.getButton()==MouseEvent.BUTTON3) {
+		}else if(e.getButton()==MouseEvent.BUTTON3) {
+			Slot slot = p.findSlotAtPosition(e.getPoint());
+			if(slot!=null) {
+				selectedSlot=slot;
+				start=e.getPoint();
+			}
+			if(selectedSlot!=null) {
+				doc.getStateManager().setRotateState(selectedSlot, e.getPoint());
+			}
+		}
+		
+		
+		/*else if(e.getButton()==MouseEvent.BUTTON3) {
 			Slot slot = p.findSlotAtPosition(e.getPoint());
 			if(slot != null) {
 				if(selectedSlot != null) {

@@ -25,12 +25,4 @@ public abstract class State {
 	public void mouseMoved(MouseEvent e, Page p) {
 		
 	}
-	
-	public void resize(MouseEvent e, Slot s) {
-		
-	}
-	
-	public void rotate(MouseEvent e, Slot s) {
-		
-	}
 }
