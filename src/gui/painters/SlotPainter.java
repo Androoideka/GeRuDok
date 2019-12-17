@@ -2,11 +2,9 @@ package gui.painters;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
@@ -24,7 +22,7 @@ public abstract class SlotPainter implements Serializable {
 		g2.setPaint(slot.getStrokeColour());
 		g2.setStroke(slot.getStroke());
 		AffineTransform old=g2.getTransform();
-		g2.rotate(Math.toRadians(slot.getAngle()), slot.getPosition().getX() + slot.getSize().getWidth() / 2, slot.getPosition().getY() + slot.getSize().getHeight() / 2);
+		g2.rotate((slot.getAngle()), slot.getPosition().getX() + slot.getSize().getWidth() / 2, slot.getPosition().getY() + slot.getSize().getHeight() / 2);
 		g2.draw(shape);
 		
 		if(slot.getPaint() != null) {
@@ -43,9 +41,6 @@ public abstract class SlotPainter implements Serializable {
 		g.setPaint(Color.BLACK);
 		g.setStroke(new BasicStroke((float)1, BasicStroke.CAP_ROUND,
 				BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0 ));
-		
-		//g.drawRect((int)slot.getPosition().getX(), (int)slot.getPosition().getY(),
-				//(int)slot.getSize().getWidth(), (int)slot.getSize().getHeight());
 		if(slot.isSelected()) {
 			for(Handle h : Handle.values()) {
 				Point2D position = slot.getHandlePoint(slot.getPosition(), slot.getSize(), h);

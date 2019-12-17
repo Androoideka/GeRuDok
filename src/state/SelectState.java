@@ -1,10 +1,8 @@
 package state;
 
-import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import gui.painters.Handle;
 import model.document.Page;
 import model.document.Slot;
 import model.workspace.Document;
@@ -36,34 +34,10 @@ public class SelectState extends State {
 				}
 			}
 		}else if(e.getButton()==MouseEvent.BUTTON3) {
-			Slot slot = p.findSlotAtPosition(e.getPoint());
-			if(slot!=null) {
-				selectedSlot=slot;
-				start=e.getPoint();
-			}
 			if(selectedSlot!=null) {
 				doc.getStateManager().setRotateState(selectedSlot, e.getPoint());
 			}
 		}
-		
-		
-		/*else if(e.getButton()==MouseEvent.BUTTON3) {
-			Slot slot = p.findSlotAtPosition(e.getPoint());
-			if(slot != null) {
-				if(selectedSlot != null) {
-					selectedSlot.setRotatable(false);
-				}
-				selectedSlot = slot;
-				selectedSlot.setRotatable(true);
-				start = e.getPoint();
-			}
-			if(selectedSlot != null) {
-				selectedHandle = selectedSlot.getHandleForPoint(e.getPoint());
-				if(selectedHandle != null) {
-					start = e.getPoint();
-				}
-			}
-		}*/
 	}
 	
 	public void mouseDragged(MouseEvent e, Page p) {
