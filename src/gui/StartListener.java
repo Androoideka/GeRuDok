@@ -9,12 +9,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
 
 import controller.OpenRepository;
 import controller.SaveRepository;
 import exceptionhandling.ExceptionHandler;
-import model.workspace.MPNode;
 import model.workspace.Workspace;
 
 public class StartListener extends WindowAdapter {

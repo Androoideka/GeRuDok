@@ -3,7 +3,6 @@ package state;
 import java.awt.event.MouseEvent;
 
 import model.document.Page;
-import model.document.Slot;
 import model.workspace.Document;
 
 public abstract class State {
