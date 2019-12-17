@@ -29,8 +29,13 @@ public class RotateState extends State {
 		double k2=(end.getY()-slotCenter.getY())/(end.getX()-slotCenter.getX());
 		double tg=(k1-k2)/(1+k1*k2);
 		double angle=Math.atan(tg);
-		selectedSlot.rotate(angle);
-		start=end;
+		System.out.println(k1);
+		System.out.println(k2);
+		System.out.println(tg);
+		System.out.println(angle);
+		//selectedSlot.rotate(angle);
+		selectedSlot.setAngle(angle);
+		//start=end;
 	}
 
 	public void mouseReleased(MouseEvent e, Page p) {
