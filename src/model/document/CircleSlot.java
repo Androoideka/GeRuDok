@@ -23,33 +23,35 @@ public class CircleSlot extends Slot {
 
 	@Override
 	public void scale(Handle h, double distanceX, double distanceY) {
-		double distance = Math.max(distanceX, distanceY);
 		double x=position.getX(), y=position.getY(),
-				sizeX = size.getWidth(), sizeY = size.getHeight();
-		
+			sizeBoth = size.getWidth();
 		if(h == Handle.NORTHWEST){
-			x += distance;
-			sizeX -= distance;
-			y += distance;
-			sizeY -= distance;
+			if(sizeBoth - distanceX - distanceY < 25) return;
+			x += distanceX;
+			y += distanceX;
+			x += distanceY;
+			y += distanceY;
+			sizeBoth -= distanceX;
+			sizeBoth -= distanceY;
 		}
 		if(h == Handle.SOUTHWEST){
-			x += distance;
-			sizeX -= distance;
-			sizeY -= distance;
+			if(sizeBoth - distanceX < 25) return;
+			x += distanceX;
+			sizeBoth -= distanceX;
 		}
 		if(h == Handle.NORTHEAST){
-			sizeX -= distance;
-			y += distance;
-			sizeY -= distance;
+			if(sizeBoth - distanceY < 25) return;
+			y += distanceY;
+			sizeBoth -= distanceY;
 		}
 		if(h == Handle.SOUTHEAST){
-			sizeX += distance;
-			sizeY += distance;
+			if(sizeBoth + distanceX + distanceY < 25) return;
+			sizeBoth += distanceX;
+			sizeBoth += distanceY;
 		}
 		
 		position.setLocation(x, y);
-		size.setSize(sizeX, sizeY);
+		size.setSize(sizeBoth, sizeBoth);
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
