@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +7,6 @@ import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
 
-import exceptionhandling.ExceptionHandler;
 import gui.MainFrame;
 import helpers.DocumentFileFIlter;
 import model.workspace.MPNode;
@@ -51,24 +49,5 @@ public class OpenRepository {
 		if(mpNode!=null) {
 			MainFrame.getInstance().getWorkspaceTree().setRoot((Workspace)mpNode);
 		}
-	}
-	
-	public static Workspace openLocation() {
-		File file=SaveRepository.getFile();
-		Workspace ws=null;
-		try {
-			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(file));
-			try {
-				ws=(Workspace)ois.readObject();
-			}catch(ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			ois.close();
-		}catch(FileNotFoundException e2) {
-			ExceptionHandler.createDialog(e2);
-		}catch(IOException e3) {
-			e3.printStackTrace();
-		}
-		return ws;
 	}
 }

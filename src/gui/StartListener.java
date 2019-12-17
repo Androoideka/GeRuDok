@@ -16,7 +16,7 @@ import exceptionhandling.ExceptionHandler;
 import model.workspace.Workspace;
 
 public class StartListener extends WindowAdapter {
-	public void windowActivated(WindowEvent arg0) {
+	public void windowOpened(WindowEvent arg0) {
 		File file=SaveRepository.getFile();
 		Workspace wsPrev=null;
 		try {
