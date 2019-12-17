@@ -25,7 +25,7 @@ public class RectangleState extends State {
 	
 	public void mouseDragged(MouseEvent e, Page p) {
 		end = e.getPoint();
-			
+		
 		Point2D realStart = (Point2D)start.clone();
 		Point2D realEnd = (Point2D)end.clone();
 		
