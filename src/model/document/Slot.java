@@ -155,8 +155,4 @@ public abstract class Slot extends ModelElement {
 	}
 	
 	public abstract void scale(Handle h, double distanceX, double distanceY);
-	
-	public void rotate(double angle) {
-		this.setAngle(this.angle-angle);
-	}
 }
