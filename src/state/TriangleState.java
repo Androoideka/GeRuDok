@@ -36,6 +36,5 @@ public class TriangleState extends State {
 	
 	public void mouseReleased(MouseEvent e, Page p) {
 		newSlot=null;
-		doc.getStateManager().setSelectState();
 	}
 }

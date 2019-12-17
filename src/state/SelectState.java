@@ -37,7 +37,7 @@ public class SelectState extends State {
 					start = e.getPoint();
 				}
 			}
-		}else if(e.getButton()==MouseEvent.BUTTON3) {
+		}/*else if(e.getButton()==MouseEvent.BUTTON3) {
 			Slot slot = p.findSlotAtPosition(e.getPoint());
 			if(slot != null) {
 				if(selectedSlot != null) {
@@ -53,7 +53,7 @@ public class SelectState extends State {
 					start = e.getPoint();
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void mouseDragged(MouseEvent e, Page p) {
@@ -68,13 +68,6 @@ public class SelectState extends State {
 					Point2D position = (Point2D) selectedSlot.getPosition().clone();
 					position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
 					selectedSlot.setPosition(position);
-				}
-			}else if(selectedSlot.isRotatable()) {
-				end = e.getPoint();
-				double distanceX = end.getX() - start.getX();
-				double distanceY = end.getY() - start.getY();
-				if(selectedHandle != null) {
-					selectedSlot.rotate(selectedHandle, distanceX, distanceY);
 				}
 			}
 			start = end;
@@ -95,11 +88,5 @@ public class SelectState extends State {
 			selectedSlot.setSelected(false);
 		}
 		selectedSlot = null;
-	}
-	
-	public void unrotatable() {
-		if(selectedSlot!=null) {
-			selectedSlot.setRotatable(false);
-		}
 	}
 }

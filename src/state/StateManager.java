@@ -20,7 +20,6 @@ public class StateManager {
 	public void setRectangleState() {
 		if(currentState == selectState) {
 			selectState.deselect();
-			selectState.unrotatable();
 		}
 		currentState = rectangleState;
 	}
@@ -28,7 +27,6 @@ public class StateManager {
 	public void setTriangleState() {
 		if(currentState==selectState) {
 			selectState.deselect();
-			selectState.unrotatable();
 		}
 		currentState=triangleState;
 	}
@@ -36,7 +34,6 @@ public class StateManager {
 	public void setCircleState() {
 		if(currentState==selectState) {
 			selectState.deselect();
-			selectState.unrotatable();
 		}
 		currentState=circleState;
 	}
