@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import gui.MainFrame;
+import gui.NoPreveousWorkspaceFoundException;
 import gui.UnsavedWorkspaceException;
 import gui.workspace.InvalidNameException;
 
@@ -28,6 +29,18 @@ public class ExceptionHandler {
 					null,
 					options,
 					options[2]
+					) + "";
+		}
+		else if(e instanceof NoPreveousWorkspaceFoundException) {
+			String[] options = {"Yes", "No"};
+			return JOptionPane.showOptionDialog(frame,
+					"Do you want to choose another existing workspace?",
+					e.getMessage(),
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					options,
+					options[1]
 					) + "";
 		}
 		else if(e instanceof Exception) {
