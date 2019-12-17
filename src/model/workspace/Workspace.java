@@ -7,13 +7,12 @@ import javax.swing.tree.MutableTreeNode;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
 
-public class Workspace extends MPNode {
-	
+public class Workspace extends MPNode {	
 	public Workspace() {
 		children = new ArrayList<MPNode>();
 		this.setName("Workspace");
 	}
-
+	
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		if(node instanceof Project) {
