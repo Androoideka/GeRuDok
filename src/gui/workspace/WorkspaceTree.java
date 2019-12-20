@@ -35,10 +35,7 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 
 	public void update(ObserverNotification event) {
 		if(event.getEventType() == ObserverEventType.ADD) {
-			if(event.getModelObserver() instanceof MPNode) {
-				MPNode node = (MPNode)event.getModelObserver();
-				addChildrenAsObservers(node);
-			}
+			event.getModelObserver().addObserver(this);
 		}
 		this.expandRow(0);
 		SwingUtilities.updateComponentTreeUI(this);
@@ -58,15 +55,10 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	
 	public void setRoot(Workspace ws) {
 		this.setModel(new WorkspaceModel(ws));
-		this.getRoot().addObserver(this);
-		addChildrenAsObservers(this.getRoot());
-	}
-	
-	private void addChildrenAsObservers(MPNode node) {
-		for(int i = 0; i < node.getChildCount(); i++) {
-			MPNode child = (MPNode) node.getChildAt(i);
-			addChildrenAsObservers(child);
-			child.addObserver(this);
+		ws.addObserver(this);
+		for(int i = 0; i < ws.getChildCount(); i++) {
+			MPNode child = (MPNode) ws.getChildAt(i);
+			ws.insert(child, i);
 		}
 	}
 

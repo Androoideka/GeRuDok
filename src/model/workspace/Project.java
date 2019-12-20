@@ -19,7 +19,12 @@ public class Project extends MPNode {
 		if(node instanceof Document) {
 			Document d = (Document)node;
 			d.setParent(this);
-			children.add(index, d);
+			if(!children.contains(d)) {
+				children.add(index, d);
+			}
+			for(int i = 0; i < d.getChildCount(); i++) {
+				d.insert((MutableTreeNode)d.getChildAt(i), i);
+			}
 			notifyObservers(new ObserverNotification(d, ObserverEventType.ADD));
 		}
 	}

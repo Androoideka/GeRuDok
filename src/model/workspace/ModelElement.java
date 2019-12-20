@@ -28,12 +28,16 @@ public abstract class ModelElement implements IModelObserver, Serializable {
 		this.name = name;
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
-
-	@Override
-	public void addObserver(IViewObserver viewObserver) {
+	
+	private void createObserverList() {
 		if(viewObservers==null) {
 			viewObservers = new ArrayList<IViewObserver>();
 		}
+	}
+
+	@Override
+	public void addObserver(IViewObserver viewObserver) {
+		createObserverList();
 		if(viewObserver==null) {
 			return;
 		}
@@ -53,15 +57,14 @@ public abstract class ModelElement implements IModelObserver, Serializable {
 
 	@Override
 	public void notifyObservers(ObserverNotification event) {
-		if(viewObservers==null) {
-			viewObservers = new ArrayList<IViewObserver>();
-		}
+		createObserverList();
 		for(IViewObserver viewObserver : viewObservers) {
 			viewObserver.update(event);
 		}
 	}
 	
 	protected void clearObservers() {
+		createObserverList();
 		viewObservers.clear();
 	}
 }

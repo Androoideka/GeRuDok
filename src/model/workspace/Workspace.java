@@ -18,7 +18,12 @@ public class Workspace extends MPNode {
 		if(node instanceof Project) {
 			Project p = (Project)node;
 			p.setParent(this);
-			children.add(p);
+			if(!children.contains(p)) {
+				children.add(index, p);
+			}
+			for(int i = 0; i < p.getChildCount(); i++) {
+				p.insert((MutableTreeNode)p.getChildAt(i), i);
+			}
 			notifyObservers(new ObserverNotification(p, ObserverEventType.ADD));
 		}
 	}
