@@ -22,6 +22,9 @@ public class PageView extends JPanel implements IViewObserver {
 		super();
 		this.p = p;
 		p.addObserver(this);
+		for(Slot slot : p.getSlots()) {
+			slot.addObserver(this);
+		}
 		setName(p.getName());
 		
 		this.addMouseListener(dc);
