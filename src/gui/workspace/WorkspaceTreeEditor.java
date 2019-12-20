@@ -40,7 +40,7 @@ public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements Action
 	public void actionPerformed(ActionEvent event){
 		String newName = event.getActionCommand();
 		try {
-			if(field == null) return;
+			if(field == null || node == null) return;
 			if(newName.isEmpty() || !Character.isLetterOrDigit(newName.charAt(0))) {
 				throw new InvalidNameException();
 			}
