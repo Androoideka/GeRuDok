@@ -1,6 +1,7 @@
 package gui.workspace;
 
 import java.awt.Rectangle;
+
 import java.awt.event.MouseAdapter;
 
 import javax.swing.JTree;
@@ -30,12 +31,14 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 		}
 	    
 		this.setRoot(new Workspace());
-		this.getRoot().addObserver(this);
 	}
 
 	public void update(ObserverNotification event) {
 		if(event.getEventType() == ObserverEventType.ADD) {
-			event.getModelObserver().addObserver(this);
+			if(event.getModelObserver() instanceof MPNode) {
+				MPNode node = (MPNode)event.getModelObserver();
+				addChildrenAsObservers(node);
+			}
 		}
 		this.expandRow(0);
 		SwingUtilities.updateComponentTreeUI(this);
@@ -55,6 +58,16 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	
 	public void setRoot(Workspace ws) {
 		this.setModel(new WorkspaceModel(ws));
+		this.getRoot().addObserver(this);
+		addChildrenAsObservers(this.getRoot());
+	}
+	
+	private void addChildrenAsObservers(MPNode node) {
+		for(int i = 0; i < node.getChildCount(); i++) {
+			MPNode child = (MPNode) node.getChildAt(i);
+			addChildrenAsObservers(child);
+			child.addObserver(this);
+		}
 	}
 
 	public void startEditing() {
