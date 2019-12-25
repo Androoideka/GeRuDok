@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
 
+import exceptionhandling.ExceptionHandler;
 import gui.MainFrame;
 import helpers.DocumentFileFIlter;
 import model.workspace.MPNode;
@@ -28,9 +29,9 @@ public class OpenRepository {
 				ois.close();
 				
 			}catch(FileNotFoundException e2) {
-				e2.printStackTrace();
+				ExceptionHandler.createDialog(e2);
 			}catch(IOException e3) {
-				e3.printStackTrace();
+				ExceptionHandler.createDialog(e3);
 			}
 		}
 		return mpNode;

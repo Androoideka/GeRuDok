@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JFileChooser;
 
+import exceptionhandling.ExceptionHandler;
 import gui.MainFrame;
 import helpers.DocumentFileFIlter;
 import model.workspace.MPNode;
@@ -31,9 +32,9 @@ public class SaveRepository {
 			}
 			ous.close();
 		}catch(FileNotFoundException e){
-			e.printStackTrace();
+			ExceptionHandler.createDialog(e);
 		}catch(IOException e){
-			e.printStackTrace();
+			ExceptionHandler.createDialog(e);
 		}
 	}
 	
@@ -68,9 +69,9 @@ public class SaveRepository {
 			ous.writeObject(ws);
 			ous.close();
 		}catch(FileNotFoundException e){
-			e.printStackTrace();
+			ExceptionHandler.createDialog(e);
 		}catch(IOException e){
-			e.printStackTrace();
+			ExceptionHandler.createDialog(e);
 		}
 	}
 }
