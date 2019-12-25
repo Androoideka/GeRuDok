@@ -51,7 +51,7 @@ public class StartListener extends WindowAdapter {
 				}
 			}
 		}catch(IOException e3) {
-			e3.printStackTrace();
+			ExceptionHandler.createDialog(e3);
 		}
 	}
 }

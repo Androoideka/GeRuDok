@@ -45,7 +45,7 @@ public class ExceptionHandler {
 		}
 		else if(e instanceof Exception) {
 			JOptionPane.showMessageDialog(frame,
-					"Unknown error",
+					e.getMessage(),
 					e.getMessage(),
 					JOptionPane.ERROR_MESSAGE);
 		}
