@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import gui.DocumentView;
-import model.document.Page;
+import document.model.Page;
+import document.view.DocumentView;
 
 public class NewPageAction extends AbstractAction {
 	DocumentView docView;

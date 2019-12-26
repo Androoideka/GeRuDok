@@ -6,6 +6,21 @@ import java.util.List;
 
 import javax.swing.AbstractAction;
 
+import designmode.controller.CircleAction;
+import designmode.controller.RectangleAction;
+import designmode.controller.SelectAction;
+import designmode.controller.TriangleAction;
+import document.controller.CloseAction;
+import document.controller.SelectionListener;
+import workspace.controller.DeleteAction;
+import workspace.controller.NewAction;
+import workspace.controller.OpenAction;
+import workspace.controller.PopupListener;
+import workspace.controller.RenameAction;
+import workspace.controller.SaveAction;
+import workspace.controller.SaveAsAction;
+import workspace.controller.SwitchWorkspaceAction;
+
 public class ActionManager {
 	private static ActionManager instance=null;
 	

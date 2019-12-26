@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import gui.AboutDialog;
 import helpers.ImageResizer;
+import view.AboutDialog;
 
 public class AboutAction extends AbstractAction {
 	
