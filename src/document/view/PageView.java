@@ -7,9 +7,9 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 import designmode.controller.DocumentController;
-import designmode.model.SlotPainter;
 import document.model.Page;
 import document.model.Slot;
+import document.model.SlotPainter;
 import observer.IViewObserver;
 import observer.ObserverEventType;
 import observer.ObserverNotification;

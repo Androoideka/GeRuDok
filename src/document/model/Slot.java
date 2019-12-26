@@ -8,7 +8,6 @@ import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
 import designmode.model.Handle;
-import designmode.model.SlotPainter;
 import model.ModelElement;
 import observer.ObserverEventType;
 import observer.ObserverNotification;

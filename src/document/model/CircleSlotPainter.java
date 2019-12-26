@@ -1,9 +1,6 @@
-package designmode.model;
+package document.model;
 
 import java.awt.geom.Ellipse2D;
-
-import document.model.CircleSlot;
-import document.model.Slot;
 
 public class CircleSlotPainter extends SlotPainter {
 	public CircleSlotPainter(Slot slot) {

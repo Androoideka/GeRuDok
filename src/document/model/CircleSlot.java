@@ -3,7 +3,6 @@ package document.model;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
-import designmode.model.CircleSlotPainter;
 import designmode.model.Handle;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
