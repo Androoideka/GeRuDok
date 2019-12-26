@@ -13,13 +13,6 @@ public class CircleSlot extends Slot {
 		super(position, size);
 		slotPainter=new CircleSlotPainter(this);
 	}
-	
-	public static Slot create(Point2D start, double distance) {
-		Dimension size=new Dimension();
-		size.setSize(distance * 2, distance * 2);
-		CircleSlot slot = new CircleSlot(start, size);
-		return slot;
-	}
 
 	@Override
 	public void scale(Handle h, double distanceX, double distanceY) {

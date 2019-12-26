@@ -1,5 +1,6 @@
 package state;
 
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
@@ -34,18 +35,20 @@ public class RectangleState extends State {
 		realEnd.setLocation(Math.max(start.getX(), end.getX()), 
 				Math.max(start.getY(), end.getY()));
 		
-		p.removeSlot(newSlot);
-		newSlot = RectangleSlot.create(realStart, realEnd);
-		p.addSlot(newSlot);
+		Dimension size = new Dimension();
+		size.setSize(realEnd.getX() - realStart.getX(), realEnd.getY() - realStart.getY());
+		
+		if(newSlot == null) {
+			newSlot = new RectangleSlot(realStart, size);
+			p.addSlot(newSlot);
+		}
+		else {
+			newSlot.setPosition(realStart);
+			newSlot.setSize(size);
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e, Page p) {
 		newSlot = null;
-	}
-	
-	public void resize(MouseEvent e, Slot s) {
-		if(doc.getStateManager().getCurrentState()==this) {
-			
-		}
 	}
 }

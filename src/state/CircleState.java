@@ -1,5 +1,6 @@
 package state;
 
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
@@ -26,17 +27,25 @@ public class CircleState extends State {
 	public void mouseDragged(MouseEvent e, Page p) {
 		end=e.getPoint();
 		
-		Point2D realCenter = (Point2D)center.clone();
+		Point2D realStart = (Point2D)center.clone();
 		
 		double distance = Math.max(Math.abs(center.getX() - end.getX()),
 				Math.abs(center.getY() - end.getY()));;
 		
-		realCenter.setLocation(center.getX() - distance, 
+		realStart.setLocation(center.getX() - distance, 
 				center.getY() - distance);
 		
-		p.removeSlot(newSlot);
-		newSlot = CircleSlot.create(realCenter, distance);
-		p.addSlot(newSlot);
+		Dimension size=new Dimension();
+		size.setSize(distance * 2, distance * 2);
+		
+		if(newSlot == null) {
+			newSlot = new CircleSlot(realStart, size);
+			p.addSlot(newSlot);
+		}
+		else {
+			newSlot.setPosition(realStart);
+			newSlot.setSize(size);
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e, Page p) {
