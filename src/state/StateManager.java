@@ -13,6 +13,7 @@ public class StateManager {
 	private SelectState selectState;
 	private RescaleState rescaleState;
 	private RotateState rotateState;
+	private GrabState grabState;
 
 	public StateManager(Document doc) {
 		rectangleState = new RectangleState(doc);
@@ -21,6 +22,7 @@ public class StateManager {
 		selectState = new SelectState(doc);
 		rescaleState = new RescaleState(doc);
 		rotateState = new RotateState(doc);
+		grabState = new GrabState(doc);
 		currentState = selectState;
 	}
 	public void setRectangleState() {
@@ -52,6 +54,11 @@ public class StateManager {
 	public void setRotateState(Slot slot, Point2D start) {
 		currentState=rotateState;
 		rotateState.setSlot(slot, start);
+	}
+	
+	public void setGrabState(Slot slot, Point2D start) {
+		currentState=grabState;
+		grabState.setSlot(slot, start);
 	}
 	
 	public void setSelectState() {

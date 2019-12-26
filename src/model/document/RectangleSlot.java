@@ -16,14 +16,6 @@ public class RectangleSlot extends Slot {
 		slotPainter = new RectangleSlotPainter(this);
 	}
 	
-	public static Slot create(Point2D start, Point2D end) {
-		Dimension size = new Dimension();
-		size.setSize(Math.abs(start.getX() - end.getX()),
-				Math.abs(start.getY() - end.getY()));
-		RectangleSlot slot = new RectangleSlot(start, size);
-		return slot;
-	}
-	
 	@Override
 	public void scale(Handle h, double distanceX, double distanceY) {
 		double x=position.getX(), y=position.getY(),

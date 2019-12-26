@@ -1,5 +1,6 @@
 package state;
 
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
@@ -29,9 +30,18 @@ public class TriangleState extends State {
 		Point2D realEnd = (Point2D)end.clone();
 		realStart.setLocation(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
 		realEnd.setLocation(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
-		p.removeSlot(newSlot);
-		newSlot = TriangleSlot.create(realStart, realEnd);
-		p.addSlot(newSlot);
+		
+		Dimension size = new Dimension();
+		size.setSize(Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
+		
+		if(newSlot == null) {
+			newSlot = new TriangleSlot(realStart, size);
+			p.addSlot(newSlot);
+		}
+		else {
+			newSlot.setPosition(realStart);
+			newSlot.setSize(size);
+		}
 	}
 	
 	public void mouseReleased(MouseEvent e, Page p) {
