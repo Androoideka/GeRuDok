@@ -5,8 +5,8 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-import gui.MainFrame;
 import helpers.ImageResizer;
+import view.MainFrame;
 
 public class Main {
 	public static void main(String[] args) {

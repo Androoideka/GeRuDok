@@ -9,10 +9,10 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 
 import exceptionhandling.ExceptionHandler;
-import gui.MainFrame;
 import helpers.DocumentFileFIlter;
-import model.workspace.MPNode;
-import model.workspace.Workspace;
+import view.MainFrame;
+import workspace.model.MPNode;
+import workspace.model.Workspace;
 
 public class SaveRepository {
 	private static File prevWS=new File("prevWS.loc");

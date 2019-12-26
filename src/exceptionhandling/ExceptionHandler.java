@@ -3,10 +3,10 @@ package exceptionhandling;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import gui.MainFrame;
-import gui.NoPreveousWorkspaceFoundException;
-import gui.UnsavedWorkspaceException;
-import gui.workspace.InvalidNameException;
+import view.MainFrame;
+import view.NoPreviousWorkspaceFoundException;
+import view.UnsavedWorkspaceException;
+import workspace.exceptions.InvalidNameException;
 
 public class ExceptionHandler {
 	
@@ -31,7 +31,7 @@ public class ExceptionHandler {
 					options[2]
 					) + "";
 		}
-		else if(e instanceof NoPreveousWorkspaceFoundException) {
+		else if(e instanceof NoPreviousWorkspaceFoundException) {
 			String[] options = {"Yes", "No"};
 			return JOptionPane.showOptionDialog(frame,
 					"Do you want to choose another existing workspace?",
