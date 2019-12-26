@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
 
-import controller.NewPageAction;
 import designmode.controller.DocumentController;
+import designmode.controller.NewPageAction;
 import designmode.view.Palette;
 import document.model.Page;
 import observer.IViewObserver;

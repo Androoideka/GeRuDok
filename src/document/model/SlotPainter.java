@@ -1,4 +1,4 @@
-package designmode.model;
+package document.model;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import document.model.Slot;
+import designmode.model.Handle;
 
 public abstract class SlotPainter implements Serializable {
 	
