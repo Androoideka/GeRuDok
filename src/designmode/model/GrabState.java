@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
 
 import document.model.Slot;
 import document.view.MainPageDrawer;
+import helpers.UserSpaceScaler;
 
 public class GrabState extends State {
 	private Slot selectedSlot;
@@ -22,6 +23,7 @@ public class GrabState extends State {
 	
 	public void mouseDragged(MouseEvent e) {
 		Point2D end = e.getPoint();
+		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
 		double distanceX = end.getX() - start.getX();
 		double distanceY = end.getY() - start.getY();
 		Point2D position = (Point2D) selectedSlot.getPosition().clone();

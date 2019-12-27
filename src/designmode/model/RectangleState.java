@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import document.model.RectangleSlot;
 import document.model.Slot;
 import document.view.MainPageDrawer;
+import helpers.UserSpaceScaler;
 
 public class RectangleState extends State {
 	private Point2D start;
@@ -33,6 +34,9 @@ public class RectangleState extends State {
 				Math.min(start.getY(), end.getY()));
 		realEnd.setLocation(Math.max(start.getX(), end.getX()), 
 				Math.max(start.getY(), end.getY()));
+		
+		realStart = UserSpaceScaler.getInstance().toUserSpace(realStart, pageView.getSize());
+		realEnd = UserSpaceScaler.getInstance().toUserSpace(realEnd, pageView.getSize());
 		
 		Dimension size = new Dimension();
 		size.setSize(realEnd.getX() - realStart.getX(), realEnd.getY() - realStart.getY());

@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import document.model.CircleSlot;
 import document.model.Slot;
 import document.view.MainPageDrawer;
+import helpers.UserSpaceScaler;
 
 public class CircleState extends State {
 	private Point2D center;
@@ -27,12 +28,18 @@ public class CircleState extends State {
 		end=e.getPoint();
 		
 		Point2D realStart = (Point2D)center.clone();
-		
+				
 		double distance = Math.max(Math.abs(center.getX() - end.getX()),
-				Math.abs(center.getY() - end.getY()));;
+				Math.abs(center.getY() - end.getY()));
 		
 		realStart.setLocation(center.getX() - distance, 
 				center.getY() - distance);
+		
+		Point2D realCenter = UserSpaceScaler.getInstance().toUserSpace(center, pageView.getSize());
+		realStart = UserSpaceScaler.getInstance().toUserSpace(realStart, pageView.getSize());
+		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
+		distance = Math.max(Math.abs(realCenter.getX() - end.getX()),
+				Math.abs(realCenter.getY() - end.getY()));
 		
 		Dimension size=new Dimension();
 		size.setSize(distance * 2, distance * 2);
