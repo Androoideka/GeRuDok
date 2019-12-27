@@ -36,6 +36,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		if(prj != null) {
 			removeAll();
 			docViews.clear();
+			prj.removeObserver(this);
 			prj = null;
 		}
 	}
@@ -111,6 +112,7 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 				}
 			}
 			else if(event.getEventType() == ObserverEventType.REMOVE) {
+				d.removeObserver(this);
 				docViews.remove(docView);
 				if(index != -1) {
 					this.removeTabAt(index);

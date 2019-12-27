@@ -2,37 +2,36 @@ package designmode.model;
 
 import java.awt.event.MouseEvent;
 
-import document.model.Page;
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class SelectState extends State {
 	
 	private Slot selectedSlot;
 
-	public SelectState(Document doc) {
-		super(doc);
+	public SelectState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 
-	public void mousePressed(MouseEvent e, Page p) {
+	public void mousePressed(MouseEvent e) {
 		if (e.getButton()==MouseEvent.BUTTON1) {
-			Slot slot = p.findSlotAtPosition(e.getPoint());
+			Slot slot = pageView.getPage().findSlotAtPosition(e.getPoint());
 			if(slot != null) {
 				if(selectedSlot != null) {
 					selectedSlot.setSelected(false);
 				}
 				selectedSlot = slot;
 				selectedSlot.setSelected(true);
-				doc.getStateManager().setGrabState(selectedSlot, e.getPoint());
+				pageView.getStateManager().setGrabState(selectedSlot, e.getPoint());
 			}
 			if(selectedSlot != null) {
 				if(selectedSlot.getHandleForPoint(e.getPoint()) != null) {
-					doc.getStateManager().setRescaleState(selectedSlot, e.getPoint());
+					pageView.getStateManager().setRescaleState(selectedSlot, e.getPoint());
 				}
 			}
 		}else if(e.getButton()==MouseEvent.BUTTON3) {
 			if(selectedSlot!=null) {
-				doc.getStateManager().setRotateState(selectedSlot, e.getPoint());
+				pageView.getStateManager().setRotateState(selectedSlot, e.getPoint());
 			}
 		}
 	}

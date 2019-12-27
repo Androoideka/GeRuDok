@@ -3,7 +3,7 @@ package designmode.model;
 import java.awt.geom.Point2D;
 
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class StateManager {
 	private State currentState;
@@ -15,14 +15,14 @@ public class StateManager {
 	private RotateState rotateState;
 	private GrabState grabState;
 
-	public StateManager(Document doc) {
-		rectangleState = new RectangleState(doc);
-		triangleState = new TriangleState(doc);
-		circleState = new CircleState(doc);
-		selectState = new SelectState(doc);
-		rescaleState = new RescaleState(doc);
-		rotateState = new RotateState(doc);
-		grabState = new GrabState(doc);
+	public StateManager(MainPageDrawer pageView) {
+		rectangleState = new RectangleState(pageView);
+		triangleState = new TriangleState(pageView);
+		circleState = new CircleState(pageView);
+		selectState = new SelectState(pageView);
+		rescaleState = new RescaleState(pageView);
+		rotateState = new RotateState(pageView);
+		grabState = new GrabState(pageView);
 		currentState = selectState;
 	}
 	public void setRectangleState() {

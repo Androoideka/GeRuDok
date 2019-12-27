@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.swing.tree.MutableTreeNode;
 
-import designmode.model.StateManager;
 import document.model.Page;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
@@ -13,8 +12,6 @@ import observer.ObserverNotification;
 public class Document extends MPNode {
 	
 	private List<Page> pages = new ArrayList<>();
-	
-	private transient StateManager stateManager = new StateManager(this);
 	
 	public Document() {
 		this.setName("document");
@@ -39,29 +36,6 @@ public class Document extends MPNode {
 		if(pages.remove(p)) {
 			notifyObservers(new ObserverNotification(p, ObserverEventType.REMOVE));
 		}
-	}
-	
-	public void setRectangleState() {
-		stateManager.setRectangleState();
-	}
-	
-	public void setTriangleState() {
-		stateManager.setTriangleState();
-	}
-	
-	public void setCircleState() {
-		stateManager.setCircleState();
-	}
-	
-	public void setSelectState() {
-		stateManager.setSelectState();
-	}
-	
-	public StateManager getStateManager() {
-		if(stateManager == null) {
-			stateManager = new StateManager(this);
-		}
-		return stateManager;
 	}
 	
 	@Override

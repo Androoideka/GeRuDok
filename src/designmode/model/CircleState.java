@@ -5,26 +5,25 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
 import document.model.CircleSlot;
-import document.model.Page;
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class CircleState extends State {
 	private Point2D center;
 	private Point2D end;
 	private Slot newSlot;
 	
-	public CircleState(Document doc) {
-		super(doc);
+	public CircleState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 	
-	public void mousePressed(MouseEvent e, Page p) {
+	public void mousePressed(MouseEvent e) {
 		if(e.getButton()==MouseEvent.BUTTON1) {
 			center=e.getPoint();
 		}
 	}
 	
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		end=e.getPoint();
 		
 		Point2D realStart = (Point2D)center.clone();
@@ -40,7 +39,7 @@ public class CircleState extends State {
 		
 		if(newSlot == null) {
 			newSlot = new CircleSlot(realStart, size);
-			p.addSlot(newSlot);
+			pageView.getPage().addSlot(newSlot);
 		}
 		else {
 			newSlot.setPosition(realStart);
@@ -48,7 +47,7 @@ public class CircleState extends State {
 		}
 	}
 	
-	public void mouseReleased(MouseEvent e, Page p) {
+	public void mouseReleased(MouseEvent e) {
 		newSlot=null;
 	}
 }

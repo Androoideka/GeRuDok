@@ -4,27 +4,26 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import document.model.Page;
 import document.model.RectangleSlot;
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class RectangleState extends State {
 	private Point2D start;
 	private Point2D end;
 	private Slot newSlot;
 
-	public RectangleState(Document doc) {
-		super(doc);
+	public RectangleState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 	
-	public void mousePressed(MouseEvent e, Page p) {
+	public void mousePressed(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			start = e.getPoint();
 		}
 	}
 	
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		end = e.getPoint();
 		
 		Point2D realStart = (Point2D)start.clone();
@@ -40,7 +39,7 @@ public class RectangleState extends State {
 		
 		if(newSlot == null) {
 			newSlot = new RectangleSlot(realStart, size);
-			p.addSlot(newSlot);
+			pageView.getPage().addSlot(newSlot);
 		}
 		else {
 			newSlot.setPosition(realStart);
@@ -48,7 +47,7 @@ public class RectangleState extends State {
 		}
 	}
 	
-	public void mouseReleased(MouseEvent e, Page p) {
+	public void mouseReleased(MouseEvent e) {
 		newSlot = null;
 	}
 }

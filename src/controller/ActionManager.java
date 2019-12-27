@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,9 @@ import designmode.controller.RectangleAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
 import document.controller.CloseAction;
-import document.controller.SelectionListener;
 import workspace.controller.DeleteAction;
 import workspace.controller.NewAction;
 import workspace.controller.OpenAction;
-import workspace.controller.PopupListener;
 import workspace.controller.RenameAction;
 import workspace.controller.SaveAction;
 import workspace.controller.SaveAsAction;
@@ -29,7 +26,6 @@ public class ActionManager {
 	private List<AbstractAction> editActions = new ArrayList<>();
 	private List<AbstractAction> helpActions = new ArrayList<>();
 	private List<AbstractAction> viewActions = new ArrayList<>();
-	private List<MouseAdapter> mouseListeners = new ArrayList<>();
 	private List<AbstractAction> paletteActions = new ArrayList<>();
 	
 	private ActionManager() {
@@ -49,9 +45,6 @@ public class ActionManager {
 		editActions.add(new DeleteAction());
 		
 		viewActions.add(new CloseAction());
-		
-		mouseListeners.add(new PopupListener());
-		mouseListeners.add(new SelectionListener());
 		
 		helpActions.add(new AboutAction());
 		
@@ -75,10 +68,6 @@ public class ActionManager {
 
 	public List<AbstractAction> getHelpActions() {
 		return helpActions;
-	}
-
-	public List<MouseAdapter> getMouseListeners() {
-		return mouseListeners;
 	}
 	
 	public List<AbstractAction> getPaletteActions() {

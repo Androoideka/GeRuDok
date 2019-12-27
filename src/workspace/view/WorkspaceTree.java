@@ -2,17 +2,16 @@ package workspace.view;
 
 import java.awt.Rectangle;
 
-import java.awt.event.MouseAdapter;
-
 import javax.swing.JTree;
 
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
-import controller.ActionManager;
+import document.controller.DocumentSelectionListener;
 import observer.IViewObserver;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
+import workspace.controller.PopupListener;
 import workspace.controller.WorkspaceTreeController;
 import workspace.model.MPNode;
 import workspace.model.Workspace;
@@ -26,9 +25,8 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	    setEditable(true);
 	    setInvokesStopCellEditing(true);
 	    
-		for(MouseAdapter a : ActionManager.getInstance().getMouseListeners()) {
-			addMouseListener(a);
-		}
+	    this.addMouseListener(new PopupListener());
+	    this.addMouseListener(new DocumentSelectionListener());
 	    
 		this.setRoot(new Workspace());
 	}
