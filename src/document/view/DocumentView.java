@@ -1,24 +1,34 @@
 package document.view;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 
+import designmode.view.Palette;
 import observer.IViewObserver;
 import observer.ObserverNotification;
 import workspace.model.Document;
 
 public class DocumentView extends JSplitPane implements IViewObserver {//extends JPanel implements IViewObserver {
 	private Document d;
-	//private JPanel leftPanel;
+	private JPanel rightPanel;
 	private JScrollPane pageScroller;
 	private MainPageView mainPageView;
 	
-	public DocumentView(Document d) {
-		super(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(new PageSlider(d)), new MainPageView(null));
+	public DocumentView(Document d) {		
+		super(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(new PageSlider(d)), new JPanel());
+		
+		mainPageView = new MainPageView(null);
 		
 		pageScroller = (JScrollPane)this.getLeftComponent();
-		mainPageView = (MainPageView)this.getRightComponent();
+		rightPanel = (JPanel)this.getRightComponent();
+		
+		rightPanel.setLayout(new BorderLayout());
+		rightPanel.add(new Palette(), BorderLayout.EAST);
+		rightPanel.add(mainPageView);
 		
 		pageScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		pageScroller.getVerticalScrollBar().setUnitIncrement(16);
