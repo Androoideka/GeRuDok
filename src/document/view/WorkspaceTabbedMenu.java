@@ -32,15 +32,6 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 		this.add(view);
 	}
 	
-	private void removeProject() {
-		if(prj != null) {
-			removeAll();
-			docViews.clear();
-			prj.removeObserver(this);
-			prj = null;
-		}
-	}
-	
 	private DocumentView docViewWithDocument(Document d) {
 		for(DocumentView docView : docViews) {
 			if(docView.getDocument() == d) {
@@ -56,7 +47,11 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 			if(this.prj == prj) {
 				return;
 			}
-			removeProject();
+			if(this.prj != null) {
+				removeAll();
+				docViews.clear();
+				this.prj.removeObserver(this);
+			}
 			
 			this.prj=prj;
 			prj.addObserver(this);
@@ -96,7 +91,9 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 	public void update(ObserverNotification event) {
 		if(event.getModelObserver() instanceof Project) {
 			if(event.getEventType() == ObserverEventType.REMOVE) {
-				removeProject();
+				removeAll();
+				docViews.clear();
+				prj = null;
 			}
 		}
 		else if(event.getModelObserver() instanceof Document) {
