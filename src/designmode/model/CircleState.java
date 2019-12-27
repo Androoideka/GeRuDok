@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 
 import document.model.CircleSlot;
 import document.model.Slot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 import helpers.UserSpaceScaler;
 
 public class CircleState extends State {
@@ -14,7 +14,7 @@ public class CircleState extends State {
 	private Point2D end;
 	private Slot newSlot;
 	
-	public CircleState(MainPageDrawer pageView) {
+	public CircleState(MainPageView pageView) {
 		super(pageView);
 	}
 	

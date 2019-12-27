@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 
 import document.model.Slot;
 import document.model.TriangleSlot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 import helpers.UserSpaceScaler;
 
 public class TriangleState extends State {
@@ -14,7 +14,7 @@ public class TriangleState extends State {
 	private Point2D end;
 	private Slot newSlot;
 	
-	public TriangleState(MainPageDrawer pageView) {
+	public TriangleState(MainPageView pageView) {
 		super(pageView);
 	}
 	

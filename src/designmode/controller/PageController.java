@@ -5,13 +5,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 
 public class PageController extends MouseAdapter implements MouseMotionListener {
 	
 	public void mousePressed(MouseEvent e) {
-		if(e.getSource() instanceof MainPageDrawer) {
-			MainPageDrawer pageView = (MainPageDrawer)e.getSource();
+		if(e.getSource() instanceof MainPageView) {
+			MainPageView pageView = (MainPageView)e.getSource();
 			if(pageView.getPage() == null) {
 				return;
 			}
@@ -19,8 +19,8 @@ public class PageController extends MouseAdapter implements MouseMotionListener 
 		}
 	}
 	public void mouseDragged(MouseEvent e) {
-		if(e.getSource() instanceof MainPageDrawer) {
-			MainPageDrawer pageView = (MainPageDrawer)e.getSource();
+		if(e.getSource() instanceof MainPageView) {
+			MainPageView pageView = (MainPageView)e.getSource();
 			if(pageView.getPage() == null) {
 				return;
 			}
@@ -28,8 +28,8 @@ public class PageController extends MouseAdapter implements MouseMotionListener 
 		}
 	}
 	public void mouseReleased(MouseEvent e) {
-		if(e.getSource() instanceof MainPageDrawer) {
-			MainPageDrawer pageView = (MainPageDrawer)e.getSource();
+		if(e.getSource() instanceof MainPageView) {
+			MainPageView pageView = (MainPageView)e.getSource();
 			if(pageView.getPage() == null) {
 				return;
 			}
@@ -37,8 +37,8 @@ public class PageController extends MouseAdapter implements MouseMotionListener 
 		}
 	}
 	public void mouseMoved(MouseEvent e) {
-		if(e.getSource() instanceof MainPageDrawer) {
-			MainPageDrawer pageView = (MainPageDrawer)e.getSource();
+		if(e.getSource() instanceof MainPageView) {
+			MainPageView pageView = (MainPageView)e.getSource();
 			if(pageView.getPage() == null) {
 				return;
 			}

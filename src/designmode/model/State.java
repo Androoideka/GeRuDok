@@ -2,12 +2,12 @@ package designmode.model;
 
 import java.awt.event.MouseEvent;
 
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 
 public abstract class State {
-	protected MainPageDrawer pageView;
+	protected MainPageView pageView;
 	
-	public State(MainPageDrawer pageView) {
+	public State(MainPageView pageView) {
 		this.pageView = pageView;
 	}
 	

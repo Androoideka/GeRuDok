@@ -2,8 +2,7 @@ package designmode.model;
 
 import java.awt.geom.Point2D;
 
-import document.model.Slot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 
 public class StateManager {
 	private State currentState;
@@ -16,15 +15,15 @@ public class StateManager {
 	private GrabState grabState;
 	private DeleteState deleteState;
 
-	public StateManager(MainPageDrawer pageView) {
-		rectangleState = new RectangleState(pageView);
-		triangleState = new TriangleState(pageView);
-		circleState = new CircleState(pageView);
-		selectState = new SelectState(pageView);
-		rescaleState = new RescaleState(pageView);
-		rotateState = new RotateState(pageView);
-		grabState = new GrabState(pageView);
-		deleteState = new DeleteState(pageView);
+	public StateManager(MainPageView mainPageView) {
+		rectangleState = new RectangleState(mainPageView);
+		triangleState = new TriangleState(mainPageView);
+		circleState = new CircleState(mainPageView);
+		selectState = new SelectState(mainPageView);
+		rescaleState = new RescaleState(mainPageView);
+		rotateState = new RotateState(mainPageView);
+		grabState = new GrabState(mainPageView);
+		deleteState = new DeleteState(mainPageView);
 		currentState = selectState;
 	}
 	public void setRectangleState() {
@@ -48,25 +47,25 @@ public class StateManager {
 		currentState=circleState;
 	}
 	
-	public void setRescaleState(Slot slot, Point2D start) {
+	public void setRescaleState(Point2D start) {
 		currentState=rescaleState;
-		rescaleState.setSlot(slot, start);
+		rescaleState.setPoint(start);
 	}
 	
-	public void setRotateState(Slot slot, Point2D start) {
+	public void setRotateState(Point2D start) {
 		currentState=rotateState;
-		rotateState.setSlot(slot, start);
+		rotateState.setPoint(start);
 	}
 	
-	public void setGrabState(Slot slot, Point2D start) {
+	public void setGrabState(Point2D start) {
 		currentState=grabState;
-		grabState.setSlot(slot, start);
+		grabState.setPoint(start);
 	}
 	
 	public void setDeleteState() {
 		if(currentState == selectState) {
 			currentState = deleteState;
-			deleteState.deleteSlot(selectState.getSelectedSlot());
+			deleteState.deleteSlot();
 		}
 	}
 	

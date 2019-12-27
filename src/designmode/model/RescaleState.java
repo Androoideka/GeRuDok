@@ -4,22 +4,20 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
 import document.model.Slot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 import helpers.UserSpaceScaler;
 
 public class RescaleState extends State {
-	private Slot selectedSlot;
 	private Point2D start;
 	private Handle selectedHandle;
 
-	public RescaleState(MainPageDrawer pageView) {
+	public RescaleState(MainPageView pageView) {
 		super(pageView);
 	}
 	
-	public void setSlot(Slot selectedSlot, Point2D start) {
-		this.selectedSlot=selectedSlot;
+	public void setPoint(Point2D start) {
 		this.start=start;
-		selectedHandle = selectedSlot.getHandleForPoint(start);
+		selectedHandle = pageView.getSelectionModel().getHandleForPoint(start);
 	}
 	
 	public void mouseDragged(MouseEvent e) {
@@ -29,7 +27,11 @@ public class RescaleState extends State {
 		
 		double distanceX = end.getX() - start.getX();
 		double distanceY = end.getY() - start.getY();
-		selectedSlot.scale(selectedHandle, distanceX, distanceY);
+		
+		for(Slot slot : pageView.getSelectionModel().getSlots()) {
+			slot.scale(selectedHandle, distanceX, distanceY);
+		}
+		
 		start=end;
 	}
 

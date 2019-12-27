@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 
 import document.model.RectangleSlot;
 import document.model.Slot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 import helpers.UserSpaceScaler;
 
 public class RectangleState extends State {
@@ -14,7 +14,7 @@ public class RectangleState extends State {
 	private Point2D end;
 	private Slot newSlot;
 
-	public RectangleState(MainPageDrawer pageView) {
+	public RectangleState(MainPageView pageView) {
 		super(pageView);
 	}
 	
