@@ -16,7 +16,7 @@ import view.MainFrame;
 
 public class Repository {
 	public static File prevWS=new File("prevWS.loc");
-	public static Repository instance = null;
+	private static Repository instance = null;
 
 	private Repository() {
 		

@@ -18,7 +18,8 @@ public class NewPageAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		pageSlider.createNewPage(new Page());
 		
-		pageSlider.validate();
+		//pageSlider.invalidate();
+		pageSlider.revalidate();
 		pageSlider.repaint();
 	}
 }

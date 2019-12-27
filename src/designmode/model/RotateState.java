@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 
 import document.model.Slot;
 import document.view.MainPageDrawer;
+import helpers.UserSpaceScaler;
 
 public class RotateState extends State {
 	private Slot selectedSlot;
@@ -21,6 +22,9 @@ public class RotateState extends State {
 	
 	public void mouseDragged(MouseEvent e) {
 		Point2D end = e.getPoint();
+		
+		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
+		
 		double slotCenterX=selectedSlot.getSize().getWidth()/2+selectedSlot.getPosition().getX();
 		double slotCenterY=selectedSlot.getSize().getHeight()/2+selectedSlot.getPosition().getY();
 		Point2D slotCenter=new Point2D.Double(slotCenterX, slotCenterY);

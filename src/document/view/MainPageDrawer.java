@@ -12,6 +12,7 @@ import designmode.model.StateManager;
 import document.model.Page;
 import document.model.Slot;
 import document.model.SlotPainter;
+import helpers.UserSpaceScaler;
 
 public class MainPageDrawer extends PageView {
 	private StateManager stateManager = new StateManager(this);
@@ -35,9 +36,10 @@ public class MainPageDrawer extends PageView {
 			return;
 		}
 		this.setBackground(Color.WHITE);
-		Graphics2D g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D)g.create();
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.scale(this.getSize().getWidth() / UserSpaceScaler.defaultResX, this.getSize().getHeight() / UserSpaceScaler.defaultResY);
 		for(Slot slot : page.getSlots()) {
 			SlotPainter painter = slot.getSlotPainter();
 			painter.paint(g2, slot);
