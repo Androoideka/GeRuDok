@@ -1,14 +1,15 @@
 package view;
 
 import java.awt.event.WindowAdapter;
+
 import java.awt.event.WindowEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-import controller.SaveRepository;
 import exceptionhandling.ExceptionHandler;
 import workspace.model.MPNode;
+import workspace.model.Repository;
 
 public class CloseListener extends WindowAdapter {
 
@@ -30,8 +31,7 @@ public class CloseListener extends WindowAdapter {
 			}
 			else {
 				if(buttonClicked == JOptionPane.YES_OPTION) {
-					SaveRepository save = new SaveRepository();
-					save.save(ws);
+					Repository.getInstance().save(ws);
 				}
 				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			}

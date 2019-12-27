@@ -1,15 +1,16 @@
 package workspace.controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import controller.SaveRepository;
 import helpers.ImageResizer;
 import view.MainFrame;
 import workspace.model.MPNode;
+import workspace.model.Repository;
 
 public class SaveAction extends AbstractAction {
 	public SaveAction() {
@@ -23,7 +24,9 @@ public class SaveAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		MPNode mpNode=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		SaveRepository sr=new SaveRepository();
-		sr.save(mpNode);
+		if(mpNode != null) {
+			Repository repository = Repository.getInstance();
+			repository.save(mpNode);
+		}
 	}
 }
