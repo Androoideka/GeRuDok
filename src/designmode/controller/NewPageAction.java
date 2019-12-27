@@ -5,20 +5,20 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import document.model.Page;
-import document.view.DocumentView;
+import document.view.PageSlider;
 
 public class NewPageAction extends AbstractAction {
-	DocumentView docView;
+	PageSlider pageSlider;
 	
-	public NewPageAction(DocumentView docView) {
-		this.docView = docView;
+	public NewPageAction(PageSlider pageSlider) {
+		this.pageSlider = pageSlider;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		docView.createNewPage(new Page());
+		pageSlider.createNewPage(new Page());
 		
-		docView.validate();
-		docView.repaint();
+		pageSlider.validate();
+		pageSlider.repaint();
 	}
 }

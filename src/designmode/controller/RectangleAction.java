@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import document.view.DocumentView;
+import document.view.MainPageView;
 import helpers.ImageResizer;
 import view.MainFrame;
 
@@ -23,7 +24,8 @@ public class RectangleAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 		if(docView != null) {
-			docView.getDocument().setRectangleState();
+			MainPageView mainPageView = docView.getCurrentView();
+			mainPageView.getPageDrawer().getStateManager().setRectangleState();
 		}
 	}
 }

@@ -4,27 +4,26 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import document.model.Page;
 import document.model.Slot;
 import document.model.TriangleSlot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class TriangleState extends State {
 	private Point2D start;
 	private Point2D end;
 	private Slot newSlot;
 	
-	public TriangleState(Document doc) {
-		super(doc);
+	public TriangleState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 	
-	public void mousePressed(MouseEvent e, Page p) {
+	public void mousePressed(MouseEvent e) {
 		if(e.getButton()==MouseEvent.BUTTON1) {
 			start=e.getPoint();
 		}
 	}
 	
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		end = e.getPoint();
 		Point2D realStart = (Point2D)start.clone();
 		Point2D realEnd = (Point2D)end.clone();
@@ -36,7 +35,7 @@ public class TriangleState extends State {
 		
 		if(newSlot == null) {
 			newSlot = new TriangleSlot(realStart, size);
-			p.addSlot(newSlot);
+			pageView.getPage().addSlot(newSlot);
 		}
 		else {
 			newSlot.setPosition(realStart);
@@ -44,7 +43,7 @@ public class TriangleState extends State {
 		}
 	}
 	
-	public void mouseReleased(MouseEvent e, Page p) {
+	public void mouseReleased(MouseEvent e) {
 		newSlot=null;
 	}
 }

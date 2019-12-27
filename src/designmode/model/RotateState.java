@@ -3,16 +3,15 @@ package designmode.model;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-import document.model.Page;
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class RotateState extends State {
 	private Slot selectedSlot;
 	private Point2D start;
 
-	public RotateState(Document doc) {
-		super(doc);
+	public RotateState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 	
 	public void setSlot(Slot selectedSlot, Point2D start) {
@@ -20,7 +19,7 @@ public class RotateState extends State {
 		this.start=start;
 	}
 	
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		Point2D end = e.getPoint();
 		double slotCenterX=selectedSlot.getSize().getWidth()/2+selectedSlot.getPosition().getX();
 		double slotCenterY=selectedSlot.getSize().getHeight()/2+selectedSlot.getPosition().getY();
@@ -32,7 +31,7 @@ public class RotateState extends State {
 		selectedSlot.setAngle(angle);
 	}
 
-	public void mouseReleased(MouseEvent e, Page p) {
-		doc.getStateManager().setSelectState();
+	public void mouseReleased(MouseEvent e) {
+		pageView.getStateManager().setSelectState();
 	}
 }

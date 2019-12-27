@@ -4,16 +4,15 @@ import java.awt.event.MouseEvent;
 
 import java.awt.geom.Point2D;
 
-import document.model.Page;
 import document.model.Slot;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public class GrabState extends State {
 	private Slot selectedSlot;
 	private Point2D start;
 
-	public GrabState(Document doc) {
-		super(doc);
+	public GrabState(MainPageDrawer pageView) {
+		super(pageView);
 	}
 
 	public void setSlot(Slot selectedSlot, Point2D start) {
@@ -21,7 +20,7 @@ public class GrabState extends State {
 		this.start=start;
 	}
 	
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		Point2D end = e.getPoint();
 		double distanceX = end.getX() - start.getX();
 		double distanceY = end.getY() - start.getY();
@@ -31,7 +30,7 @@ public class GrabState extends State {
 		start = end;
 	}
 
-	public void mouseReleased(MouseEvent e, Page p) {
-		doc.getStateManager().setSelectState();
+	public void mouseReleased(MouseEvent e) {
+		pageView.getStateManager().setSelectState();
 	}
 }

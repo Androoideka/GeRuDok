@@ -7,7 +7,7 @@ import document.view.WorkspaceTabbedMenu;
 import view.MainFrame;
 import workspace.model.MPNode;
 
-public class SelectionListener extends MouseAdapter {
+public class DocumentSelectionListener extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1 && e.getClickCount()==2) {
 			MPNode node=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();

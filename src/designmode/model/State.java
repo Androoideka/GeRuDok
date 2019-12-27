@@ -2,26 +2,25 @@ package designmode.model;
 
 import java.awt.event.MouseEvent;
 
-import document.model.Page;
-import workspace.model.Document;
+import document.view.MainPageDrawer;
 
 public abstract class State {
-	protected Document doc;
+	protected MainPageDrawer pageView;
 	
-	public State(Document doc) {
-		this.doc = doc;
+	public State(MainPageDrawer pageView) {
+		this.pageView = pageView;
 	}
 	
-	public void mousePressed(MouseEvent e, Page p) {
+	public void mousePressed(MouseEvent e) {
 		
 	}
-	public void mouseDragged(MouseEvent e, Page p) {
+	public void mouseDragged(MouseEvent e) {
 		
 	}
-	public void mouseReleased(MouseEvent e, Page p) {
+	public void mouseReleased(MouseEvent e) {
 		
 	}
-	public void mouseMoved(MouseEvent e, Page p) {
+	public void mouseMoved(MouseEvent e) {
 		
 	}
 }

@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import document.view.DocumentView;
+import document.view.MainPageView;
 import helpers.ImageResizer;
 import view.MainFrame;
 
@@ -20,9 +21,14 @@ public class CircleAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
+		/*DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 		if(docView != null) {
 			docView.getDocument().setCircleState();
+		}*/
+		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
+		if(docView != null) {
+			MainPageView mainPageView = docView.getCurrentView();
+			mainPageView.getPageDrawer().getStateManager().setCircleState();
 		}
 	}
 }

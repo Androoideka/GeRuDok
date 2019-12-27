@@ -1,40 +1,54 @@
 package document.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EtchedBorder;
+import javax.swing.JSplitPane;
 
-import designmode.controller.DocumentController;
-import designmode.controller.NewPageAction;
-import designmode.view.Palette;
-import document.model.Page;
 import observer.IViewObserver;
 import observer.ObserverNotification;
 import workspace.model.Document;
 
-public class DocumentView extends JPanel implements IViewObserver {
+public class DocumentView extends JSplitPane implements IViewObserver {//extends JPanel implements IViewObserver {
 	private Document d;
-	private JPanel pageSlider;
+	private JScrollPane pageScroller;
+	private MainPageView mainPageView;
+	
+	public DocumentView(Document d) {
+		super(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(new PageSlider(d)), new MainPageView(null));
+		
+		pageScroller = (JScrollPane)this.getLeftComponent();
+		mainPageView = (MainPageView)this.getRightComponent();
+		pageScroller.getVerticalScrollBar().setUnitIncrement(16);
+		
+		this.d = d;
+		d.addObserver(this);
+		setName(d.getName());
+	}
+	
+	public MainPageView getCurrentView() {
+		return mainPageView;
+	}
+	
+	public Document getDocument() {
+		return d;
+	}
+	
+	@Override
+	public void update(ObserverNotification event) {
+		setName(d.getName());
+	}
+	
+	/*private JPanel pageSlider;
 	private JScrollPane scrollSlider;
-	private List<PageView> pageViews = new ArrayList<>();
+	private List<MiniPageView> pageViews = new ArrayList<>();
 	private JPanel newPage;
-	private DocumentController dc;
+	private PageController dc;
 	
 	public DocumentView(Document d) {
 		super();
 		this.d = d;
 		d.addObserver(this);
 		setName(d.getName());
-		dc = new DocumentController(d);
+		dc = new PageController(d);
 		
 		setLayout(new BorderLayout());
 		
@@ -63,7 +77,7 @@ public class DocumentView extends JPanel implements IViewObserver {
 		pageSlider.remove(newPage);
 		d.addPage(p);
 		
-		PageView pageView = new PageView(p, dc);
+		MiniPageView pageView = new MiniPageView(p, dc);
 		pageView.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		pageView.setBackground(Color.WHITE);
 		pageView.setPreferredSize(new Dimension(0, pageSlider.getSize().width/16*9));
@@ -79,5 +93,5 @@ public class DocumentView extends JPanel implements IViewObserver {
 	@Override
 	public void update(ObserverNotification event) {
 		setName(d.getName());
-	}
+	}*/
 }
