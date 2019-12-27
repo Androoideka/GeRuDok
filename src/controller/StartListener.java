@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import java.awt.event.WindowAdapter;
 
@@ -7,6 +7,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 import exceptionhandling.ExceptionHandler;
+import view.MainFrame;
+import view.NoPreviousWorkspaceFoundException;
 import workspace.model.MPNode;
 import workspace.model.Repository;
 import workspace.model.Workspace;
@@ -23,7 +25,13 @@ public class StartListener extends WindowAdapter {
 			String value = ExceptionHandler.createDialog(new NoPreviousWorkspaceFoundException());
 			int buttonClicked = Integer.parseInt(value);
 			if(buttonClicked == JOptionPane.YES_OPTION) {
-				Repository.getInstance().open();
+				load = Repository.getInstance().open();
+				if(load instanceof Workspace) {
+					wsPrev = (Workspace)load;
+				}
+				else {
+					wsPrev = new Workspace();
+				}
 			}
 			else {
 				if(buttonClicked == JOptionPane.NO_OPTION) {
