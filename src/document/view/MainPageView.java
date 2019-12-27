@@ -1,35 +1,27 @@
 package document.view;
 
-import java.awt.BorderLayout;
-
-import designmode.view.Palette;
+import designmode.controller.PageController;
+import designmode.model.PageSelectionModel;
+import designmode.model.StateManager;
 import document.model.Page;
 
 public class MainPageView extends PageView {
-	private MainPageDrawer pageDrawer;
-	
+	private StateManager stateManager = new StateManager(this);
+	private PageSelectionModel pageSelectionModel = new PageSelectionModel();
+
 	public MainPageView(Page page) {
 		super(page);
 		
-		setLayout(new BorderLayout());
-		
-		Palette palette = new Palette();
-		this.add(palette, BorderLayout.EAST);
-		
-		pageDrawer = new MainPageDrawer(page);
-		this.add(pageDrawer, BorderLayout.CENTER);
+		PageController pc = new PageController();
+		this.addMouseListener(pc);
+		this.addMouseMotionListener(pc);
 	}
 	
-	public MainPageDrawer getPageDrawer() {
-		return pageDrawer;
+	public StateManager getStateManager() {
+		return stateManager;
 	}
 	
-	@Override
-	public void setPage(Page page) {
-		super.setPage(page);
-		if(pageDrawer != null) {
-			pageDrawer.setPage(page);
-			pageDrawer.repaint();
-		}
+	public PageSelectionModel getSelectionModel() {
+		return pageSelectionModel;
 	}
 }

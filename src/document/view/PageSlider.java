@@ -26,7 +26,6 @@ public class PageSlider extends JPanel implements IViewObserver {
 	private PageSelectionListener selectionListener = new PageSelectionListener();
 
 	public PageSlider(Document d) {
-		//super(new GridLayout(0, 1, 0, 20));
 		super();
 		
 		setLayout(new GridBagLayout());
