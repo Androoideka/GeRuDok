@@ -21,10 +21,6 @@ public class TriangleAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
-		if(docView != null) {
-			docView.getDocument().setTriangleState();
-		}*/
 		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 		if(docView != null) {
 			MainPageView mainPageView = docView.getCurrentView();

@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import view.MainFrame;
 import view.NoPreviousWorkspaceFoundException;
 import view.UnsavedWorkspaceException;
-import workspace.exceptions.InvalidNameException;
+import workspace.view.InvalidNameException;
 
 public class ExceptionHandler {
 	
