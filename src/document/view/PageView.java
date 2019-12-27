@@ -21,19 +21,14 @@ public abstract class PageView extends JPanel implements IViewObserver {
 		return page;
 	}
 	
-	private void removePage() {
-		if(page != null) {
-			page.removeObserver(this);
-			page = null;
-		}
-	}
-	
 	public void setPage(Page page) {
 		if(this.page == page) {
 			return;
 		}
 		
-		removePage();
+		if(this.page != null) {
+			page.removeObserver(this);
+		}
 		
 		this.page = page;
 		if(page != null) {
