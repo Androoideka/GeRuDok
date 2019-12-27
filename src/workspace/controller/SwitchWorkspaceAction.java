@@ -14,7 +14,7 @@ import workspace.model.Workspace;
 
 public class SwitchWorkspaceAction extends AbstractAction {
 	public SwitchWorkspaceAction() {
-		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.ALT_MASK));
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/workspaceopen.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/workspaceopen.png"));
 		putValue(NAME, "Switch workspace");
