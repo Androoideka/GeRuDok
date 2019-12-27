@@ -1,4 +1,4 @@
-package workspace.exceptions;
+package workspace.view;
 
 public class InvalidNameException extends Exception {
 

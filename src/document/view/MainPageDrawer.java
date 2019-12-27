@@ -19,8 +19,6 @@ public class MainPageDrawer extends PageView {
 	public MainPageDrawer(Page page) {
 		super(page);
 		
-		//this.setBackground(Color.WHITE);
-		
 		PageController pc = new PageController();
 		this.addMouseListener(pc);
 		this.addMouseMotionListener(pc);

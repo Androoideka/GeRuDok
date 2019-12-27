@@ -13,7 +13,6 @@ import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import exceptionhandling.ExceptionHandler;
-import workspace.exceptions.InvalidNameException;
 import workspace.model.MPNode;
 
 public class WorkspaceTreeEditor extends DefaultTreeCellEditor implements ActionListener {
