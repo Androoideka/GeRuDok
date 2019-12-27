@@ -33,7 +33,7 @@ public abstract class Slot extends ModelElement {
 	
 	protected SlotPainter slotPainter;
 	
-	protected boolean selected = false;
+	protected transient boolean selected = false;
 	
 	public Slot(Point2D position, Dimension size) {
 		super();
