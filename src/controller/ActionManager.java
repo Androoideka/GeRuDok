@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 
 import designmode.controller.CircleAction;
+import designmode.controller.DeleteSlotAction;
 import designmode.controller.RectangleAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
@@ -52,6 +53,7 @@ public class ActionManager {
 		paletteActions.add(new RectangleAction());
 		paletteActions.add(new CircleAction());
 		paletteActions.add(new TriangleAction());
+		paletteActions.add(new DeleteSlotAction());
 	}
 
 	public List<AbstractAction> getFileActions() {

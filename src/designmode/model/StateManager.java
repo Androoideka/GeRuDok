@@ -14,6 +14,7 @@ public class StateManager {
 	private RescaleState rescaleState;
 	private RotateState rotateState;
 	private GrabState grabState;
+	private DeleteState deleteState;
 
 	public StateManager(MainPageDrawer pageView) {
 		rectangleState = new RectangleState(pageView);
@@ -23,6 +24,7 @@ public class StateManager {
 		rescaleState = new RescaleState(pageView);
 		rotateState = new RotateState(pageView);
 		grabState = new GrabState(pageView);
+		deleteState = new DeleteState(pageView);
 		currentState = selectState;
 	}
 	public void setRectangleState() {
@@ -59,6 +61,13 @@ public class StateManager {
 	public void setGrabState(Slot slot, Point2D start) {
 		currentState=grabState;
 		grabState.setSlot(slot, start);
+	}
+	
+	public void setDeleteState() {
+		if(currentState == selectState) {
+			currentState = deleteState;
+			deleteState.deleteSlot(selectState.getSelectedSlot());
+		}
 	}
 	
 	public void setSelectState() {
