@@ -6,10 +6,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import controller.SaveRepository;
 import helpers.ImageResizer;
 import view.MainFrame;
 import workspace.model.MPNode;
+import workspace.model.Repository;
 
 public class SaveAsAction extends AbstractAction {
 	public SaveAsAction() {
@@ -23,7 +23,9 @@ public class SaveAsAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		MPNode mpNode=MainFrame.getInstance().getWorkspaceTree().getSelectedNode();
-		SaveRepository sr=new SaveRepository();
-		sr.saveAs(mpNode);
+		if(mpNode != null) {
+			Repository repository = Repository.getInstance();
+			repository.saveAs(mpNode);
+		}
 	}
 }

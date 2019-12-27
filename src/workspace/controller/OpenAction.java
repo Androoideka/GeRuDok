@@ -6,8 +6,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import controller.OpenRepository;
 import helpers.ImageResizer;
+import view.MainFrame;
+import workspace.model.MPNode;
+import workspace.model.Project;
+import workspace.model.Repository;
 
 public class OpenAction extends AbstractAction {
 	public OpenAction() {
@@ -20,7 +23,11 @@ public class OpenAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		OpenRepository or=new OpenRepository();
-		or.openDocument();
+		Repository repository = Repository.getInstance();
+		MPNode mpNode = repository.open();
+		if(mpNode instanceof Project) {
+			MPNode mpParent=MainFrame.getInstance().getWorkspaceTree().getRoot();
+			mpParent.insert(mpNode, mpParent.getChildCount());
+		}
 	}
 }

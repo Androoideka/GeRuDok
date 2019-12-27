@@ -27,8 +27,6 @@ public class WorkspaceTree extends JTree implements IViewObserver {
 	    
 	    this.addMouseListener(new PopupListener());
 	    this.addMouseListener(new DocumentSelectionListener());
-	    
-		this.setRoot(new Workspace());
 	}
 
 	public void update(ObserverNotification event) {

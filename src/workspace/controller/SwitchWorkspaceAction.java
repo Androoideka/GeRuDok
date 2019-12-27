@@ -6,8 +6,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import controller.OpenRepository;
 import helpers.ImageResizer;
+import view.MainFrame;
+import workspace.model.MPNode;
+import workspace.model.Repository;
+import workspace.model.Workspace;
 
 public class SwitchWorkspaceAction extends AbstractAction {
 	public SwitchWorkspaceAction() {
@@ -20,8 +23,11 @@ public class SwitchWorkspaceAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		OpenRepository or=new OpenRepository();
-		or.switchWorkspace();
+		Repository repository = Repository.getInstance();
+		MPNode mpNode = repository.open();
+		if(mpNode instanceof Workspace) {
+			MainFrame.getInstance().getWorkspaceTree().setRoot((Workspace)mpNode);
+		}
 	}
 	
 }
