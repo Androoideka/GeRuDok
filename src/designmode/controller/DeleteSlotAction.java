@@ -25,7 +25,7 @@ public class DeleteSlotAction extends AbstractAction {
 		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 		if(docView != null) {
 			MainPageView mainPageView = docView.getCurrentView();
-			mainPageView.getPageDrawer().getStateManager().setDeleteState();
+			mainPageView.getStateManager().setDeleteState();
 		}
 	}
 

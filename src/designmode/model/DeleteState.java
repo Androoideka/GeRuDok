@@ -1,17 +1,19 @@
 package designmode.model;
 
 import document.model.Slot;
-import document.view.MainPageDrawer;
+import document.view.MainPageView;
 
 public class DeleteState extends State {
 
-	public DeleteState(MainPageDrawer pageView) {
+	public DeleteState(MainPageView pageView) {
 		super(pageView);
 	}
 	
-	public void deleteSlot(Slot selectedSlot) {
+	public void deleteSlot() {
 		if(pageView.getPage() != null) {
-			pageView.getPage().removeSlot(selectedSlot);
+			for(Slot slot : pageView.getSelectionModel().getSlots()) {
+				pageView.getPage().removeSlot(slot);
+			}
 		}
 		pageView.getStateManager().setSelectState();
 	}

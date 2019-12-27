@@ -38,7 +38,7 @@ public class Page extends ModelElement {
 		//Returns last one at that location not first one
 		Slot s = null;
 		for(Slot slot : slots) {
-			if(slot.getSlotPainter().isWithinSlot(position)) {
+			if(slot.getSlotPainter().isWithinSlot(position) || slot.getHandleForPoint(position) != null) {
 				s = slot;
 			}
 		}

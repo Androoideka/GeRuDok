@@ -16,9 +16,8 @@ public class PageSelectionListener extends MouseAdapter {
 			DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 			if(docView != null) {
 				MainPageView mainPageView = docView.getCurrentView();
-				if(mainPageView != null) {
-					mainPageView.setPage(pageView.getPage());
-				}
+				mainPageView.setPage(pageView.getPage());
+				mainPageView.repaint();
 			}
 		}
 	}

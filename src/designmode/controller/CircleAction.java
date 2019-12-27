@@ -24,7 +24,7 @@ public class CircleAction extends AbstractAction {
 		DocumentView docView = MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView();
 		if(docView != null) {
 			MainPageView mainPageView = docView.getCurrentView();
-			mainPageView.getPageDrawer().getStateManager().setCircleState();
+			mainPageView.getStateManager().setCircleState();
 		}
 	}
 }
