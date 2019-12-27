@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import java.awt.event.WindowAdapter;
 
@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import exceptionhandling.ExceptionHandler;
+import view.MainFrame;
+import view.UnsavedWorkspaceException;
 import workspace.model.MPNode;
 import workspace.model.Repository;
 

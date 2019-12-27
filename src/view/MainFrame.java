@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
+import controller.CloseListener;
+import controller.StartListener;
 import document.view.WorkspaceTabbedMenu;
 import workspace.view.WorkspaceTree;
 
