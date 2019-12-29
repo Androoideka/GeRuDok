@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -15,13 +18,15 @@ import controller.StartListener;
 import document.view.WorkspaceTabbedMenu;
 import workspace.view.WorkspaceTree;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ClipboardOwner {
 	private static MainFrame instance = null;
 	
 	private MainMenu menu;
 	private WorkspaceTree wst;
 	
 	private WorkspaceTabbedMenu wtb;
+	
+	private Clipboard clipboard=new Clipboard("Clipboard mehanickog prebacivanja");
 	private MainFrame() {
 		setTitle("GeRuDok");
 		
@@ -66,5 +71,14 @@ public class MainFrame extends JFrame {
 	public WorkspaceTabbedMenu getWorkspaceTabbedMenu() {
 		return wtb;
 	}
+
+	@Override
+	public void lostOwnership(Clipboard arg0, Transferable arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 	
+	public Clipboard getClipboard() {
+		return clipboard;
+	}
 }

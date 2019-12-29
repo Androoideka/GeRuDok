@@ -2,7 +2,6 @@ package designmode.model;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.List;
 
 import document.model.Slot;
 import model.ModelElement;
@@ -10,13 +9,13 @@ import observer.ObserverEventType;
 import observer.ObserverNotification;
 
 public class PageSelectionModel extends ModelElement {
-	private List<Slot> selectedSlots = new ArrayList<>();
+	private ArrayList<Slot> selectedSlots = new ArrayList<>();
 	
 	public PageSelectionModel() {
 		this.setName("selection model");
 	}
 	
-	public List<Slot> getSlots() {
+	public ArrayList<Slot> getSlots() {
 		return selectedSlots;
 	}
 
