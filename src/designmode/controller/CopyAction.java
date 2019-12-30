@@ -19,6 +19,7 @@ public class CopyAction extends AbstractAction {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/copy.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/copy.png"));
+		putValue(NAME, "Copy");
 		putValue(SHORT_DESCRIPTION, "Copy selected objects.");
 	}
 
