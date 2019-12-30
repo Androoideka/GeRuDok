@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 import view.MainFrame;
 import view.NoPreviousWorkspaceFoundException;
+import view.NoSelectedSlotsException;
 import view.UnsavedWorkspaceException;
 import workspace.view.InvalidNameException;
 
@@ -14,7 +15,7 @@ public class ExceptionHandler {
 		JFrame frame = MainFrame.getInstance();
 		if(e instanceof InvalidNameException) {
 			return JOptionPane.showInputDialog(frame,
-					"Enter a valid name here, or click cancel to use the previously defined one",
+					"Enter a valid name here, or click cancel to use the previously defined one.",
 					e.getMessage(),
 					JOptionPane.WARNING_MESSAGE
 					);
@@ -41,6 +42,18 @@ public class ExceptionHandler {
 					null,
 					options,
 					options[1]
+					) + "";
+		}
+		else if(e instanceof NoSelectedSlotsException) {
+			String[] options = {"Ok"};
+			return JOptionPane.showOptionDialog(frame,
+					"Select a slot to use this operation.",
+					e.getMessage(),
+					JOptionPane.OK_OPTION,
+					JOptionPane.WARNING_MESSAGE,
+					null,
+					options,
+					options[0]
 					) + "";
 		}
 		else if(e instanceof Exception) {
