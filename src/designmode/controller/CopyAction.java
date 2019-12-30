@@ -10,8 +10,10 @@ import javax.swing.KeyStroke;
 import designmode.model.PageSlotSelection;
 import document.model.Slot;
 import document.view.MainPageView;
+import exceptionhandling.ExceptionHandler;
 import helpers.ImageResizer;
 import view.MainFrame;
+import view.NoSelectedSlotsException;
 
 public class CopyAction extends AbstractAction {
 	
@@ -25,10 +27,17 @@ public class CopyAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(!((((MainPageView)MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView()).getSelectionModel().getNumberOfSlots())==0)) {
+		try {
 			ArrayList<Slot> slots=((MainPageView)MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView()).getSelectionModel().getSlots();
-			PageSlotSelection contents=new PageSlotSelection(slots);
-			MainFrame.getInstance().getClipboard().setContents(contents, MainFrame.getInstance());
+			if(slots==null) {
+				throw new NoSelectedSlotsException();
+			}
+			if(!((((MainPageView)MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView()).getSelectionModel().getNumberOfSlots())==0)) {
+				PageSlotSelection contents=new PageSlotSelection(slots);
+				MainFrame.getInstance().getClipboard().setContents(contents, MainFrame.getInstance());
+			}
+		}catch (Exception e) {
+			ExceptionHandler.createDialog(e);
 		}
 	}
 

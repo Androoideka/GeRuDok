@@ -2,12 +2,17 @@ package designmode.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
+import document.model.Slot;
+import document.view.MainPageView;
+import exceptionhandling.ExceptionHandler;
 import helpers.ImageResizer;
 import view.MainFrame;
+import view.NoSelectedSlotsException;
 
 public class PasteAction extends AbstractAction {
 	public PasteAction() {
@@ -20,6 +25,14 @@ public class PasteAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().paste();
+		try {
+			ArrayList<Slot> slots=((MainPageView)MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView()).getSelectionModel().getSlots();
+			if(slots==null) {
+				throw new NoSelectedSlotsException();
+			}
+			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().paste();
+		}catch (Exception e) {
+			ExceptionHandler.createDialog(e);
+		}
 	}
 }
