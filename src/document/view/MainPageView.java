@@ -24,4 +24,8 @@ public class MainPageView extends PageView {
 	public PageSelectionModel getSelectionModel() {
 		return pageSelectionModel;
 	}
+	
+	public void paste() {
+		
+	}
 }
