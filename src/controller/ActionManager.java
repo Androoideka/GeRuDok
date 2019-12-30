@@ -6,7 +6,10 @@ import java.util.List;
 import javax.swing.AbstractAction;
 
 import designmode.controller.CircleAction;
+import designmode.controller.CopyAction;
+import designmode.controller.CutAction;
 import designmode.controller.DeleteSlotAction;
+import designmode.controller.PasteAction;
 import designmode.controller.RectangleAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
@@ -44,6 +47,9 @@ public class ActionManager {
 		
 		editActions.add(new RenameAction());
 		editActions.add(new DeleteAction());
+		editActions.add(new CopyAction());
+		editActions.add(new CutAction());
+		editActions.add(new PasteAction());
 		
 		viewActions.add(new CloseAction());
 		
