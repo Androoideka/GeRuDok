@@ -55,7 +55,7 @@ public class MainPageView extends PageView {
 						PointerInfo pi=MouseInfo.getPointerInfo();
 						Point2D p=pi.getLocation();
 						//newLocation.setLocation(p);
-						newLocation.setLocation(slot.getPosition().getX()+40, slot.getPosition().getY()+40);
+						newLocation.setLocation(slot.getPosition().getX(), slot.getPosition().getY());
 						slot.setPosition(newLocation);
 						if(slot instanceof RectangleSlot) {
 							slot.setSlotPainter(new RectangleSlotPainter(slot));
