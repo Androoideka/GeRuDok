@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import document.model.Slot;
 
 public class PageSlotSelection implements Transferable, ClipboardOwner {
-	private static DataFlavor slotFlavor;
+	public static DataFlavor slotFlavor;
 	private DataFlavor[] supportedFlavors= {slotFlavor};
 	private ArrayList<Slot> pageSlots=new ArrayList<>();
 	
