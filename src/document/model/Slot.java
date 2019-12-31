@@ -35,6 +35,8 @@ public abstract class Slot extends ModelElement {
 	
 	protected transient boolean selected = false;
 	
+	public abstract Slot clone();
+	
 	public Slot(Point2D position, Dimension size) {
 		super();
 		this.position = position;
@@ -114,6 +116,10 @@ public abstract class Slot extends ModelElement {
 
 	public SlotPainter getSlotPainter() {
 		return slotPainter;
+	}
+	
+	public void setSlotPainter(SlotPainter slotPainter) {
+		this.slotPainter=slotPainter;
 	}
 	
 	public Handle getHandleForPoint(Point2D point) {

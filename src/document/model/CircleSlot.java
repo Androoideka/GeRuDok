@@ -47,4 +47,9 @@ public class CircleSlot extends Slot {
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
+
+	@Override
+	public Slot clone() {
+		return new CircleSlot(this.getPosition(), this.getSize());
+	}
 }

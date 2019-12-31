@@ -40,4 +40,9 @@ public class RectangleSlot extends Slot {
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
+
+	@Override
+	public Slot clone() {
+		return new RectangleSlot(this.getPosition(), this.getSize());
+	}
 }

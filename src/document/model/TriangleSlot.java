@@ -38,4 +38,9 @@ public class TriangleSlot extends Slot {
 		this.getSlotPainter().recalcShape(this);
 		notifyObservers(new ObserverNotification(this, ObserverEventType.RENAME));
 	}
+
+	@Override
+	public Slot clone() {
+		return new TriangleSlot(this.getPosition(), this.getSize());
+	}
 }
