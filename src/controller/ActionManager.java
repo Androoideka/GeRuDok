@@ -11,8 +11,10 @@ import designmode.controller.CutAction;
 import designmode.controller.DeleteSlotAction;
 import designmode.controller.PasteAction;
 import designmode.controller.RectangleAction;
+import designmode.controller.RedoAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
+import designmode.controller.UndoAction;
 import document.controller.CloseAction;
 import workspace.controller.DeleteAction;
 import workspace.controller.NewAction;
@@ -50,6 +52,8 @@ public class ActionManager {
 		editActions.add(new CopyAction());
 		editActions.add(new CutAction());
 		editActions.add(new PasteAction());
+		editActions.add(new UndoAction());
+		editActions.add(new RedoAction());
 		
 		viewActions.add(new CloseAction());
 		
