@@ -6,7 +6,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-
+import designmode.controller.CommandManager;
 import designmode.controller.PageController;
 import designmode.model.PageSelectionModel;
 import designmode.model.PageSlotSelection;
@@ -24,6 +24,7 @@ import view.MainFrame;
 public class MainPageView extends PageView {
 	private StateManager stateManager = new StateManager(this);
 	private PageSelectionModel pageSelectionModel = new PageSelectionModel();
+	private CommandManager commandManager = new CommandManager();
 
 	public MainPageView(Page page) {
 		super(page);
@@ -39,6 +40,10 @@ public class MainPageView extends PageView {
 	
 	public PageSelectionModel getSelectionModel() {
 		return pageSelectionModel;
+	}
+	
+	public CommandManager getCommandManager() {
+		return commandManager;
 	}
 	
 	public void paste() {
