@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.controller.AddSlotCommand;
 import document.model.RectangleSlot;
 import document.model.Slot;
 import document.view.MainPageView;
@@ -43,7 +44,7 @@ public class RectangleState extends State {
 		
 		if(newSlot == null) {
 			newSlot = new RectangleSlot(realStart, size);
-			pageView.getPage().addSlot(newSlot);
+			pageView.getCommandManager().addCommand(new AddSlotCommand(pageView, newSlot));
 		}
 		else {
 			newSlot.setPosition(realStart);

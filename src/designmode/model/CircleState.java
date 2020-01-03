@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.controller.AddSlotCommand;
 import document.model.CircleSlot;
 import document.model.Slot;
 import document.view.MainPageView;
@@ -44,9 +45,9 @@ public class CircleState extends State {
 		Dimension size=new Dimension();
 		size.setSize(distance * 2, distance * 2);
 		
-		if(newSlot == null) {
+		if(newSlot == null) {			
 			newSlot = new CircleSlot(realStart, size);
-			pageView.getPage().addSlot(newSlot);
+			pageView.getCommandManager().addCommand(new AddSlotCommand(pageView, newSlot));
 		}
 		else {
 			newSlot.setPosition(realStart);
