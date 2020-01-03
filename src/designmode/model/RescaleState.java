@@ -3,6 +3,7 @@ package designmode.model;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.controller.RescaleSlotCommand;
 import document.model.Slot;
 import document.view.MainPageView;
 import helpers.UserSpaceScaler;
@@ -29,7 +30,7 @@ public class RescaleState extends State {
 		double distanceY = end.getY() - start.getY();
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
-			slot.scale(selectedHandle, distanceX, distanceY);
+			pageView.getCommandManager().addCommand(new RescaleSlotCommand(slot, selectedHandle, distanceX, distanceY));
 		}
 		
 		start=end;
