@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 
 import document.model.Slot;
 import document.view.MainPageView;
+import document.view.PageView;
 import exceptionhandling.ExceptionHandler;
 import helpers.ImageResizer;
 import view.MainFrame;
@@ -30,7 +31,7 @@ public class PasteAction extends AbstractAction {
 			if(slots==null) {
 				throw new NoSelectedSlotsException();
 			}
-			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().paste();
+			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getCommandManager().addCommand(new PasteCommand(slots));
 		}catch (Exception e) {
 			ExceptionHandler.createDialog(e);
 		}
