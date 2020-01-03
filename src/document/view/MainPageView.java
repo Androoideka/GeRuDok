@@ -57,8 +57,8 @@ public class MainPageView extends PageView {
 					if(slots.get(i) instanceof Slot) {
 						slot=slots.get(i).clone();
 						Point2D newLocation=(Point2D)slot.getPosition().clone();
-						PointerInfo pi=MouseInfo.getPointerInfo();
-						Point2D p=pi.getLocation();
+						//PointerInfo pi=MouseInfo.getPointerInfo();
+						//Point2D p=pi.getLocation();
 						//newLocation.setLocation(p);
 						newLocation.setLocation(slot.getPosition().getX(), slot.getPosition().getY());
 						slot.setPosition(newLocation);
