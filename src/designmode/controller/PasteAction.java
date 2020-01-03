@@ -9,7 +9,6 @@ import javax.swing.KeyStroke;
 
 import document.model.Slot;
 import document.view.MainPageView;
-import document.view.PageView;
 import exceptionhandling.ExceptionHandler;
 import helpers.ImageResizer;
 import view.MainFrame;
