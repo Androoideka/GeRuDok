@@ -11,6 +11,8 @@ import helpers.UserSpaceScaler;
 
 public class GrabState extends State {
 	private Point2D start;
+	private MoveSlotCommand command=null;
+	private Point2D startPoz=null;
 
 	public GrabState(MainPageView pageView) {
 		super(pageView);
@@ -18,6 +20,7 @@ public class GrabState extends State {
 
 	public void setPoint(Point2D start) {
 		this.start=start;
+		startPoz=start;
 	}
 	
 	public void mouseDragged(MouseEvent e) {
@@ -29,7 +32,17 @@ public class GrabState extends State {
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
 			Point2D position = (Point2D) slot.getPosition().clone();
-			pageView.getCommandManager().addCommand(new MoveSlotCommand(slot, position, distanceX, distanceY));
+			//position.setLocation(position.getX() - distanceX, position.getY() - distanceY);
+			if(command==null) {
+				command=new MoveSlotCommand(slot, position, distanceX, distanceY, startPoz);
+				pageView.getCommandManager().addCommand(command);
+			}else {
+				command.setSlot(slot);
+				command.setDistanceX(distanceX);
+				command.setDistanceY(distanceY);
+				command.setPosition(position);
+				command.doCommand();
+			}
 		}
 		
 		start = end;
