@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import helpers.ImageResizer;
+import view.MainFrame;
 
 public class UndoAction extends AbstractAction {
 	
@@ -14,13 +15,13 @@ public class UndoAction extends AbstractAction {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0)); //0 specifies no modifiers
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/undo.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/undo.png"));
+		putValue(NAME, "Undo");
 		putValue(SHORT_DESCRIPTION, "Undo your last action.");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getCommandManager().undoCommand();
 	}
 
 }
