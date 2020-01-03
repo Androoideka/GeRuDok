@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 
 import java.awt.geom.Point2D;
 
+import designmode.controller.MoveSlotCommand;
 import document.model.Slot;
 import document.view.MainPageView;
 import helpers.UserSpaceScaler;
@@ -28,8 +29,7 @@ public class GrabState extends State {
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
 			Point2D position = (Point2D) slot.getPosition().clone();
-			position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
-			slot.setPosition(position);
+			pageView.getCommandManager().addCommand(new MoveSlotCommand(slot, position, distanceX, distanceY));
 		}
 		
 		start = end;
