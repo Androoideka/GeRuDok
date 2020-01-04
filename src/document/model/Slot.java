@@ -8,6 +8,7 @@ import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
 import designmode.model.Handle;
+import designmode.view.Editor;
 import model.ModelElement;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
@@ -35,6 +36,11 @@ public abstract class Slot extends ModelElement {
 	
 	protected transient boolean selected = false;
 	
+	protected boolean textSlot;
+	protected boolean multimedialSlot;
+	
+	protected Editor contentEditor;
+	
 	public abstract Slot clone();
 	
 	public Slot(Point2D position, Dimension size) {
@@ -46,6 +52,9 @@ public abstract class Slot extends ModelElement {
 		setStroke();
 		this.strokeColour = currentStrokeColour;
 		this.paint = currentPaint;
+		
+		this.textSlot=false;
+		this.multimedialSlot=false;
 	}
 
 	public boolean isSelected() {
@@ -120,6 +129,30 @@ public abstract class Slot extends ModelElement {
 	
 	public void setSlotPainter(SlotPainter slotPainter) {
 		this.slotPainter=slotPainter;
+	}
+	
+	public boolean getTextSlot() {
+		return textSlot;
+	}
+	
+	public void setTextSlot(boolean bool) {
+		this.textSlot=bool;
+	}
+	
+	public boolean getMultimedialSlot() {
+		return multimedialSlot;
+	}
+	
+	public void setMultimedialSlot(boolean bool) {
+		this.multimedialSlot=bool;
+	}
+	
+	public Editor getEditor() {
+		return contentEditor;
+	}
+	
+	public void setEditor(Editor contentEditor) {
+		this.contentEditor=contentEditor;
 	}
 	
 	public Handle getHandleForPoint(Point2D point) {
