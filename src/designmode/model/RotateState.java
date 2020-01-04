@@ -3,12 +3,14 @@ package designmode.model;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.controller.RotateSlotCommand;
 import document.model.Slot;
 import document.view.MainPageView;
 import helpers.UserSpaceScaler;
 
 public class RotateState extends State {
 	private Point2D start;
+	private RotateSlotCommand command=null;
 
 	public RotateState(MainPageView pageView) {
 		super(pageView);
@@ -36,7 +38,14 @@ public class RotateState extends State {
 		double angle=Math.atan(tg);
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
-			slot.setAngle(angle);
+			if(command==null) {
+				command=new RotateSlotCommand(slot, angle);
+				pageView.getCommandManager().addCommand(command);
+			}else {
+				command.setSlot(slot);
+				command.setAngle(angle);
+				command.doCommand();
+			}
 		}
 	}
 
