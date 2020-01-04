@@ -32,7 +32,7 @@ public class MainFrame extends JFrame implements ClipboardOwner {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
-		setSize(new Dimension(screenSize.width/2, screenSize.height/2));
+		setSize(new Dimension(screenSize.width, screenSize.height));
 		
 		menu = new MainMenu();
 		setJMenuBar(menu);
