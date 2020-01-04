@@ -25,5 +25,20 @@ public class RescaleSlotCommand extends AbstractCommand {
 	public void undoCommand() {
 		slot.scale(selectedHandle, -distanceX, -distanceY);
 	}
-
+	
+	public void setSlot(Slot s) {
+		this.slot=s;
+	}
+	
+	public void setSelectedHandle(Handle h) {
+		this.selectedHandle=h;
+	}
+	
+	public void setDistanceX(double dx) {
+		this.distanceX=dx;
+	}
+	
+	public void setDistanceY(double dy) {
+		this.distanceY=dy;
+	}
 }

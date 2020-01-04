@@ -5,6 +5,11 @@ import document.model.Slot;
 public class RotateSlotCommand extends AbstractCommand {
 	private Slot slot;
 	private double angle;
+	
+	public RotateSlotCommand(Slot slot, double angle) {
+		this.slot=slot;
+		this.angle=angle;
+	}
 
 	@Override
 	public void doCommand() {
@@ -16,4 +21,11 @@ public class RotateSlotCommand extends AbstractCommand {
 		slot.setAngle(-angle);
 	}
 
+	public void setSlot(Slot s) {
+		this.slot=s;
+	}
+	
+	public void setAngle(double a) {
+		this.angle=a;
+	}
 }

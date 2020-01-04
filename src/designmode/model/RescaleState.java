@@ -11,6 +11,7 @@ import helpers.UserSpaceScaler;
 public class RescaleState extends State {
 	private Point2D start;
 	private Handle selectedHandle;
+	private RescaleSlotCommand command=null;
 
 	public RescaleState(MainPageView pageView) {
 		super(pageView);
@@ -30,7 +31,16 @@ public class RescaleState extends State {
 		double distanceY = end.getY() - start.getY();
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
-			pageView.getCommandManager().addCommand(new RescaleSlotCommand(slot, selectedHandle, distanceX, distanceY));
+			if(command==null) {
+				command=new RescaleSlotCommand(slot, selectedHandle, distanceX, distanceY);
+				pageView.getCommandManager().addCommand(command);
+			}else {
+				command.setSlot(slot);
+				command.setSelectedHandle(selectedHandle);
+				command.setDistanceX(distanceX);
+				command.setDistanceY(distanceY);
+				command.doCommand();
+			}
 		}
 		
 		start=end;
