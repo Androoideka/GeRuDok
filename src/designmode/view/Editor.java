@@ -12,5 +12,7 @@ public class Editor extends JFrame {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize(new Dimension(screenSize.width/4, screenSize.height/4));
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 }

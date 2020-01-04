@@ -3,7 +3,9 @@ package designmode.model;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.view.MultimedialEditor;
 import designmode.view.SlotContentChooser;
+import designmode.view.TextEditor;
 import document.model.Slot;
 import document.view.MainPageView;
 import helpers.UserSpaceScaler;
@@ -23,13 +25,15 @@ public class SelectState extends State {
 					SlotContentChooser scc=new SlotContentChooser(slot);
 					if(scc.getSelection().toString()=="Textual") {
 						slot.setTextSlot(true);
+						TextEditor te=new TextEditor();
+						slot.setEditor(te);
 					}else {
 						slot.setMultimedialSlot(true);
+						MultimedialEditor me=new MultimedialEditor();
+						slot.setEditor(me);
 					}
-				}else if(slot.getTextSlot()==true) {
-					
-				}else if(slot.getMultimedialSlot()==true) {
-					
+				}else if(slot.getEditor()!=null) {
+					slot.getEditor().show();
 				}
 			}
 		}
