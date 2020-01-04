@@ -27,10 +27,12 @@ public class SelectState extends State {
 						slot.setTextSlot(true);
 						TextEditor te=new TextEditor();
 						slot.setEditor(te);
-					}else {
+					}else if(scc.getSelection().toString()=="Multimedial") {
 						slot.setMultimedialSlot(true);
 						MultimedialEditor me=new MultimedialEditor();
 						slot.setEditor(me);
+					}else {
+						System.out.println("nije odabran editor");
 					}
 				}else if(slot.getEditor()!=null) {
 					slot.getEditor().show();
