@@ -15,10 +15,6 @@ public abstract class ModelElement implements IModelObserver, Serializable {
 
 	protected transient List<IViewObserver> viewObservers = new ArrayList<IViewObserver>();
 	
-	public String getName() {
-		return name;
-	}
-	
 	@Override
 	public String toString() {
 		return name;

@@ -11,8 +11,9 @@ import designmode.view.Palette;
 import observer.IViewObserver;
 import observer.ObserverNotification;
 import workspace.model.Document;
+import workspace.model.DocumentContents;
 
-public class DocumentView extends JSplitPane implements IViewObserver {//extends JPanel implements IViewObserver {
+public class DocumentView extends JSplitPane implements IViewObserver {
 	private Document d;
 	private JPanel rightPanel;
 	private JScrollPane pageScroller;
@@ -35,7 +36,7 @@ public class DocumentView extends JSplitPane implements IViewObserver {//extends
 		
 		this.d = d;
 		d.addObserver(this);
-		setName(d.getName());
+		setName(d.toString());
 	}
 	
 	public MainPageView getCurrentView() {
@@ -48,6 +49,12 @@ public class DocumentView extends JSplitPane implements IViewObserver {//extends
 	
 	@Override
 	public void update(ObserverNotification event) {
-		setName(d.getName());
+		if(event.getModelObserver() instanceof Document) {
+			setName(d.toString());
+		}
+		else if(event.getModelObserver() instanceof DocumentContents) {
+			mainPageView.setPage(null);
+			mainPageView.repaint();
+		}
 	}
 }

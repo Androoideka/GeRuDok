@@ -105,11 +105,10 @@ public class WorkspaceTabbedMenu extends JTabbedPane implements IViewObserver {
 			int index = this.indexOfComponent(docView);
 			if(event.getEventType() == ObserverEventType.RENAME) {
 				if(index != -1) {
-					this.setTitleAt(index, d.getName());
+					this.setTitleAt(index, d.toString());
 				}
 			}
 			else if(event.getEventType() == ObserverEventType.REMOVE) {
-				d.removeObserver(this);
 				docViews.remove(docView);
 				if(index != -1) {
 					this.removeTabAt(index);

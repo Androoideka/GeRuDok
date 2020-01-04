@@ -1,43 +1,31 @@
 package workspace.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.tree.MutableTreeNode;
 
-import document.model.Page;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
 
 public class Document extends MPNode {
 	
-	private List<Page> pages = new ArrayList<>();
+	private DocumentContents contents = new DocumentContents();
 	
 	public Document() {
 		this.setName("document");
 	}
 	
-	public List<Page> getPages() {
-		return pages;
+	public DocumentContents getContents() {
+		return contents;
+	}
+	
+	public void link(Document d) {
+		this.contents = d.contents;
+		notifyObservers(new ObserverNotification(contents, ObserverEventType.RENAME));
+	}
+	
+	public void unlink() {
+		contents = new DocumentContents(contents);
 	}
 
-	public int getNumberOfPages() {
-		return pages.size();
-	}
-	
-	public void addPage(Page p) {
-		if(!pages.contains(p)) {
-			pages.add(p);
-			notifyObservers(new ObserverNotification(p, ObserverEventType.ADD));
-		}
-	}
-	
-	public void removePage(Page p) {
-		if(pages.remove(p)) {
-			notifyObservers(new ObserverNotification(p, ObserverEventType.REMOVE));
-		}
-	}
-	
 	@Override
 	public void insert(MutableTreeNode node, int index) {
 		return;

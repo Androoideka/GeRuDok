@@ -16,6 +16,12 @@ public class Page extends ModelElement {
 		this.setName("page");
 	}
 	
+	public Page(Page p) {
+		for(Slot slot : p.slots) {
+			this.slots.add(slot.clone());
+		}
+	}
+	
 	public List<Slot> getSlots() {
 		return slots;
 	}

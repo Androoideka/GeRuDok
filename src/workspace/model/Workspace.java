@@ -21,10 +21,10 @@ public class Workspace extends MPNode {
 			if(!children.contains(p)) {
 				children.add(index, p);
 			}
+			notifyObservers(new ObserverNotification(p, ObserverEventType.ADD));
 			for(int i = 0; i < p.getChildCount(); i++) {
 				p.insert((MutableTreeNode)p.getChildAt(i), i);
 			}
-			notifyObservers(new ObserverNotification(p, ObserverEventType.ADD));
 		}
 	}
 

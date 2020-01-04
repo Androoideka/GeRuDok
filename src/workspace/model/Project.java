@@ -22,9 +22,6 @@ public class Project extends MPNode {
 			if(!children.contains(d)) {
 				children.add(index, d);
 			}
-			for(int i = 0; i < d.getChildCount(); i++) {
-				d.insert((MutableTreeNode)d.getChildAt(i), i);
-			}
 			notifyObservers(new ObserverNotification(d, ObserverEventType.ADD));
 		}
 	}

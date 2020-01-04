@@ -1,6 +1,7 @@
 package document.view;
 
 import java.awt.Dimension;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,6 +17,7 @@ import document.model.Page;
 import observer.IViewObserver;
 import observer.ObserverNotification;
 import workspace.model.Document;
+import workspace.model.DocumentContents;
 
 public class PageSlider extends JPanel implements IViewObserver {
 	
@@ -37,22 +39,14 @@ public class PageSlider extends JPanel implements IViewObserver {
 	    
 		this.d = d;
 		d.addObserver(this);
-		setName(d.getName());
+		setName(d.toString());
 		
-		JButton newPageButton = new JButton("Add");
-		newPageButton.addActionListener(new NewPageAction(this));
-		newPage = new JPanel();
-		newPage.add(newPageButton);
-		this.add(newPage, c);
-		
-		for(Page p : d.getPages()) {
-			createNewPage(p);
-		}
+		refreshContents();
 	}
 	
 	public void createNewPage(Page p) {
 		this.remove(newPage);
-		d.addPage(p);
+		d.getContents().addPage(p);
 		
 		MiniPageView pageView = new MiniPageView(p);
 		Dimension size = new Dimension();
@@ -67,12 +61,29 @@ public class PageSlider extends JPanel implements IViewObserver {
 		this.add(newPage, c);
 	}
 	
-	public Document getDocument() {
-		return d;
+	private void refreshContents() {
+		this.removeAll();
+		
+		JButton newPageButton = new JButton("Add");
+		newPageButton.addActionListener(new NewPageAction(this));
+		newPage = new JPanel();
+		newPage.add(newPageButton);
+		this.add(newPage, c);
+		
+		for(Page p : d.getContents().getPages()) {
+			createNewPage(p);
+		}
 	}
 	
 	@Override
 	public void update(ObserverNotification event) {
-		setName(d.getName());
+		if(event.getModelObserver() instanceof Document) {
+			setName(d.toString());
+		}
+		else if(event.getModelObserver() instanceof DocumentContents) {
+			refreshContents();
+			revalidate();
+			repaint();
+		}
 	}
 }
