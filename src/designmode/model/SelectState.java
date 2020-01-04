@@ -3,6 +3,7 @@ package designmode.model;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+import designmode.view.SlotContentChooser;
 import document.model.Slot;
 import document.view.MainPageView;
 import helpers.UserSpaceScaler;
@@ -15,9 +16,24 @@ public class SelectState extends State {
 
 	public void mousePressed(MouseEvent e) {
 		Point2D point = UserSpaceScaler.getInstance().toUserSpace(e.getPoint(), pageView.getSize());
-		if (e.getButton()==MouseEvent.BUTTON1) {
-			
-			Slot slot = pageView.getPage().findSlotAtPosition(point);
+		Slot slot = pageView.getPage().findSlotAtPosition(point);
+		if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()==2) {
+			if(slot!=null && pageView.getSelectionModel().getNumberOfSlots()==1) {
+				if(slot.getTextSlot()==false && slot.getMultimedialSlot()==false) {
+					SlotContentChooser scc=new SlotContentChooser(slot);
+					if(scc.getSelection().toString()=="Textual") {
+						slot.setTextSlot(true);
+					}else {
+						slot.setMultimedialSlot(true);
+					}
+				}else if(slot.getTextSlot()==true) {
+					
+				}else if(slot.getMultimedialSlot()==true) {
+					
+				}
+			}
+		}
+		else if(e.getButton()==MouseEvent.BUTTON1) {
 			if(slot == null || !pageView.getSelectionModel().getSlots().contains(slot)) {
 				if(!e.isControlDown()) {
 					pageView.getSelectionModel().removeAll();
