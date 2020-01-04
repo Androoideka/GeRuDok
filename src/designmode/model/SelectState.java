@@ -35,6 +35,7 @@ public class SelectState extends State {
 						System.out.println("nije odabran editor");
 					}
 				}else if(slot.getTextEditor()!=null) {
+					slot.getTextEditor().getTP().setEditable(false);
 					slot.getTextEditor().show();
 				}else if(slot.getMultiEditor()!=null) {
 					slot.getMultiEditor().show();
