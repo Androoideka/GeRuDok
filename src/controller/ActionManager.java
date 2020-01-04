@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
+import javax.swing.text.BadLocationException;
 
 import designmode.controller.BoldAction;
 import designmode.controller.ChangeFontAction;
