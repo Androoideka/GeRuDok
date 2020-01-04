@@ -14,7 +14,8 @@ public class TextEditor extends Editor {
 		TextEditorToolbar tet=new TextEditorToolbar();
 		add(tet, BorderLayout.NORTH);
 		tp=new JTextPane();
-		tp.setPreferredSize(new Dimension(250, 125));
+		tp.setPreferredSize(new Dimension(250, 400));
+		tp.setEditable(false);
 		JScrollPane sp=new JScrollPane(tp);
 		add(sp, BorderLayout.SOUTH);
 	}

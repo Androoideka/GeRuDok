@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
-import javax.swing.text.BadLocationException;
 
 import designmode.controller.BoldAction;
 import designmode.controller.ChangeFontAction;
@@ -13,6 +12,7 @@ import designmode.controller.CircleAction;
 import designmode.controller.CopyAction;
 import designmode.controller.CutAction;
 import designmode.controller.DeleteSlotAction;
+import designmode.controller.EditableAction;
 import designmode.controller.ItalicAction;
 import designmode.controller.PasteAction;
 import designmode.controller.RectangleAction;
@@ -81,6 +81,7 @@ public class ActionManager {
 		paletteActions.add(new TriangleAction());
 		paletteActions.add(new DeleteSlotAction());
 		
+		textEditorActions.add(new EditableAction());
 		textEditorActions.add(new ChangeFontAction());
 		textEditorActions.add(new ChangeFontSizeAction());
 		textEditorActions.add(new BoldAction());
