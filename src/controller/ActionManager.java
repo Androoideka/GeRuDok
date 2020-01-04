@@ -5,15 +5,20 @@ import java.util.List;
 
 import javax.swing.AbstractAction;
 
+import designmode.controller.BoldAction;
+import designmode.controller.ChangeFontAction;
+import designmode.controller.ChangeFontSizeAction;
 import designmode.controller.CircleAction;
 import designmode.controller.CopyAction;
 import designmode.controller.CutAction;
 import designmode.controller.DeleteSlotAction;
+import designmode.controller.ItalicAction;
 import designmode.controller.PasteAction;
 import designmode.controller.RectangleAction;
 import designmode.controller.RedoAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
+import designmode.controller.UnderlineAction;
 import designmode.controller.UndoAction;
 import document.controller.CloseAction;
 import workspace.controller.DeleteAction;
@@ -37,6 +42,7 @@ public class ActionManager {
 	private List<AbstractAction> helpActions = new ArrayList<>();
 	private List<AbstractAction> viewActions = new ArrayList<>();
 	private List<AbstractAction> paletteActions = new ArrayList<>();
+	private List<AbstractAction> textEditorActions = new ArrayList<>();
 	
 	private ActionManager() {
 		newAction = new NewAction();
@@ -73,6 +79,12 @@ public class ActionManager {
 		paletteActions.add(new CircleAction());
 		paletteActions.add(new TriangleAction());
 		paletteActions.add(new DeleteSlotAction());
+		
+		textEditorActions.add(new ChangeFontAction());
+		textEditorActions.add(new ChangeFontSizeAction());
+		textEditorActions.add(new BoldAction());
+		textEditorActions.add(new ItalicAction());
+		textEditorActions.add(new UnderlineAction());
 	}
 
 	public List<AbstractAction> getFileActions() {
@@ -109,6 +121,10 @@ public class ActionManager {
 	
 	public List<AbstractAction> getPaletteActions() {
 		return paletteActions;
+	}
+	
+	public List<AbstractAction> getTextEditorActions(){
+		return textEditorActions;
 	}
 
 	public AbstractAction getNewAction() {
