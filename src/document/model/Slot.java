@@ -9,6 +9,8 @@ import java.awt.geom.Point2D;
 
 import designmode.model.Handle;
 import designmode.view.Editor;
+import designmode.view.MultimedialEditor;
+import designmode.view.TextEditor;
 import model.ModelElement;
 import observer.ObserverEventType;
 import observer.ObserverNotification;
@@ -39,7 +41,8 @@ public abstract class Slot extends ModelElement {
 	protected boolean textSlot;
 	protected boolean multimedialSlot;
 	
-	protected Editor contentEditor;
+	protected TextEditor textEditor;
+	protected MultimedialEditor multiEditor;
 	
 	public abstract Slot clone();
 	
@@ -55,6 +58,9 @@ public abstract class Slot extends ModelElement {
 		
 		this.textSlot=false;
 		this.multimedialSlot=false;
+		
+		this.textEditor=null;
+		this.multiEditor=null;
 	}
 
 	public boolean isSelected() {
@@ -147,12 +153,20 @@ public abstract class Slot extends ModelElement {
 		this.multimedialSlot=bool;
 	}
 	
-	public Editor getEditor() {
-		return contentEditor;
+	public TextEditor getTextEditor() {
+		return textEditor;
 	}
 	
-	public void setEditor(Editor contentEditor) {
-		this.contentEditor=contentEditor;
+	public void setTextEditor(TextEditor textEditor) {
+		this.textEditor=textEditor;
+	}
+	
+	public MultimedialEditor getMultiEditor() {
+		return multiEditor;
+	}
+	
+	public void setMultiEditor(MultimedialEditor multiEditor) {
+		this.multiEditor=multiEditor;
 	}
 	
 	public Handle getHandleForPoint(Point2D point) {

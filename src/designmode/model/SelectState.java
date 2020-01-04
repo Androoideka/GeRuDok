@@ -26,16 +26,18 @@ public class SelectState extends State {
 					if(scc.getSelection().toString()=="Textual") {
 						slot.setTextSlot(true);
 						TextEditor te=new TextEditor();
-						slot.setEditor(te);
+						slot.setTextEditor(te);
 					}else if(scc.getSelection().toString()=="Multimedial") {
 						slot.setMultimedialSlot(true);
 						MultimedialEditor me=new MultimedialEditor();
-						slot.setEditor(me);
+						slot.setMultiEditor(me);
 					}else {
 						System.out.println("nije odabran editor");
 					}
-				}else if(slot.getEditor()!=null) {
-					slot.getEditor().show();
+				}else if(slot.getTextEditor()!=null) {
+					slot.getTextEditor().show();
+				}else if(slot.getMultiEditor()!=null) {
+					slot.getMultiEditor().show();
 				}
 			}
 		}

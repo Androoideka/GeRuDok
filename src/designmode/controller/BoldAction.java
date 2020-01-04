@@ -4,11 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
+import designmode.view.SelectedText;
 import helpers.ImageResizer;
+import view.MainFrame;
 
 public class BoldAction extends AbstractAction {
+	private StyledDocument document;
+	private JTextPane tp;
 	
 	public BoldAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
@@ -20,8 +31,16 @@ public class BoldAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		document = new DefaultStyledDocument();
+		tp=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getTP();
+		tp.addCaretListener(new SelectedText(document));
+        try {
+			document.insertString(0, tp.getText(), null);
+		} catch (BadLocationException ex) {
+			ex.printStackTrace();
+		}
+		Style style=StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+		Style bold=document.addStyle("bold", style);
+		StyleConstants.setBold(bold, true);
 	}
-
 }
