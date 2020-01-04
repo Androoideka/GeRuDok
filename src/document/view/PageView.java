@@ -35,7 +35,7 @@ public abstract class PageView extends JPanel implements IViewObserver {
 		}
 		
 		if(this.page != null) {
-			page.removeObserver(this);
+			this.page.removeObserver(this);
 		}
 		
 		this.page = page;
@@ -44,7 +44,7 @@ public abstract class PageView extends JPanel implements IViewObserver {
 			for(Slot slot : page.getSlots()) {
 				slot.addObserver(this);
 			}
-			setName(page.getName());
+			setName(page.toString());
 		}
 	}
 	

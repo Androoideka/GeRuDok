@@ -17,19 +17,23 @@ import designmode.controller.TriangleAction;
 import designmode.controller.UndoAction;
 import document.controller.CloseAction;
 import workspace.controller.DeleteAction;
+import workspace.controller.LinkAction;
 import workspace.controller.NewAction;
 import workspace.controller.OpenAction;
 import workspace.controller.RenameAction;
 import workspace.controller.SaveAction;
 import workspace.controller.SaveAsAction;
 import workspace.controller.SwitchWorkspaceAction;
+import workspace.controller.UnlinkAction;
 
 public class ActionManager {
 	private static ActionManager instance=null;
 	
 	private AbstractAction newAction;
 	private List<AbstractAction> fileActions = new ArrayList<>();
-	private List<AbstractAction> editActions = new ArrayList<>();
+	private List<AbstractAction> commandActions = new ArrayList<>();
+	private List<AbstractAction> manipulateActions = new ArrayList<>();
+	private List<AbstractAction> documentActions = new ArrayList<>();
 	private List<AbstractAction> helpActions = new ArrayList<>();
 	private List<AbstractAction> viewActions = new ArrayList<>();
 	private List<AbstractAction> paletteActions = new ArrayList<>();
@@ -47,13 +51,18 @@ public class ActionManager {
 		
 		fileActions.add(new SaveAction());
 		
-		editActions.add(new RenameAction());
-		editActions.add(new DeleteAction());
-		editActions.add(new CopyAction());
-		editActions.add(new CutAction());
-		editActions.add(new PasteAction());
-		editActions.add(new UndoAction());
-		editActions.add(new RedoAction());
+		commandActions.add(new UndoAction());
+		commandActions.add(new RedoAction());
+		
+		commandActions.add(new CutAction());
+		commandActions.add(new CopyAction());
+		commandActions.add(new PasteAction());
+		
+		manipulateActions.add(new RenameAction());
+		manipulateActions.add(new DeleteAction());
+		
+		documentActions.add(new LinkAction());
+		documentActions.add(new UnlinkAction());
 		
 		viewActions.add(new CloseAction());
 		
@@ -70,7 +79,23 @@ public class ActionManager {
 		return fileActions;
 	}
 
+	public List<AbstractAction> getCommandActions() {
+		return commandActions;
+	}
+
+	public List<AbstractAction> getManipulateActions() {
+		return manipulateActions;
+	}
+
+	public List<AbstractAction> getDocumentActions() {
+		return documentActions;
+	}
+
 	public List<AbstractAction> getEditActions() {
+		ArrayList<AbstractAction> editActions = new ArrayList<>();
+		editActions.addAll(commandActions);
+		editActions.addAll(manipulateActions);
+		editActions.addAll(documentActions);
 		return editActions;
 	}
 	

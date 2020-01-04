@@ -15,9 +15,9 @@ public abstract class MPNode extends ModelElement implements MutableTreeNode {
 	
 	protected List<MPNode> children;
 	private String file=null;
+	private boolean changed=true;
 	
 	protected transient MPNode parent;
-	private transient boolean changed=true;
 
 	@Override
 	public Enumeration<? extends TreeNode> children() {
