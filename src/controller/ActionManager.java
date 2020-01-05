@@ -6,8 +6,6 @@ import java.util.List;
 import javax.swing.AbstractAction;
 
 import designmode.controller.BoldAction;
-import designmode.controller.ChangeFontAction;
-import designmode.controller.ChangeFontSizeAction;
 import designmode.controller.CircleAction;
 import designmode.controller.CopyAction;
 import designmode.controller.CutAction;
@@ -82,8 +80,6 @@ public class ActionManager {
 		paletteActions.add(new DeleteSlotAction());
 		
 		textEditorActions.add(new EditableAction());
-		textEditorActions.add(new ChangeFontAction());
-		textEditorActions.add(new ChangeFontSizeAction());
 		textEditorActions.add(new BoldAction());
 		textEditorActions.add(new ItalicAction());
 		textEditorActions.add(new UnderlineAction());
