@@ -1,5 +1,6 @@
 package designmode.controller;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -14,12 +15,13 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import designmode.view.SelectedText;
+import designmode.view.TextEditor;
 import helpers.ImageResizer;
 import view.MainFrame;
 
 public class BoldAction extends AbstractAction {
-	private StyledDocument document;
-	private JTextPane tp;
+	//private StyledDocument document;
+	private TextEditor te;
 	
 	public BoldAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
@@ -31,7 +33,7 @@ public class BoldAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		document=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getDoc();
+		/*document=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getDoc();
 		tp=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getTP();
         try {
 			document.insertString(0, tp.getText(), null);
@@ -46,6 +48,8 @@ public class BoldAction extends AbstractAction {
 			tp.setText(document.getText(0, document.getLength()));
 		} catch (BadLocationException e1) {
 			e1.printStackTrace();
-		}
+		}*/
+		te=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor();
+		te.setFontStyle(Font.BOLD);
 	}
 }
