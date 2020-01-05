@@ -1,7 +1,5 @@
 package document.view;
 
-import java.awt.MouseInfo;
-import java.awt.PointerInfo;
 import java.awt.datatransfer.Transferable;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
