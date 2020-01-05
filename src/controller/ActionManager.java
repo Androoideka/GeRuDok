@@ -11,6 +11,7 @@ import designmode.controller.CopyAction;
 import designmode.controller.CutAction;
 import designmode.controller.DeleteSlotAction;
 import designmode.controller.EditableAction;
+import designmode.controller.ImportPictureAction;
 import designmode.controller.ItalicAction;
 import designmode.controller.PasteAction;
 import designmode.controller.RectangleAction;
@@ -42,6 +43,7 @@ public class ActionManager {
 	private List<AbstractAction> viewActions = new ArrayList<>();
 	private List<AbstractAction> paletteActions = new ArrayList<>();
 	private List<AbstractAction> textEditorActions = new ArrayList<>();
+	private List<AbstractAction> multimedialEditorActions = new ArrayList<>();
 	
 	private ActionManager() {
 		newAction = new NewAction();
@@ -83,6 +85,8 @@ public class ActionManager {
 		textEditorActions.add(new BoldAction());
 		textEditorActions.add(new ItalicAction());
 		textEditorActions.add(new UnderlineAction());
+		
+		multimedialEditorActions.add(new ImportPictureAction());
 	}
 
 	public List<AbstractAction> getFileActions() {
@@ -123,6 +127,10 @@ public class ActionManager {
 	
 	public List<AbstractAction> getTextEditorActions(){
 		return textEditorActions;
+	}
+	
+	public List<AbstractAction> getMultimedialEditorActions(){
+		return multimedialEditorActions;
 	}
 
 	public AbstractAction getNewAction() {
