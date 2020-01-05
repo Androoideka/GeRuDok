@@ -2,6 +2,7 @@ package designmode.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -11,6 +12,9 @@ import javax.swing.text.StyledDocument;
 public class TextEditor extends Editor {
 	private JTextPane tp;
 	private StyledDocument document;
+	private String fontName="Calibri";
+	private int fontStyle=0;
+	private int fontSize=14;
 	
 	public TextEditor() {
 		super();
@@ -30,5 +34,32 @@ public class TextEditor extends Editor {
 	
 	public StyledDocument getDoc() {
 		return document;
+	}
+	
+	public String getFontName() {
+		return fontName;
+	}
+	
+	public void setFontName(String fontName) {
+		this.fontName=fontName;
+		tp.setFont(new Font(fontName, fontStyle, fontSize));
+	}
+	
+	public int getFontStyle() {
+		return fontStyle;
+	}
+	
+	public void setFontStyle(int fontStyle) {
+		this.fontStyle=fontStyle;
+		tp.setFont(new Font(fontName, fontStyle, fontSize));
+	}
+	
+	public int getFontSize() {
+		return fontSize;
+	}
+	
+	public void setFontSize(int fontSize) {
+		this.fontSize=fontSize;
+		tp.setFont(new Font(fontName, fontStyle, fontSize)); 
 	}
 }

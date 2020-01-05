@@ -22,6 +22,7 @@ public class EditableAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("WOOOO");
 		JTextPane tp=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getTP();
 		tp.setEditable(true);
 	}
