@@ -29,15 +29,10 @@ public class StartListener extends WindowAdapter {
 				if(load instanceof Workspace) {
 					wsPrev = (Workspace)load;
 				}
-				else {
-					wsPrev = new Workspace();
-				}
 			}
-			else {
-				if(buttonClicked == JOptionPane.NO_OPTION) {
-					wsPrev = new Workspace();
-				}
-			}
+		}
+		if(wsPrev == null) {
+			wsPrev = new Workspace();
 		}
 		MainFrame.getInstance().getWorkspaceTree().setRoot(wsPrev);
 	}
