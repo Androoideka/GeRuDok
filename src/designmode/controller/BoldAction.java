@@ -31,16 +31,21 @@ public class BoldAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		document = new DefaultStyledDocument();
+		document=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getDoc();
 		tp=MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getSelectionModel().getSlots().get(0).getTextEditor().getTP();
-		tp.addCaretListener(new SelectedText(document));
         try {
 			document.insertString(0, tp.getText(), null);
 		} catch (BadLocationException ex) {
 			ex.printStackTrace();
 		}
+        tp.addCaretListener(new SelectedText(document));
 		Style style=StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
 		Style bold=document.addStyle("bold", style);
 		StyleConstants.setBold(bold, true);
+		try {
+			tp.setText(document.getText(0, document.getLength()));
+		} catch (BadLocationException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
