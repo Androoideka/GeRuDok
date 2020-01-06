@@ -9,6 +9,13 @@ public class CircleSlotPainter extends SlotPainter {
 	}
 	
 	public void recalcShape(Slot slot) {
-		shape=new Ellipse2D.Float((float)slot.getPosition().getX(), (float)slot.getPosition().getY(), (float)slot.getSize().getWidth(), (float)slot.getSize().getHeight());
+		if(slot.getSize().getWidth() < 0) {
+			shape=new Ellipse2D.Float((float)(slot.getPosition().getX() + slot.getSize().getWidth()),
+					(float)(slot.getPosition().getY() + slot.getSize().getHeight()),
+					(float)Math.abs(slot.getSize().getWidth()), (float)Math.abs(slot.getSize().getHeight()));
+		}
+		else {
+			shape=new Ellipse2D.Float((float)slot.getPosition().getX(), (float)slot.getPosition().getY(), (float)slot.getSize().getWidth(), (float)slot.getSize().getHeight());
+		}
 	}
 }

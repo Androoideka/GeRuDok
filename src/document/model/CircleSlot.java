@@ -18,7 +18,6 @@ public class CircleSlot extends Slot {
 		double x=position.getX(), y=position.getY(),
 			sizeBoth = size.getWidth();
 		if(h == Handle.NORTHWEST){
-			if(sizeBoth - distanceX - distanceY < 25) return;
 			x += distanceX;
 			y += distanceX;
 			x += distanceY;
@@ -27,17 +26,14 @@ public class CircleSlot extends Slot {
 			sizeBoth -= distanceY;
 		}
 		if(h == Handle.SOUTHWEST){
-			if(sizeBoth - distanceX < 25) return;
 			x += distanceX;
 			sizeBoth -= distanceX;
 		}
 		if(h == Handle.NORTHEAST){
-			if(sizeBoth - distanceY < 25) return;
 			y += distanceY;
 			sizeBoth -= distanceY;
 		}
 		if(h == Handle.SOUTHEAST){
-			if(sizeBoth + distanceX + distanceY < 25) return;
 			sizeBoth += distanceX;
 			sizeBoth += distanceY;
 		}
