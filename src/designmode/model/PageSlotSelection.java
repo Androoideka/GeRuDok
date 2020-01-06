@@ -13,7 +13,7 @@ import document.model.Slot;
 public class PageSlotSelection implements Transferable, ClipboardOwner {
 	public static DataFlavor slotFlavor;
 	private DataFlavor[] supportedFlavors= {slotFlavor};
-	private ArrayList<Slot> pageSlots=new ArrayList<>();
+	public ArrayList<Slot> pageSlots=new ArrayList<>();
 	
 	public PageSlotSelection(ArrayList<Slot> slots) {
 		pageSlots = slots;
@@ -48,5 +48,8 @@ public class PageSlotSelection implements Transferable, ClipboardOwner {
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
 		return (flavor.equals(slotFlavor));
 	}
-
+	
+	public ArrayList<Slot> getPageSlots(){
+		return pageSlots;
+	}
 }
