@@ -12,7 +12,7 @@ import view.MainFrame;
 public class UndoAction extends AbstractAction {
 	
 	public UndoAction() {
-		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0)); //0 specifies no modifiers
+		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Z,ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/undo.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/undo.png"));
 		putValue(NAME, "Undo");

@@ -31,7 +31,8 @@ public class RescaleState extends State {
 		double distanceY = end.getY() - start.getY();
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
-			if(command==null) {
+			RescaleSlotCommand rescale=slot.getRescaleCommand();
+			if(rescale==null) {
 				command=new RescaleSlotCommand(slot, selectedHandle, distanceX, distanceY);
 				pageView.getCommandManager().addCommand(command);
 			}else {
