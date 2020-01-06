@@ -7,15 +7,11 @@ import document.model.Slot;
 public class MoveSlotCommand extends AbstractCommand {
 	private Slot slot;
 	private Point2D position;
-	private double distanceX;
-	private double distanceY;
 	private Point2D startPoz;
 	
-	public MoveSlotCommand(Slot slot, Point2D position, double distanceX, double distanceY, Point2D start) {
+	public MoveSlotCommand(Slot slot, Point2D position, Point2D start) {
 		this.slot=slot;
 		this.position=position;
-		this.distanceX=distanceX;
-		this.distanceY=distanceY;
 		this.startPoz=start;
 	}
 	
@@ -51,13 +47,5 @@ public class MoveSlotCommand extends AbstractCommand {
 	
 	public void setPosition(Point2D pos) {
 		this.position=pos;
-	}
-	
-	public void setDistanceX(double dx) {
-		this.distanceX=dx;
-	}
-	
-	public void setDistanceY(double dy) {
-		this.distanceY=dy;
 	}
 }

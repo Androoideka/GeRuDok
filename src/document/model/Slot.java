@@ -7,8 +7,8 @@ import java.awt.Paint;
 import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
+import designmode.controller.MoveSlotCommand;
 import designmode.model.Handle;
-import designmode.view.Editor;
 import designmode.view.MultimedialEditor;
 import designmode.view.TextEditor;
 import model.ModelElement;
@@ -43,6 +43,8 @@ public abstract class Slot extends ModelElement {
 	
 	protected TextEditor textEditor;
 	protected MultimedialEditor multiEditor;
+	
+	protected MoveSlotCommand moveCommand=null;
 	
 	public abstract Slot clone();
 	
@@ -207,4 +209,8 @@ public abstract class Slot extends ModelElement {
 	}
 	
 	public abstract void scale(Handle h, double distanceX, double distanceY);
+	
+	public MoveSlotCommand getMoveCommand() {
+		return moveCommand;
+	}
 }
