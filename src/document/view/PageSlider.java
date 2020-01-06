@@ -15,6 +15,7 @@ import designmode.controller.NewPageAction;
 import document.controller.PageSelectionListener;
 import document.model.Page;
 import observer.IViewObserver;
+import observer.ObserverEventType;
 import observer.ObserverNotification;
 import workspace.model.Document;
 import workspace.model.DocumentContents;
@@ -39,13 +40,19 @@ public class PageSlider extends JPanel implements IViewObserver {
 	    
 		this.d = d;
 		d.addObserver(this);
+		d.getContents().addObserver(this);
+		
 		setName(d.toString());
+		
+		JButton newPageButton = new JButton("Add");
+		newPageButton.addActionListener(new NewPageAction(this));
+		newPage = new JPanel();
+		newPage.add(newPageButton);
 		
 		refreshContents();
 	}
 	
-	public void createNewPage(Page p) {
-		this.remove(newPage);
+	public MiniPageView createNewPage(Page p) {
 		d.getContents().addPage(p);
 		
 		MiniPageView pageView = new MiniPageView(p);
@@ -54,25 +61,27 @@ public class PageSlider extends JPanel implements IViewObserver {
 		pageView.setPreferredSize(size);
 		pageView.addMouseListener(selectionListener);
 		
-		pageViews.add(pageView);
-		
-		this.add(pageView, c);
-		c.gridy++;
-		this.add(newPage, c);
+		return pageView;
 	}
 	
 	private void refreshContents() {
 		this.removeAll();
 		
-		JButton newPageButton = new JButton("Add");
-		newPageButton.addActionListener(new NewPageAction(this));
-		newPage = new JPanel();
-		newPage.add(newPageButton);
-		this.add(newPage, c);
+		c.gridy = 0;
 		
-		for(Page p : d.getContents().getPages()) {
-			createNewPage(p);
+		for(int i = 0; i < d.getContents().getNumberOfPages(); i++) {
+			Page p = d.getContents().getPages().get(i);
+			if(pageViews.size() < i+1 || pageViews.get(i).getPage() != p) {
+				pageViews.add(i, createNewPage(p));
+			}
 		}
+		
+		for(MiniPageView pv : pageViews) {
+			this.add(pv, c);
+			c.gridy++;
+		}
+		
+		this.add(newPage, c);
 	}
 	
 	@Override
@@ -80,7 +89,12 @@ public class PageSlider extends JPanel implements IViewObserver {
 		if(event.getModelObserver() instanceof Document) {
 			setName(d.toString());
 		}
-		else if(event.getModelObserver() instanceof DocumentContents) {
+		else {
+			if(event.getEventType() == ObserverEventType.REMOVE && event.getModelObserver() instanceof DocumentContents) {
+				event.getModelObserver().removeObserver(this);
+				d.getContents().addObserver(this);
+				pageViews.clear();
+			}
 			refreshContents();
 			revalidate();
 			repaint();
