@@ -18,12 +18,15 @@ public class Document extends MPNode {
 	}
 	
 	public void link(Document d) {
+		DocumentContents toSend = contents;
 		this.contents = d.contents;
-		notifyObservers(new ObserverNotification(contents, ObserverEventType.RENAME));
+		notifyObservers(new ObserverNotification(toSend, ObserverEventType.REMOVE));
 	}
 	
 	public void unlink() {
+		DocumentContents toSend = contents;
 		contents = new DocumentContents(contents);
+		notifyObservers(new ObserverNotification(toSend, ObserverEventType.REMOVE));
 	}
 
 	@Override
