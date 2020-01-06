@@ -44,15 +44,15 @@ public class MainPageView extends PageView {
 		return commandManager;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void paste() {
 		Transferable clipboardContent=MainFrame.getInstance().getClipboard().getContents(MainFrame.getInstance());
 		if(clipboardContent!=null && clipboardContent.isDataFlavorSupported(PageSlotSelection.slotFlavor)){
 			try {
 				Slot slot=null;
-				@SuppressWarnings("unchecked")
-				ArrayList<Slot> slots=(ArrayList<Slot>)clipboardContent.getTransferData(PageSlotSelection.slotFlavor);
+				ArrayList<Slot> slots=(ArrayList<Slot>) clipboardContent.getTransferData(PageSlotSelection.slotFlavor);
 				for(int i=0;i<slots.size();i++) {
-					if(slots.get(i) instanceof Slot) {
+					//if(slots.get(i) instanceof Slot) {
 						slot=slots.get(i).clone();
 						Point2D newLocation=(Point2D)slot.getPosition().clone();
 						//PointerInfo pi=MouseInfo.getPointerInfo();
@@ -68,7 +68,7 @@ public class MainPageView extends PageView {
 							slot.setSlotPainter(new TriangleSlotPainter(slot));
 						}
 						page.addSlot(slot);
-					}
+					//}
 				}
 			}catch(Exception e) {
 				ExceptionHandler.createDialog(e);

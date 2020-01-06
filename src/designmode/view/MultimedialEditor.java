@@ -21,7 +21,6 @@ public class MultimedialEditor extends Editor {
 		icon=null;
 		pic=new JLabel(icon, SwingUtilities.CENTER);
 		add(pic, BorderLayout.CENTER);
-		//JLabel timskaSlika = new JLabel(new ImageIcon("tim/tim_201_14.PNG"));
 	}
 	
 	public MultimedialEditorToolbar getMultiToolbar() {
