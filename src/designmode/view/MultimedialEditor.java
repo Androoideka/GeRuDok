@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class MultimedialEditor extends Editor {
 	private MultimedialEditorToolbar met;
@@ -18,7 +19,7 @@ public class MultimedialEditor extends Editor {
 		add(met, BorderLayout.NORTH);
 		img=null;
 		icon=null;
-		pic=new JLabel();
+		pic=new JLabel(icon, SwingUtilities.CENTER);
 		add(pic, BorderLayout.CENTER);
 		//JLabel timskaSlika = new JLabel(new ImageIcon("tim/tim_201_14.PNG"));
 	}
