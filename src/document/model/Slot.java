@@ -8,6 +8,8 @@ import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
 import designmode.controller.MoveSlotCommand;
+import designmode.controller.RescaleSlotCommand;
+import designmode.controller.RotateSlotCommand;
 import designmode.model.Handle;
 import designmode.view.MultimedialEditor;
 import designmode.view.TextEditor;
@@ -45,6 +47,8 @@ public abstract class Slot extends ModelElement {
 	protected MultimedialEditor multiEditor;
 	
 	protected MoveSlotCommand moveCommand=null;
+	protected RescaleSlotCommand rescaleCommand=null;
+	protected RotateSlotCommand rotateCommand=null;
 	
 	public abstract Slot clone();
 	
@@ -212,5 +216,13 @@ public abstract class Slot extends ModelElement {
 	
 	public MoveSlotCommand getMoveCommand() {
 		return moveCommand;
+	}
+	
+	public RescaleSlotCommand getRescaleCommand() {
+		return rescaleCommand;
+	}
+	
+	public RotateSlotCommand getRotateCommand() {
+		return rotateCommand;
 	}
 }
