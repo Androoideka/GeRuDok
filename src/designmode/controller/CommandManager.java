@@ -3,7 +3,6 @@ package designmode.controller;
 import java.util.ArrayList;
 
 import controller.ActionManager;
-import view.MainFrame;
 
 public class CommandManager {
 	private ArrayList<AbstractCommand> commands=new ArrayList<>();
@@ -21,21 +20,21 @@ public class CommandManager {
 		if(currentCommand<commands.size()) {
 			commands.get(currentCommand).doCommand();
 			currentCommand++;
-			ActionManager.getInstance().getEditActions().get(5).setEnabled(true);
+			ActionManager.getInstance().getCommandActions().get(0).setEnabled(true);
 		}
 		if(currentCommand==commands.size()) {
-			ActionManager.getInstance().getEditActions().get(6).setEnabled(false);
+			ActionManager.getInstance().getCommandActions().get(1).setEnabled(false);
 		}
 	}
 	
 	public void undoCommand() {
 		if(currentCommand>0) {
-			ActionManager.getInstance().getEditActions().get(6).setEnabled(true);
+			ActionManager.getInstance().getCommandActions().get(1).setEnabled(true);
 			currentCommand--;
 			commands.get(currentCommand).undoCommand();
 		}
 		if(currentCommand==0) {
-			ActionManager.getInstance().getEditActions().get(5).setEnabled(false);
+			ActionManager.getInstance().getCommandActions().get(0).setEnabled(false);
 		}
 	}
 }
