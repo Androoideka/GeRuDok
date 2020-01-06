@@ -30,7 +30,7 @@ public class PasteAction extends AbstractAction {
 			if(slots==null) {
 				throw new NoSelectedSlotsException();
 			}
-			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().paste();
+			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getCommandManager().addCommand(new PasteCommand(slots));;
 		}catch (Exception e) {
 			ExceptionHandler.createDialog(e);
 		}
