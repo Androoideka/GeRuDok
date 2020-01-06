@@ -19,6 +19,8 @@ public class PasteCommand extends AbstractCommand {
 
 	@Override
 	public void undoCommand() {
-		MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getStateManager().setDeleteState();
+		for (Slot slot : slots) {
+			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getPage().removeSlot(slot);
+		}
 	}
 }
