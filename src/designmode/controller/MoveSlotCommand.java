@@ -21,7 +21,6 @@ public class MoveSlotCommand extends AbstractCommand {
 	
 	@Override
 	public void doCommand() {
-		position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
 		slot.setPosition(position);
 	}
 	
@@ -42,8 +41,8 @@ public class MoveSlotCommand extends AbstractCommand {
 		}else {
 			pozY+=pomerajY;
 		}
-		position.setLocation(pozX, pozY);
-		slot.setPosition(position);
+		Point2D prevPosition=new Point2D.Double(pozX, pozY);
+		slot.setPosition(prevPosition);
 	}
 	
 	public void setSlot(Slot s) {
