@@ -8,6 +8,8 @@ import observer.ObserverEventType;
 import observer.ObserverNotification;
 
 public class Workspace extends MPNode {	
+	public static Project backup=null;
+	
 	public Workspace() {
 		children = new ArrayList<MPNode>();
 		this.setName("Workspace");

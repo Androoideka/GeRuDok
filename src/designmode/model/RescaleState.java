@@ -23,7 +23,7 @@ public class RescaleState extends State {
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		Point2D end = e.getPoint();
+		/*Point2D end = e.getPoint();
 		
 		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
 		
@@ -44,10 +44,26 @@ public class RescaleState extends State {
 			}
 		}
 		
-		start=end;
+		start=end;*/
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		Point2D end = e.getPoint();
+		
+		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
+		
+		double distanceX = end.getX() - start.getX();
+		double distanceY = end.getY() - start.getY();
+		
+		for(Slot slot : pageView.getSelectionModel().getSlots()) {
+			command=new RescaleSlotCommand(slot, selectedHandle, distanceX, distanceY);
+			pageView.getCommandManager().addCommand(command);
+			command.setSlot(slot);
+			command.setSelectedHandle(selectedHandle);
+			command.setDistanceX(distanceX);
+			command.setDistanceY(distanceY);
+		}
+		start=end;
 		pageView.getStateManager().setSelectState();
 	}
 }
