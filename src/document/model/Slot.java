@@ -46,10 +46,6 @@ public abstract class Slot extends ModelElement {
 	protected TextEditor textEditor;
 	protected MultimedialEditor multiEditor;
 	
-	protected MoveSlotCommand moveCommand=null;
-	protected RescaleSlotCommand rescaleCommand=null;
-	protected RotateSlotCommand rotateCommand=null;
-	
 	public abstract Slot clone();
 	
 	public Slot(Point2D position, Dimension size) {
@@ -213,16 +209,4 @@ public abstract class Slot extends ModelElement {
 	}
 	
 	public abstract void scale(Handle h, double distanceX, double distanceY);
-	
-	public MoveSlotCommand getMoveCommand() {
-		return moveCommand;
-	}
-	
-	public RescaleSlotCommand getRescaleCommand() {
-		return rescaleCommand;
-	}
-	
-	public RotateSlotCommand getRotateCommand() {
-		return rotateCommand;
-	}
 }

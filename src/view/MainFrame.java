@@ -16,6 +16,9 @@ import javax.swing.WindowConstants;
 import controller.CloseListener;
 import controller.StartListener;
 import document.view.WorkspaceTabbedMenu;
+//import workspace.model.Project;
+//import workspace.model.Workspace;
+import workspace.view.BackupTree;
 import workspace.view.WorkspaceTree;
 
 public class MainFrame extends JFrame implements ClipboardOwner {
@@ -23,6 +26,7 @@ public class MainFrame extends JFrame implements ClipboardOwner {
 	
 	private MainMenu menu;
 	private WorkspaceTree wst;
+	private BackupTree bt;
 	
 	private WorkspaceTabbedMenu wtb;
 	
@@ -41,15 +45,29 @@ public class MainFrame extends JFrame implements ClipboardOwner {
 		add(toolbar, BorderLayout.NORTH);
 		
 		wst=new WorkspaceTree();
+		//bt=new BackupTree();
+		//bt.setRoot(Workspace.backup);
+		//bt.setVisible(true);
+		//bt.setRoot(new Project());
 		
 		JScrollPane treePanel=new JScrollPane(wst);
+		//JScrollPane backupPanel=new JScrollPane(bt);
+		
+		//JSplitPane razdela=new JSplitPane(JSplitPane.VERTICAL_SPLIT, treePanel, backupPanel);
+		//add(razdela, BorderLayout.CENTER);
+		//razdela.setDividerLocation(screenSize.height/2);
 		
 		wtb = new WorkspaceTabbedMenu();
 		add(wtb, BorderLayout.CENTER);
 		
-		JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, wtb);
-		add(podela, BorderLayout.CENTER);
-		podela.setDividerLocation(screenSize.width/16);
+		//JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, razdela, wtb);
+		//add(podela, BorderLayout.CENTER);
+		//podela.setDividerLocation(screenSize.width/16);
+		
+
+        JSplitPane podela=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, wtb);
+        add(podela, BorderLayout.CENTER);
+        podela.setDividerLocation(screenSize.width/16);
 		
 		addWindowListener(new StartListener());
 		addWindowListener(new CloseListener());
@@ -67,6 +85,10 @@ public class MainFrame extends JFrame implements ClipboardOwner {
 	public WorkspaceTree getWorkspaceTree() {
 		return wst;
 	}
+	
+	//public BackupTree getBackupTree() {
+	//	return bt;
+	//}
 	
 	public WorkspaceTabbedMenu getWorkspaceTabbedMenu() {
 		return wtb;

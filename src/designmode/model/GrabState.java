@@ -24,7 +24,7 @@ public class GrabState extends State {
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		Point2D end = e.getPoint();
+		/*Point2D end = e.getPoint();
 		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
 		
 		double distanceX = end.getX() - start.getX();
@@ -42,10 +42,25 @@ public class GrabState extends State {
 			command.setPosition(position);
 			command.doCommand();
 		}
-		start = end;
+		start = end;*/
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		Point2D end = e.getPoint();
+		end = UserSpaceScaler.getInstance().toUserSpace(end, pageView.getSize());
+		
+		double distanceX = end.getX() - start.getX();
+		double distanceY = end.getY() - start.getY();
+		
+		for(Slot slot : pageView.getSelectionModel().getSlots()) {
+			Point2D position = (Point2D) slot.getPosition().clone();
+			position.setLocation(position.getX() + distanceX, position.getY() + distanceY);
+			command=new MoveSlotCommand(slot, position, startPoz);
+			pageView.getCommandManager().addCommand(command);
+			command.setSlot(slot);
+			command.setPosition(position);
+		}
+		start = end;
 		pageView.getStateManager().setSelectState();
 	}
 }

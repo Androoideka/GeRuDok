@@ -38,15 +38,10 @@ public class RotateState extends State {
 		double angle=Math.atan(tg);
 		
 		for(Slot slot : pageView.getSelectionModel().getSlots()) {
-			RotateSlotCommand rotate=slot.getRotateCommand();
-			if(rotate==null) {
-				command=new RotateSlotCommand(slot, angle);
-				pageView.getCommandManager().addCommand(command);
-			}else {
-				command.setSlot(slot);
-				command.setAngle(angle);
-				command.doCommand();
-			}
+			command=new RotateSlotCommand(slot, angle);
+			pageView.getCommandManager().addCommand(command);
+			command.setSlot(slot);
+			command.setAngle(angle);
 		}
 	}
 

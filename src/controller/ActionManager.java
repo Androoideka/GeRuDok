@@ -18,7 +18,6 @@ import designmode.controller.RectangleAction;
 import designmode.controller.RedoAction;
 import designmode.controller.SelectAction;
 import designmode.controller.TriangleAction;
-import designmode.controller.UnderlineAction;
 import designmode.controller.UndoAction;
 import document.controller.CloseAction;
 import workspace.controller.DeleteAction;
@@ -84,7 +83,6 @@ public class ActionManager {
 		textEditorActions.add(new EditableAction());
 		textEditorActions.add(new BoldAction());
 		textEditorActions.add(new ItalicAction());
-		textEditorActions.add(new UnderlineAction());
 		
 		multimedialEditorActions.add(new ImportPictureAction());
 	}

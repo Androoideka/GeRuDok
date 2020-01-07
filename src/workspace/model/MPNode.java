@@ -30,7 +30,7 @@ public abstract class MPNode extends ModelElement implements MutableTreeNode {
 	}
 
 	@Override
-	public TreeNode getChildAt(int childIndex) {
+	public MutableTreeNode getChildAt(int childIndex) {
 		if(children != null) {
 			return children.get(childIndex);
 		}
