@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 
 public class MultimedialEditor extends Editor {
 	private MultimedialEditorToolbar met;
-	private BufferedImage img;
+	transient private BufferedImage img;
 	private ImageIcon icon;
 	private JLabel pic;
 	
