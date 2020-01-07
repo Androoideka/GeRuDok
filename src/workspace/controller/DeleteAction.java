@@ -2,17 +2,13 @@ package workspace.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import helpers.ImageResizer;
 import view.MainFrame;
-import workspace.model.Document;
 import workspace.model.MPNode;
-import workspace.model.Project;
-import workspace.model.Workspace;
 
 public class DeleteAction extends AbstractAction {
 	
