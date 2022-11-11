@@ -9,14 +9,14 @@ import javax.swing.KeyStroke;
 
 import document.model.Slot;
 import document.view.MainPageView;
-import exceptionhandling.ExceptionHandler;
+import exceptions.ExceptionHandler;
+import exceptions.NoSelectedSlotsException;
 import helpers.ImageResizer;
 import view.MainFrame;
-import view.NoSelectedSlotsException;
 
 public class PasteAction extends AbstractAction {
 	public PasteAction() {
-		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/paste.png"));
 		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/paste.png"));
 		putValue(NAME, "Paste");
@@ -26,13 +26,16 @@ public class PasteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			ArrayList<Slot> slots=((MainPageView)MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView()).getSelectionModel().getSlots();
-			if(slots==null) {
+			ArrayList<Slot> slots = ((MainPageView) MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView()
+					.getCurrentView()).getSelectionModel().getSlots();
+			if (slots == null) {
 				throw new NoSelectedSlotsException();
 			}
-			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getCommandManager().addCommand(new PasteCommand(slots));;
-		}catch (Exception e) {
-			ExceptionHandler.createDialog(e);
+			MainFrame.getInstance().getWorkspaceTabbedMenu().getCurrentView().getCurrentView().getCommandManager()
+					.addCommand(new PasteCommand(slots));
+			;
+		} catch (NoSelectedSlotsException e) {
+			ExceptionHandler.createMessageDialog(e);
 		}
 	}
 }

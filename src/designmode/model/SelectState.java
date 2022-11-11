@@ -19,51 +19,49 @@ public class SelectState extends State {
 	public void mousePressed(MouseEvent e) {
 		Point2D point = UserSpaceScaler.getInstance().toUserSpace(e.getPoint(), pageView.getSize());
 		Slot slot = pageView.getPage().findSlotAtPosition(point);
-		if(e.getButton()==MouseEvent.BUTTON1 && e.getClickCount()==2) {
-			if(slot!=null && pageView.getSelectionModel().getNumberOfSlots()==1) {
-				if(slot.getTextSlot()==false && slot.getMultimedialSlot()==false) {
-					SlotContentChooser scc=new SlotContentChooser(slot);
-					if(scc.getSelection().toString()=="Textual") {
+		if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
+			if (slot != null && pageView.getSelectionModel().getNumberOfSlots() == 1) {
+				if (slot.getTextSlot() == false && slot.getMultimedialSlot() == false) {
+					SlotContentChooser scc = new SlotContentChooser(slot);
+					if (scc.getSelection().toString() == "Textual") {
 						slot.setTextSlot(true);
-						TextEditor te=new TextEditor();
+						TextEditor te = new TextEditor();
 						slot.setTextEditor(te);
-					}else if(scc.getSelection().toString()=="Multimedial") {
+					} else if (scc.getSelection().toString() == "Multimedial") {
 						slot.setMultimedialSlot(true);
-						MultimedialEditor me=new MultimedialEditor();
+						MultimedialEditor me = new MultimedialEditor();
 						slot.setMultiEditor(me);
-					}else {
+					} else {
 						System.out.println("nije odabran editor");
 					}
-				}else if(slot.getTextEditor()!=null) {
+				} else if (slot.getTextEditor() != null) {
 					slot.getTextEditor().getTP().setEditable(false);
-					slot.getTextEditor().show();
-				}else if(slot.getMultiEditor()!=null) {
-					slot.getMultiEditor().show();
+					slot.getTextEditor().setVisible(true);
+				} else if (slot.getMultiEditor() != null) {
+					slot.getMultiEditor().setVisible(true);
 				}
 			}
-		}
-		else if(e.getButton()==MouseEvent.BUTTON1) {
-			if(slot == null || !pageView.getSelectionModel().getSlots().contains(slot)) {
-				if(!e.isControlDown()) {
+		} else if (e.getButton() == MouseEvent.BUTTON1) {
+			if (slot == null || !pageView.getSelectionModel().getSlots().contains(slot)) {
+				if (!e.isControlDown()) {
 					pageView.getSelectionModel().removeAll();
 				}
-				if(slot != null) {
+				if (slot != null) {
 					pageView.getSelectionModel().addSlot(slot);
 				}
 			}
-			if(pageView.getSelectionModel().getHandleForPoint(point) != null) {
+			if (pageView.getSelectionModel().getHandleForPoint(point) != null) {
 				pageView.getStateManager().setRescaleState(point);
-			}
-			else {
+			} else {
 				pageView.getStateManager().setGrabState(point);
 			}
-		}else if(e.getButton()==MouseEvent.BUTTON3) {
-			if(pageView.getSelectionModel().getNumberOfSlots() > 0) {
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			if (pageView.getSelectionModel().getNumberOfSlots() > 0) {
 				pageView.getStateManager().setRotateState(point);
 			}
 		}
 	}
-	
+
 	public void deselect() {
 		pageView.getSelectionModel().removeAll();
 	}

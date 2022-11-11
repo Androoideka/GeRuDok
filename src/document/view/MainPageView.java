@@ -16,7 +16,7 @@ import document.model.RectangleSlot;
 import document.model.RectangleSlotPainter;
 import document.model.Slot;
 import document.model.TriangleSlotPainter;
-import exceptionhandling.ExceptionHandler;
+import exceptions.ExceptionHandler;
 import view.MainFrame;
 
 public class MainPageView extends PageView {
@@ -26,51 +26,47 @@ public class MainPageView extends PageView {
 
 	public MainPageView(Page page) {
 		super(page);
-		
+
 		PageController pc = new PageController();
 		this.addMouseListener(pc);
 		this.addMouseMotionListener(pc);
 	}
-	
+
 	public StateManager getStateManager() {
 		return stateManager;
 	}
-	
+
 	public PageSelectionModel getSelectionModel() {
 		return pageSelectionModel;
 	}
-	
+
 	public CommandManager getCommandManager() {
 		return commandManager;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void paste() {
-		Transferable clipboardContent=MainFrame.getInstance().getClipboard().getContents(MainFrame.getInstance());
-		if(clipboardContent!=null && clipboardContent.isDataFlavorSupported(PageSlotSelection.slotFlavor)){
+		Transferable clipboardContent = MainFrame.getInstance().getClipboard().getContents(MainFrame.getInstance());
+		if (clipboardContent != null && clipboardContent.isDataFlavorSupported(PageSlotSelection.slotFlavor)) {
 			try {
-				Slot slot=null;
-				ArrayList<Slot> slots=(ArrayList<Slot>) clipboardContent.getTransferData(PageSlotSelection.slotFlavor);
-				for(int i=0;i<slots.size();i++) {
-					//if(slots.get(i) instanceof Slot) {
-						slot=slots.get(i).clone();
-						Point2D newLocation=(Point2D)slot.getPosition().clone();
-						//PointerInfo pi=MouseInfo.getPointerInfo();
-						//Point2D p=pi.getLocation();
-						//newLocation.setLocation(p);
-						newLocation.setLocation(slot.getPosition().getX()+20, slot.getPosition().getY()+20);
-						slot.setPosition(newLocation);
-						if(slot instanceof RectangleSlot) {
-							slot.setSlotPainter(new RectangleSlotPainter(slot));
-						}else if(slot instanceof CircleSlot) {
-							slot.setSlotPainter(new CircleSlotPainter(slot));
-						}else {
-							slot.setSlotPainter(new TriangleSlotPainter(slot));
-						}
-						page.addSlot(slot);
-					//}
+				Slot slot = null;
+				ArrayList<Slot> slots = (ArrayList<Slot>) clipboardContent
+						.getTransferData(PageSlotSelection.slotFlavor);
+				for (int i = 0; i < slots.size(); i++) {
+					slot = slots.get(i).clone();
+					Point2D newLocation = (Point2D) slot.getPosition().clone();
+					newLocation.setLocation(slot.getPosition().getX() + 20, slot.getPosition().getY() + 20);
+					slot.setPosition(newLocation);
+					if (slot instanceof RectangleSlot) {
+						slot.setSlotPainter(new RectangleSlotPainter(slot));
+					} else if (slot instanceof CircleSlot) {
+						slot.setSlotPainter(new CircleSlotPainter(slot));
+					} else {
+						slot.setSlotPainter(new TriangleSlotPainter(slot));
+					}
+					page.addSlot(slot);
 				}
-			}catch(Exception e) {
+			} catch (Exception e) {
 				ExceptionHandler.createDialog(e);
 			}
 		}
