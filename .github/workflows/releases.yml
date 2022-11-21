@@ -21,7 +21,7 @@ jobs:
           architecture: 'x64'
       - name: Generate file list
         shell: pwsh
-        run: Get-ChildItem -Filter "*.java" -Recurse $pwd | Out-File -FilePath sources.txt
+        run: (Get-ChildItem -Filter "*.java" -Recurse $pwd | Select FullName | ft -hidetableheaders | Out-String).Trim() | Out-File -FilePath sources.txt
       - name: Create folder for .class files
         shell: pwsh
         run: mkdir bin
