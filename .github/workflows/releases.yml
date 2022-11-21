@@ -24,7 +24,7 @@ jobs:
         run: Get-ChildItem -Filter "*.java" -Recurse $pwd | Out-File -FilePath sources.txt
       - name: Build .class files
         shell: pwsh
-        run: javac @sources.txt -d bin
+        run: javac "@sources.txt" -d bin
       - name: Build jar
         shell: pwsh
         run: jar cfe "app\GeRuDok.jar" mehanickoPrebacivanje.Main -C bin .
