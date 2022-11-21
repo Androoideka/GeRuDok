@@ -13,8 +13,8 @@ public class UndoAction extends AbstractAction {
 	
 	public UndoAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Z,ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/undo.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/undo.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("undo.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("undo.png"));
 		putValue(NAME, "Undo");
 		putValue(SHORT_DESCRIPTION, "Undo your last action.");
 	}

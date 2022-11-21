@@ -13,8 +13,8 @@ public class RedoAction extends AbstractAction {
 	
 	public RedoAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/redo.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/redo.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("redo.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("redo.png"));
 		putValue(NAME, "Redo");
 		putValue(SHORT_DESCRIPTION, "Redo your last undone action.");
 	}

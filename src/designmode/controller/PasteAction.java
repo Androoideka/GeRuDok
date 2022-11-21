@@ -17,8 +17,8 @@ import view.MainFrame;
 public class PasteAction extends AbstractAction {
 	public PasteAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/paste.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/paste.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("paste.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("paste.png"));
 		putValue(NAME, "Paste");
 		putValue(SHORT_DESCRIPTION, "Paste copied or cut objects.");
 	}

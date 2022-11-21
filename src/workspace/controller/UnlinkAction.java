@@ -15,8 +15,8 @@ public class UnlinkAction extends AbstractAction {
 
 	public UnlinkAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/unlink.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/unlink.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("unlink.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("unlink.png"));
 		putValue(NAME, "Unlink document");
 		putValue(SHORT_DESCRIPTION, "Unlink a document from other documents. Any further changes to that document's contents will not be seen in other documents.");
 	}

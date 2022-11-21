@@ -14,8 +14,8 @@ public class CloseAction extends AbstractAction {
 
 	public CloseAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK)); //0 specifies no modifiers
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/tabclose.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/tabclose.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("tabclose.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("tabclose.png"));
 		putValue(NAME, "Close");
 		putValue(SHORT_DESCRIPTION, "Close the currently displayed tab.");
 	}

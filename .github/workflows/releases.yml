@@ -1,0 +1,37 @@
+name: GeRuDok Releases
+run-name: Preparing release number ${{ github.run_number }} for GeRuDok
+on:
+  push:
+    tags:
+      - '**'
+permissions:
+  contents: read
+jobs:
+  build-app:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
+          java-version: '17'
+          java-package: 'jdk'
+          architecture: 'x64'
+      - name: Generate file list
+        run: dir /s /B *.java > sources.txt
+      - name: Build .class files
+        run: javac @sources.txt -d bin
+      - name: Build jar
+        run: jar cfe "app\GeRuDok.jar" mehanickoPrebacivanje.Main -C bin .
+      - name: Generate runtime
+        run: jlink --add-modules java.base,java.desktop --strip-debug --no-man-pages --no-header-files --compress=2 --output jre
+      - name: Generate application
+        run: jpackage --type app-image --input app\ --name "GeRuDok" --main-jar "GeRuDok.jar" --runtime-image jre --dest package\
+      - name: Zip application
+        run: powershell Compress-Archive package\GeRuDok GeRuDok.zip
+      - name: Upload release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: GeRuDok.zip

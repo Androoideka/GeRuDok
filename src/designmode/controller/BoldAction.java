@@ -16,8 +16,8 @@ public class BoldAction extends AbstractAction {
 
 	public BoldAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/bold.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/bold.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("bold.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("bold.png"));
 		putValue(NAME, "Bold");
 		putValue(SHORT_DESCRIPTION, "Bold selected text.");
 	}

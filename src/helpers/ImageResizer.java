@@ -12,7 +12,7 @@ public class ImageResizer {
 	}
 	public ImageIcon getProperlyScaledImage(String fileName, int width, int height) {
 		if(fileName != null) {
-			ImageIcon originalIcon = new ImageIcon(fileName);
+			ImageIcon originalIcon = new ImageIcon("app/ikonice/" + fileName);
 			ImageIcon scaledIcon = new ImageIcon(originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 			return scaledIcon;
 		}

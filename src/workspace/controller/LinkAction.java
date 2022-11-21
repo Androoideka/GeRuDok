@@ -19,8 +19,8 @@ public class LinkAction extends AbstractAction {
 
 	public LinkAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/link.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/link.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("link.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("link.png"));
 		putValue(NAME, "Link document");
 		putValue(SHORT_DESCRIPTION, "Link a document to another document.");
 	}

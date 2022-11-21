@@ -19,8 +19,8 @@ public class CutAction extends AbstractAction {
 
 	public CutAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/cut.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/cut.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("cut.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("cut.png"));
 		putValue(NAME, "Cut");
 		putValue(SHORT_DESCRIPTION, "Cut selected objects.");
 	}

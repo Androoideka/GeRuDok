@@ -20,8 +20,8 @@ public class ImportPictureAction extends AbstractAction {
 
 	public ImportPictureAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/import.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/import.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("import.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("import.png"));
 		putValue(NAME, "Import");
 		putValue(SHORT_DESCRIPTION, "Import a picture into the editor.");
 	}

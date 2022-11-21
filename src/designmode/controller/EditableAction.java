@@ -14,8 +14,8 @@ public class EditableAction extends AbstractAction {
 	
 	public EditableAction() {
 		putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("ikonice/editable.png"));
-		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("ikonice/editable.png"));
+		putValue(SMALL_ICON, ImageResizer.getInstance().loadSmallIcon("editable.png"));
+		putValue(LARGE_ICON_KEY, ImageResizer.getInstance().loadBigIcon("editable.png"));
 		putValue(NAME, "Edit");
 		putValue(SHORT_DESCRIPTION, "Enable text editing.");
 	}
