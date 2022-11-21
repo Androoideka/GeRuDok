@@ -22,6 +22,9 @@ jobs:
       - name: Generate file list
         shell: pwsh
         run: Get-ChildItem -Filter "*.java" -Recurse $pwd | Out-File -FilePath sources.txt
+      - name: Create folder for .class files
+        shell: pwsh
+        run: mkdir bin
       - name: Build .class files
         shell: pwsh
         run: javac "@sources.txt" -d bin
