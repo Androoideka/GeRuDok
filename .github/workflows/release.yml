@@ -1,0 +1,63 @@
+name: Release GeRuDok Builds
+run-name: Preparing release number ${{ github.ref_name }} for GeRuDok
+on:
+  push:
+    tags:
+      - '**'
+
+permissions:
+  contents: write
+
+jobs:
+  build-jar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
+          java-version: '17'
+      - name: Generate file list
+        shell: pwsh
+        run: (Get-ChildItem -Filter "*.java" -Recurse $pwd | Select FullName | ft -hidetableheaders | Out-String).Trim() | Out-File -FilePath sources.txt
+      - name: Create folder for .class files
+        shell: pwsh
+        run: mkdir bin
+      - name: Build .class files
+        shell: pwsh
+        run: javac "@sources.txt" -d bin
+      - name: Build jar
+        shell: pwsh
+        run: jar cfe "app/GeRuDok.jar" mehanickoPrebacivanje.Main -C bin .
+      - name: Upload jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: GeRuDok
+          path: app
+
+  package:
+    uses: androoideka/ci/.github/workflows/javapack.yaml@main
+    needs: build-jar
+    with:
+      artifact-name: GeRuDok
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+      - name: Download jar
+        uses: actions/download-artifact@v3
+        with:
+          name: GeRuDok
+      - name: Download zip
+        uses: actions/download-artifact@v3
+        with:
+          name: GeRuDok.zip
+      - name: Upload release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            GeRuDok.jar
+            GeRuDok.zip

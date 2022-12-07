@@ -2,8 +2,8 @@
 	"name": "Java",
 	"image": "androoideka/alpine-gui-java:latest",
 	"features": {
-		"ghcr.io/androoideka/containers/alpine-utils:latest": {},
-		"ghcr.io/androoideka/containers/wslg-config:latest": {}
+		"ghcr.io/androoideka/ci/alpine-utils:latest": {},
+		"ghcr.io/androoideka/ci/wslg-config:latest": {}
 	},
 	"customizations": {
 		"vscode": {
